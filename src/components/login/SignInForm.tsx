@@ -49,28 +49,22 @@ export default function SignInForm() {
           </CardHeader>
           <CardContent>
             <div className="grid gap-4">
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Username</FormLabel>
-                    <FormControl>
-                      <Input placeholder="example@example.fr" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
               <div className="grid gap-2">
-                <div className="flex items-center">
-                  <Link
-                    href="#"
-                    className="ml-auto inline-block text-sm underline"
-                  >
-                    Forgot your password?
-                  </Link>
-                </div>
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Username</FormLabel>
+                      <FormControl>
+                        <Input placeholder="example@example.fr" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="grid gap-2">
                 <FormField
                   control={form.control}
                   name="password"
@@ -95,7 +89,7 @@ export default function SignInForm() {
             <div className="mt-4 text-center text-sm">
               Don&apos;t have an account?{" "}
               <Link href="/auth/signup" className="underline">
-                Sign up
+                Sign Up
               </Link>
             </div>
           </CardContent>
