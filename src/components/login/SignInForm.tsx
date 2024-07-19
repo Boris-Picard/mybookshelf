@@ -33,12 +33,6 @@ export default async function SignInForm() {
             </Button>
           </form>
         </div>
-        <div className="mt-4 text-center text-sm">
-          Don&apos;t have an account?{" "}
-          <Link href="/auth/signup" className="underline">
-            Sign Up
-          </Link>
-        </div>
       </CardContent>
     </Card>
   );
