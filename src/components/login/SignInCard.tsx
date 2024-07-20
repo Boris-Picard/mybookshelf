@@ -11,7 +11,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-export default function signInCard({ children }: Props) {
+export default function SignInCard({ children }: Props) {
   return (
     <Card className="w-full max-w-sm p-3 space-y-3 shadow-lg">
       <CardHeader>

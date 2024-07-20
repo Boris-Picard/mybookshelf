@@ -10,8 +10,8 @@ export function GithubSignIn() {
         await signIn("github");
       }}
     >
-      <Button type="submit" variant="secondary" className="w-full gap-3">
-        <FaGithub className="h-6 w-6" />
+      <Button type="submit" variant="outline" className="w-full gap-3">
+        <FaGithub className="h-6 w-6" fill="current" />
         Continue with GitHub
       </Button>
     </form>

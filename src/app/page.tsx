@@ -1,8 +1,10 @@
-import { GithubSignIn } from "@/components/login/github-button";
-import { GoogleSignIn } from "@/components/login/google-button";
-import SignInCard from "@/components/login/signin-card";
+import { GithubSignIn } from "@/components/login/GithubButton";
+import { GoogleSignIn } from "@/components/login/GoogleButton";
+import SignInCard from "@/components/login/SignInCard";
 
-export default function Home() {
+import { auth } from "@/auth";
+
+export default async function Home() {
   return (
     <main className="flex min-h-screen justify-center items-center p-24">
       <SignInCard>

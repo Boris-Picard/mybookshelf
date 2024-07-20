@@ -10,7 +10,7 @@ export function GoogleSignIn() {
         await signIn("google");
       }}
     >
-      <Button type="submit" variant="secondary" className="w-full gap-3">
+      <Button type="submit" variant="outline" className="w-full gap-3">
         <FcGoogle className="h-6 w-6" />
         Continue with Google
       </Button>
