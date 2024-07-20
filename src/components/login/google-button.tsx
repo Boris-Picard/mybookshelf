@@ -1,18 +1,18 @@
 import { signIn } from "@/auth";
-import { Button } from "@/components/ui/button";
-import { FaGithub } from "react-icons/fa";
+import { Button } from "../ui/button";
+import { FcGoogle } from "react-icons/fc";
 
-export function GithubSignIn() {
+export function GoogleSignIn() {
   return (
     <form
       action={async () => {
         "use server";
-        await signIn("github");
+        await signIn("google");
       }}
     >
       <Button type="submit" variant="secondary" className="w-full gap-3">
-        <FaGithub className="h-6 w-6" />
-        Continue with GitHub
+        <FcGoogle className="h-6 w-6" />
+        Continue with Google
       </Button>
     </form>
   );
