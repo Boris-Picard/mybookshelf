@@ -4,9 +4,6 @@ import "./globals.css";
 
 import { cn } from "@/lib/utils";
 
-import { auth } from "@/auth";
-import { SessionProvider } from "next-auth/react";
-
 import { ThemeProvider } from "@/components/theme-provider";
 
 const fontSans = FontSans({ subsets: ["latin"], variable: "--font-sans" });
@@ -21,28 +18,23 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await auth();
-  console.log(session);
-
   return (
-    <SessionProvider session={session}>
-      <html lang="en">
-        <body
-          className={cn(
-            "min-h-screen bg-zinc-900 font-sans antialiased",
-            fontSans.variable
-          )}
+    <html lang="en">
+      <body
+        className={cn(
+          "min-h-screen bg-zinc-900 font-sans antialiased",
+          fontSans.variable
+        )}
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
         >
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-          </ThemeProvider>
-        </body>
-      </html>
-    </SessionProvider>
+          {children}
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }

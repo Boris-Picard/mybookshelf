@@ -17,10 +17,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     updateAge: 24 * 60 * 60, // 24 hours to update session data into database
   },
   callbacks: {
+    //  TODO CHECK SESSION TOKEN WITH USER DB && CHECK ALL PAGE WITH AUTH
     async session({ session, user }) {
-      session.user = user
-      return session
-    }
+      session.userId = user.id;
+      return session;
+    },
   },
   pages: {
     signIn: "/",

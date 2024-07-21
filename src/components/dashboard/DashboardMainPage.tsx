@@ -73,7 +73,7 @@ import {
 } from "@/components/ui/tooltip";
 import { ModeToggle } from "@/components/dark-mode";
 
-export function DashboardMainPage() {
+export function DashboardMainPage({}) {
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
       <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
@@ -264,7 +264,7 @@ export function DashboardMainPage() {
                 className="overflow-hidden rounded-full"
               >
                 <Image
-                  src="/placeholder-user.jpg"
+                  // src="/placeholder-user.jpg"
                   width={36}
                   height={36}
                   alt="Avatar"
@@ -272,9 +272,9 @@ export function DashboardMainPage() {
                 />
               </Button>
             </DropdownMenuTrigger>
-            <ModeToggle/>
+            <ModeToggle />
             <DropdownMenuContent align="end">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              {/* <DropdownMenuLabel>{user?.user?.name}</DropdownMenuLabel> */}
               <DropdownMenuSeparator />
               <DropdownMenuItem>Settings</DropdownMenuItem>
               <DropdownMenuItem>Support</DropdownMenuItem>

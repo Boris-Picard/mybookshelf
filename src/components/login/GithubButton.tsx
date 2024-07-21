@@ -11,7 +11,7 @@ export function GithubSignIn() {
       }}
     >
       <Button type="submit" variant="outline" className="w-full gap-3">
-        <FaGithub className="h-6 w-6" fill="current" />
+        <FaGithub className="h-6 w-6 dark:invert invert-0" fill="current" />
         Continue with GitHub
       </Button>
     </form>
