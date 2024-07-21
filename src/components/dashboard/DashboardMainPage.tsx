@@ -71,6 +71,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { ModeToggle } from "@/components/dark-mode";
 
 export function DashboardMainPage() {
   return (
@@ -271,6 +272,7 @@ export function DashboardMainPage() {
                 />
               </Button>
             </DropdownMenuTrigger>
+            <ModeToggle/>
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />

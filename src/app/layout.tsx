@@ -5,7 +5,9 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 
 import { auth } from "@/auth";
-import { SessionProvider} from "next-auth/react"
+import { SessionProvider } from "next-auth/react";
+
+import { ThemeProvider } from "@/components/theme-provider";
 
 const fontSans = FontSans({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -21,7 +23,7 @@ export default async function RootLayout({
 }>) {
   const session = await auth();
   console.log(session);
-  
+
   return (
     <SessionProvider session={session}>
       <html lang="en">
@@ -31,7 +33,14 @@ export default async function RootLayout({
             fontSans.variable
           )}
         >
-          {children}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
         </body>
       </html>
     </SessionProvider>
