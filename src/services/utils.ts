@@ -1,11 +1,13 @@
+import "server-only";
+
+import { cache } from "react";
+import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 
-import { auth } from "@/auth";
-
-export const protectServer = async () => {
+export const getCurrentUser = cache(async () => {
     const session = await auth();
-
-    if (!session) {
+    if (!session?.user) {
         redirect("/");
     }
-};
+    return session.user;
+});

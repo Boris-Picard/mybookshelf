@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 
 import { ThemeProvider } from "@/components/theme-provider";
 import { SessionProvider } from "next-auth/react";
+import { auth } from "@/auth";
 
 const fontSans = FontSans({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -19,25 +20,25 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
+
   return (
-    <SessionProvider>
-      <html lang="en">
-        <body
-          className={cn(
-            "min-h-screen bg-zinc-900 font-sans antialiased",
-            fontSans.variable
-          )}
+    <html lang="en">
+      <body
+        className={cn(
+          "min-h-screen bg-zinc-900 font-sans antialiased",
+          fontSans.variable
+        )}
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
         >
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-          </ThemeProvider>
-        </body>
-      </html>
-    </SessionProvider>
+          <SessionProvider session={session}>{children}</SessionProvider>
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }
