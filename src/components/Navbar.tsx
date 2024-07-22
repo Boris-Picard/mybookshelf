@@ -1,7 +1,16 @@
-"use client";
-
 import Link from "next/link";
 import { Button } from "./ui/button";
+
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { GithubSignIn } from "@/components/login/GithubButton";
+import { GoogleSignIn } from "@/components/login/GoogleButton";
 
 export default function Navbar() {
   return (
@@ -16,9 +25,19 @@ export default function Navbar() {
             <Link href="/dashboard">Dashboard</Link>
           </li>
         </ul>
-        <Button variant="secondary">
-          <Link href="auth/login">Login</Link>
-        </Button>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button variant="secondary">Login</Button>
+          </DialogTrigger>
+          <DialogContent className="p-10">
+            <DialogHeader className="space-y-3">
+              <DialogTitle>Sign in</DialogTitle>
+              <DialogDescription>to continue to platform</DialogDescription>
+              <GithubSignIn />
+              <GoogleSignIn />
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
       </div>
     </nav>
   );
