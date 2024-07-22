@@ -7,7 +7,7 @@ export function GithubSignIn() {
     <form
       action={async () => {
         "use server";
-        await signIn("github");
+        await signIn("github", { redirectTo: "/dashboard" });
       }}
     >
       <Button type="submit" variant="outline" className="w-full gap-3">

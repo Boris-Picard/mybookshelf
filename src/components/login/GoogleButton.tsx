@@ -7,7 +7,7 @@ export function GoogleSignIn() {
     <form
       action={async () => {
         "use server";
-        await signIn("google");
+        await signIn("google", { redirectTo: "/dashboard" });
       }}
     >
       <Button type="submit" variant="outline" className="w-full gap-3">

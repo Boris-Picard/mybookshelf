@@ -6,7 +6,6 @@ import { cn } from "@/lib/utils";
 
 import { ThemeProvider } from "@/components/theme-provider";
 import { SessionProvider } from "next-auth/react";
-import Navbar from "@/components/Navbar";
 
 const fontSans = FontSans({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -29,7 +28,6 @@ export default async function RootLayout({
             fontSans.variable
           )}
         >
-          <Navbar />
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
