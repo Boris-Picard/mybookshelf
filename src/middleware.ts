@@ -33,7 +33,7 @@ export default auth((req) => {
     if (!isLoggedIn && !isPublicRoute) {
         let callbackUrl = nextUrl.pathname;
         console.log(callbackUrl);
-        
+
         if (nextUrl.search) {
             callbackUrl += nextUrl.search;
         }
