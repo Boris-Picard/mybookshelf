@@ -5,8 +5,8 @@ import { Button } from "./ui/button";
 
 export default function Navbar() {
   return (
-    <nav className="mt-10">
-      <div className="flex justify-between items-center bg-zinc-950 p-3 rounded-3xl">
+    <nav className="fixed top-0 border-b border-white/20 w-full bg-background/70 backdrop-blur-[12px]">
+      <div className="container flex h-[3.5rem] items-center justify-between">
         <span>brand</span>
         <ul className="flex gap-3 h-10 items-center">
           <li>
