@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 
 import { ThemeProvider } from "@/components/theme-provider";
 import { SessionProvider } from "next-auth/react";
+import Navbar from "@/components/Navbar";
 
 const fontSans = FontSans({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -24,10 +25,11 @@ export default async function RootLayout({
       <html lang="en">
         <body
           className={cn(
-            "min-h-screen bg-zinc-900 font-sans antialiased",
+            "min-h-screen bg-zinc-900 font-sans antialiased container",
             fontSans.variable
           )}
         >
+          <Navbar />
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
