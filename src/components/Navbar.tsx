@@ -23,7 +23,7 @@ const Navbar: React.FC<NavbarProps> = ({ id }) => {
       <nav className="fixed top-0 border-b border-white/20 w-full bg-background/70 backdrop-blur-[12px]">
         <div className="container flex h-[3.5rem] items-center justify-between">
           <span>brand</span>
-          <ul className="flex gap-3 h-10 items-center">
+          <ul className="flex gap-3 items-center">
             <li>
               <Link href="/">Home</Link>
             </li>
@@ -40,8 +40,8 @@ const Navbar: React.FC<NavbarProps> = ({ id }) => {
                 <DialogHeader className="space-y-3">
                   <DialogTitle>Sign in</DialogTitle>
                   <DialogDescription>to continue to platform</DialogDescription>
-                  <GithubSignIn />
                   <GoogleSignIn />
+                  <GithubSignIn />
                 </DialogHeader>
               </DialogContent>
             </Dialog>

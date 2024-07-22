@@ -13,7 +13,6 @@ const { auth } = NextAuth(authConfig);
 export default auth(async function middleware(req: NextRequest) {
     const { nextUrl } = req;
     const isLoggedIn = !!req.auth;
-    console.log(nextUrl);
 
     const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
     const isPublicRoute = publicRoutes.includes(nextUrl.pathname);

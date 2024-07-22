@@ -21,10 +21,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={cn(
-          "min-h-screen bg-zinc-900 font-sans antialiased",
-          fontSans.variable
-        )}
+        className={cn("min-h-screen font-sans antialiased", fontSans.variable)}
       >
         <ThemeProvider
           attribute="class"
