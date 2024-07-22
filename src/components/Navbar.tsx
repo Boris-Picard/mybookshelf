@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { GithubSignIn } from "@/components/login/GithubButton";
 import { GoogleSignIn } from "@/components/login/GoogleButton";
+import LogoutButton from "@/components/login/LogoutButton";
 
 interface NavbarProps {
   id: string | null | undefined;
@@ -30,23 +31,23 @@ const Navbar: React.FC<NavbarProps> = ({ id }) => {
               <Link href="/dashboard">Dashboard</Link>
             </li>
           </ul>
-          <Dialog>
-            <DialogTrigger asChild>
-              {id ? (
-                <Button variant="secondary">Logout</Button>
-              ) : (
+          {!id ? (
+            <Dialog>
+              <DialogTrigger asChild>
                 <Button variant="secondary">Login</Button>
-              )}
-            </DialogTrigger>
-            <DialogContent className="p-10">
-              <DialogHeader className="space-y-3">
-                <DialogTitle>Sign in</DialogTitle>
-                <DialogDescription>to continue to platform</DialogDescription>
-                <GithubSignIn />
-                <GoogleSignIn />
-              </DialogHeader>
-            </DialogContent>
-          </Dialog>
+              </DialogTrigger>
+              <DialogContent className="p-10">
+                <DialogHeader className="space-y-3">
+                  <DialogTitle>Sign in</DialogTitle>
+                  <DialogDescription>to continue to platform</DialogDescription>
+                  <GithubSignIn />
+                  <GoogleSignIn />
+                </DialogHeader>
+              </DialogContent>
+            </Dialog>
+          ) : (
+            <LogoutButton />
+          )}
         </div>
       </nav>
     </header>
