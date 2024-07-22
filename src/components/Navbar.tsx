@@ -12,7 +12,11 @@ import {
 import { GithubSignIn } from "@/components/login/GithubButton";
 import { GoogleSignIn } from "@/components/login/GoogleButton";
 
-export default function Navbar() {
+interface NavbarProps {
+  id: string | null | undefined;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ id }) => {
   return (
     <header>
       <nav className="fixed top-0 border-b border-white/20 w-full bg-background/70 backdrop-blur-[12px]">
@@ -28,7 +32,11 @@ export default function Navbar() {
           </ul>
           <Dialog>
             <DialogTrigger asChild>
-              <Button variant="secondary">Login</Button>
+              {id ? (
+                <Button variant="secondary">Logout</Button>
+              ) : (
+                <Button variant="secondary">Login</Button>
+              )}
             </DialogTrigger>
             <DialogContent className="p-10">
               <DialogHeader className="space-y-3">
@@ -43,4 +51,6 @@ export default function Navbar() {
       </nav>
     </header>
   );
-}
+};
+
+export default Navbar;
