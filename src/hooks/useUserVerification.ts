@@ -1,5 +1,5 @@
 "use client"
-import UserService from "@/services/UserService"
+import UserService from "@/services/UserService";
 import { useEffect, useState } from "react"
 
 interface UserData {
@@ -13,21 +13,21 @@ interface UserData {
 }
 
 const useUserVerification = () => {
-    const userObject = new UserService();
     const [userData, setUserData] = useState<UserData>()
     const [error, setError] = useState<string | null>(null)
+    const userObject = new UserService();
+    console.log(userObject);
+
 
     useEffect(() => {
         const verifyUser = async () => {
             try {
-                
-                console.log(userObject);
-                const user = await userObject.verifyUser();
-                console.log(user);
-                if (!user) {
+                const userPromise = await userObject.verifyUser();
+                console.log(userPromise);
+                if (!userPromise) {
                     return setUserData(undefined)
                 }
-                return setUserData(user)
+                return setUserData(userPromise)
             } catch (error) {
                 console.log(error);
                 setError(error as string)

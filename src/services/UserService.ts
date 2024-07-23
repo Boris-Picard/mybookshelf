@@ -27,7 +27,7 @@ class UserService {
     async verifyUser(params?: string | null) {
         try {
             const session = await getCurrentUser()
-            
+
             if (!session) {
                 return null
             }
@@ -56,4 +56,4 @@ class UserService {
     }
 }
 
-export default UserService
+export default UserService;
