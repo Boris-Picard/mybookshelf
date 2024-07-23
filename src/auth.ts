@@ -2,7 +2,7 @@ import NextAuth from "next-auth"
 
 import { PrismaAdapter } from "@auth/prisma-adapter"
 import { PrismaClient } from "@prisma/client"
-import authConfig from "./auth.config"
+import authConfig from "@/auth.config"
 
 const prisma = new PrismaClient()
 
@@ -16,6 +16,7 @@ export const {
   session: { strategy: "jwt" },
   pages: {
     signIn: "/auth/login",
+    signOut: "/auth/logout",
     error: "/auth/error",
   },
   callbacks: {
@@ -23,7 +24,6 @@ export const {
       if (token.id) {
         session.user.id = token.id;
       }
-
       return session;
     },
     jwt({ token, user }) {

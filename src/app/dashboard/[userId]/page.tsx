@@ -2,9 +2,18 @@
 
 import DashboardBase from "@/components/dashboard/DashboardBase";
 
-export default function HomeDashboard({params}:{ params: { userId: string } }) {
+export default function HomeDashboard({
+  params,
+}: {
+  params: { userId: string };
+}) {
+  const id = params.userId;
+  console.log(id);
 
-  console.log(params);
-
-  return <DashboardBase />;
+  return (
+    <>
+      <h1>{id}</h1>
+      <DashboardBase />
+    </>
+  );
 }

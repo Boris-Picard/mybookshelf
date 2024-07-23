@@ -3,7 +3,7 @@ import { getCurrentUser } from "@/services/utils";
 
 export default async function Home() {
   const session = await getCurrentUser();
-
+  
   return (
     <>
       <Navbar id={session?.id} />
