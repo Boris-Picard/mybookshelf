@@ -27,9 +27,9 @@ class UserService {
     async verifyUser(params?: string | null) {
         try {
             const session = await getCurrentUser()
-
-            if (!session || !session.id) {
-                return Response.redirect(new URL("/"))
+            
+            if (!session) {
+                return null
             }
 
             const user = await db.user.findUnique({
