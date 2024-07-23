@@ -1,14 +1,10 @@
 import LoginForm from "@/components/login/LoginForm";
-import { getCurrentUser } from "@/services/utils";
-import { redirect } from "next/navigation";
 
 export default async function Login() {
-  const session = await getCurrentUser();
-  if (session) return redirect("/");
-
   return (
     <div className="flex min-h-screen justify-center items-center">
       <LoginForm />
+      <small className="text-red-500">ERROR</small>
     </div>
   );
 }

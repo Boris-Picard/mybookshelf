@@ -37,12 +37,14 @@ const Navbar: React.FC<NavbarProps> = ({ id }) => {
                 <Button variant="secondary">Login</Button>
               </DialogTrigger>
               <DialogContent className="p-10">
-                <DialogHeader className="space-y-3">
+                <DialogHeader className="mb-6">
                   <DialogTitle>Sign in</DialogTitle>
                   <DialogDescription>to continue to platform</DialogDescription>
+                </DialogHeader>
+                <div className="space-y-3">
                   <GoogleSignIn />
                   <GithubSignIn />
-                </DialogHeader>
+                </div>
               </DialogContent>
             </Dialog>
           ) : (

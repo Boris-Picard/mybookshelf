@@ -2,24 +2,23 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { GoogleSignIn } from "./GoogleButton";
+import { GithubSignIn } from "./GithubButton";
 
 export default function LoginForm() {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Card Title</CardTitle>
-        <CardDescription>Card Description</CardDescription>
+    <Card className="p-3 md:w-1/2 lg:w-1/3 xl:w-1/4 w-full">
+      <CardHeader className="space-y-3 mb-6">
+        <CardTitle className="text-3xl">Sign in</CardTitle>
+        <CardDescription>to continue to platform</CardDescription>
       </CardHeader>
-      <CardContent>
-        <p>Card Content</p>
+      <CardContent className="space-y-3">
+        <GoogleSignIn />
+        <GithubSignIn />
       </CardContent>
-      <CardFooter>
-        <p>Card Footer</p>
-      </CardFooter>
     </Card>
   );
 }
