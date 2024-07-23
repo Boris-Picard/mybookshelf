@@ -1,19 +1,30 @@
 "use server";
-import DashboardBase from "@/components/dashboard/DashboardBase";
 import { getCurrentUser } from "@/services/utils";
 import { redirect } from "next/navigation";
 
 import UserService from "@/services/UserService";
 
-export default async function DashboardLayout() {
+export default async function DashboardLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const userService = new UserService();
-  
   const session = await getCurrentUser();
-  const user = await userService.getUser(session?.id)
-  console.log(user);
-  
 
   if (!session) return redirect("/");
 
-  return <DashboardBase />;
+  try {
+    const user = await userService.getUser(session.id);
+    console.log(user);
+
+    if (!user) {
+      return redirect("/");
+    }
+  } catch (error) {
+    console.error("Error fetching user:", error);
+    return redirect("/");
+  }
+
+  return <div>{children}</div>;
 }

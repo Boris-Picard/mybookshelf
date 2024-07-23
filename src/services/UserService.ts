@@ -9,9 +9,13 @@ class UserService {
                     id: sessionId
                 }
             })
+            if (!user) {
+                return null
+            }
             return user
         } catch (error) {
-            return error
+            console.error(error)
+            return null
         }
     }
 }
