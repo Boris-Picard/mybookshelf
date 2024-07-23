@@ -1,5 +1,5 @@
 import Navbar from "@/components/Navbar";
-import { getCurrentUser } from "@/services/utils";
+import { getCurrentUser } from "@/services/CurrentUser";
 
 export default async function Home() {
   const session = await getCurrentUser();

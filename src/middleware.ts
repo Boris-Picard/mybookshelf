@@ -1,10 +1,17 @@
 import { auth } from "@/auth"
 
 export default auth((req) => {
-    console.log("middleware",req.auth);
-    
-    if (!req.auth && req.nextUrl.pathname !== "/auth/login") {
-        const newUrl = new URL("/auth/login", req.nextUrl.origin)
+    const { auth } = req
+    const { nextUrl } = req;
+
+    if (!auth && nextUrl.pathname !== "/auth/login") {
+        const newUrl = new URL("/auth/login", nextUrl.origin)
+        return Response.redirect(newUrl)
+    }
+
+    const userId = auth?.user?.id;
+    if (auth && nextUrl.pathname !== `/dashboard/${userId}`) {
+        const newUrl = new URL("/", nextUrl.origin)
         return Response.redirect(newUrl)
     }
 })

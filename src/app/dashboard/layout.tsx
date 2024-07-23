@@ -1,5 +1,5 @@
 "use server";
-import { getCurrentUser } from "@/services/utils";
+import { getCurrentUser } from "@/services/CurrentUser";
 import { redirect } from "next/navigation";
 
 import UserService from "@/services/UserService";

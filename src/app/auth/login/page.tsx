@@ -1,5 +1,5 @@
 import LoginForm from "@/components/login/LoginForm";
-import { getCurrentUser } from "@/services/utils";
+import { getCurrentUser } from "@/services/CurrentUser";
 import { redirect } from "next/navigation";
 
 export default async function Login() {
