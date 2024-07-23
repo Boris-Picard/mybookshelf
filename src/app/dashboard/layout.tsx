@@ -11,12 +11,13 @@ export default async function DashboardLayout({
 }) {
   const userService = new UserService();
   const session = await getCurrentUser();
+  console.log(session);
+  
 
   if (!session) return redirect("/");
 
   try {
     const user = await userService.getUser(session.id);
-    console.log(user);
 
     if (!user) {
       return redirect("/");

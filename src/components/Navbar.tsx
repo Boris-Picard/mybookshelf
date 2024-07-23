@@ -26,7 +26,7 @@ const Navbar: React.FC<NavbarProps> = ({ id }) => {
           {id && (
             <ul className="flex gap-3 items-center">
               <li>
-                <Link href="/dashboard">Dashboard</Link>
+                <Link href={`/dashboard/${id}`}>Dashboard</Link>
               </li>
             </ul>
           )}

@@ -1,4 +1,6 @@
+"use server"
 import db from "@/lib/db"
+
 
 class UserService {
     // get a unique user
