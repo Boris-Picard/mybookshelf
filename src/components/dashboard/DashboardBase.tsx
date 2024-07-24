@@ -12,6 +12,7 @@ import {
   Search,
   Settings,
   ShoppingCart,
+  CircleUser,
   Users2,
 } from "lucide-react";
 
@@ -44,6 +45,7 @@ import {
 import { ModeToggle } from "@/components/dark-mode";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { User } from "next-auth";
 
 interface Links {
   title: string;
@@ -64,7 +66,11 @@ const links: Links[] = [
   },
 ];
 
-export default function DashboardBase() {
+interface DashboardBaseProps {
+  user: User;
+}
+
+const DashboardBase: React.FC<DashboardBaseProps> = ({ user }) => {
   const pathname = usePathname();
 
   return (
@@ -126,6 +132,7 @@ export default function DashboardBase() {
                   const isActive = pathname.startsWith(href);
                   return (
                     <Link
+                      key={title}
                       href={href}
                       className={cn(
                         "flex items-center gap-4 px-2.5",
@@ -177,7 +184,8 @@ export default function DashboardBase() {
                 className="overflow-hidden rounded-full"
               >
                 <Image
-                  // src="/placeholder-user.jpg"
+                  src={user.image ?? ""}
+                  loading="lazy"
                   width={36}
                   height={36}
                   alt="Avatar"
@@ -200,4 +208,6 @@ export default function DashboardBase() {
       </div>
     </div>
   );
-}
+};
+
+export default DashboardBase;
