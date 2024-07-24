@@ -9,7 +9,7 @@ const useSearchBooks = () => {
     const searchAuthor = async () => {
         try {
             const response = await fetch(
-                "https://openlibrary.org/authors/OL23919A/works.json"
+                `https://www.googleapis.com/books/v1/volumes?q=isbn:9781451648546&key=${process.env.GOOGLE_BOOKS_API}`
             );
             if (!response.ok) {
                 throw new Error(`Error: ${response.status}`);
@@ -18,7 +18,7 @@ const useSearchBooks = () => {
             setBooks(data?.entries);
         } catch (error) {
             console.log(error);
-            setErrorMessage(error);
+            setErrorMessage(error.message);
         }
     };
 
@@ -26,7 +26,7 @@ const useSearchBooks = () => {
         searchAuthor();
     }, []);
 
-    return { books }
+    return { books, errorMessage }
 };
 
 export default useSearchBooks

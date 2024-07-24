@@ -6,9 +6,9 @@ import {
   Tooltip,
   TooltipTrigger,
   TooltipContent,
-} from "@/components/ui/tooltip"; // Assurez-vous d'importer correctement les composants Tooltip
-import Link from "next/link"; // Assurez-vous que le composant Link est importé
-import { cn } from "@/lib/utils"; // Assurez-vous que la fonction cn est importée
+} from "@/components/ui/tooltip";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 
 const links: Links[] = [
@@ -56,6 +56,7 @@ const Sidebar: React.FC = () => {
 
 const SidebarSheet: React.FC = () => {
   const pathname = usePathname();
+  
   return (
     <>
       {links.map(({ title, href, icon: Icon }: Links) => {
