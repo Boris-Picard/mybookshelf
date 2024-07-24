@@ -43,25 +43,29 @@ import {
 } from "@/components/ui/tooltip";
 import { ModeToggle } from "@/components/dark-mode";
 import { usePathname } from "next/navigation";
-
+import { cn } from "@/lib/utils";
 
 interface Links {
   title: string;
   href: string;
-  icon: React.FC<LucideProps> ;
+  icon: React.FC<LucideProps>;
 }
 
 const links: Links[] = [
   {
-    title: "home",
+    title: "Home",
     href: "/dashboard",
     icon: Home,
+  },
+  {
+    title: "Package",
+    href: "/dashboard/package",
+    icon: Package,
   },
 ];
 
 export default function DashboardBase() {
   const pathname = usePathname();
-  console.log(pathname);
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
@@ -74,14 +78,20 @@ export default function DashboardBase() {
             <Package2 className="h-4 w-4 transition-all group-hover:scale-110" />
             <span className="sr-only">Acme Inc</span>
           </Link>
-          {links.map(({title, href, icon: Icon}: Links) => {
+          {links.map(({ title, href, icon: Icon }: Links) => {
+            const isActive = pathname.startsWith(href);
             return (
               <TooltipProvider key={title}>
-                <Tooltip>
+                <Tooltip delayDuration={0}>
                   <TooltipTrigger asChild>
                     <Link
                       href={href}
-                      className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+                      className={cn(
+                        "flex h-9 w-9 items-center justify-center rounded-lg transition-colors hover:text-foreground md:h-8 md:w-8",
+                        isActive
+                          ? "bg-accent text-accent-foreground"
+                          : "text-muted-foreground"
+                      )}
                     >
                       <Icon className="h-5 w-5" />
                       <span className="sr-only">{title}</span>
@@ -112,41 +122,23 @@ export default function DashboardBase() {
                   <Package2 className="h-5 w-5 transition-all group-hover:scale-110" />
                   <span className="sr-only">Acme Inc</span>
                 </Link>
-                <Link
-                  href="#"
-                  className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                >
-                  <Home className="h-5 w-5" />
-                  Dashboard
-                </Link>
-                <Link
-                  href="#"
-                  className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                >
-                  <ShoppingCart className="h-5 w-5" />
-                  Orders
-                </Link>
-                <Link
-                  href="#"
-                  className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                >
-                  <Package className="h-5 w-5" />
-                  Products
-                </Link>
-                <Link
-                  href="#"
-                  className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                >
-                  <Users2 className="h-5 w-5" />
-                  Customers
-                </Link>
-                <Link
-                  href="#"
-                  className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                >
-                  <LineChart className="h-5 w-5" />
-                  Settings
-                </Link>
+                {links.map(({ title, href, icon: Icon }: Links) => {
+                  const isActive = pathname.startsWith(href);
+                  return (
+                    <Link
+                      href={href}
+                      className={cn(
+                        "flex items-center gap-4 px-2.5",
+                        isActive
+                          ? "text-foreground"
+                          : "text-muted-foreground hover:text-foreground"
+                      )}
+                    >
+                      <Icon className="h-5 w-5" />
+                      {title}
+                    </Link>
+                  );
+                })}
               </nav>
             </SheetContent>
           </Sheet>
