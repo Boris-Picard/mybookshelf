@@ -12,7 +12,7 @@ export default auth((req) => {
 
     // verify if user is connected & dashboard id correspond to user
     const userId = auth?.user?.id;
-    if (auth && nextUrl.pathname !== `/dashboard/${userId}`) {
+    if (auth && nextUrl.pathname.startsWith("/dashboard") && !nextUrl.pathname.startsWith(`/dashboard/${userId}`)) {
         const newUrl = new URL("/", nextUrl.origin)
         return Response.redirect(newUrl)
     }
