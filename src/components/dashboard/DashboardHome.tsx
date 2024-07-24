@@ -2,19 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import {
-  LucideProps,
-  Home,
-  LineChart,
-  Package,
-  Package2,
-  PanelLeft,
-  Search,
-  Settings,
-  ShoppingCart,
-  CircleUser,
-  Users2,
-} from "lucide-react";
+import { Package2, PanelLeft, Search } from "lucide-react";
 
 import {
   Breadcrumb,
@@ -36,43 +24,20 @@ import {
 import { Input } from "@/components/ui/input";
 
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+
 import { ModeToggle } from "@/components/dark-mode";
-import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
 import { User } from "next-auth";
+import BooksList from "./BooksList";
+import {
+  Sidebar,
+  SidebarSheet,
+} from "@/components/dashboard/navigation/SideBar";
 
-interface Links {
-  title: string;
-  href: string;
-  icon: React.FC<LucideProps>;
-}
-
-const links: Links[] = [
-  {
-    title: "Home",
-    href: "/dashboard",
-    icon: Home,
-  },
-  {
-    title: "Package",
-    href: "/dashboard/package",
-    icon: Package,
-  },
-];
-
-interface DashboardBaseProps {
+interface DashboardHomeProps {
   user: User;
 }
 
-const DashboardBase: React.FC<DashboardBaseProps> = ({ user }) => {
-  const pathname = usePathname();
-
+const DashboardHome: React.FC<DashboardHomeProps> = ({ user }) => {
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
       <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
@@ -84,30 +49,7 @@ const DashboardBase: React.FC<DashboardBaseProps> = ({ user }) => {
             <Package2 className="h-4 w-4 transition-all group-hover:scale-110" />
             <span className="sr-only">Acme Inc</span>
           </Link>
-          {links.map(({ title, href, icon: Icon }: Links) => {
-            const isActive = pathname.startsWith(href);
-            return (
-              <TooltipProvider key={title}>
-                <Tooltip delayDuration={0}>
-                  <TooltipTrigger asChild>
-                    <Link
-                      href={href}
-                      className={cn(
-                        "flex h-9 w-9 items-center justify-center rounded-lg transition-colors hover:text-foreground md:h-8 md:w-8",
-                        isActive
-                          ? "bg-accent text-accent-foreground"
-                          : "text-muted-foreground"
-                      )}
-                    >
-                      <Icon className="h-5 w-5" />
-                      <span className="sr-only">{title}</span>
-                    </Link>
-                  </TooltipTrigger>
-                  <TooltipContent side="right">{title}</TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            );
-          })}
+          <Sidebar />
         </nav>
       </aside>
       <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
@@ -128,24 +70,7 @@ const DashboardBase: React.FC<DashboardBaseProps> = ({ user }) => {
                   <Package2 className="h-5 w-5 transition-all group-hover:scale-110" />
                   <span className="sr-only">Acme Inc</span>
                 </Link>
-                {links.map(({ title, href, icon: Icon }: Links) => {
-                  const isActive = pathname.startsWith(href);
-                  return (
-                    <Link
-                      key={title}
-                      href={href}
-                      className={cn(
-                        "flex items-center gap-4 px-2.5",
-                        isActive
-                          ? "text-foreground"
-                          : "text-muted-foreground hover:text-foreground"
-                      )}
-                    >
-                      <Icon className="h-5 w-5" />
-                      {title}
-                    </Link>
-                  );
-                })}
+                <SidebarSheet />
               </nav>
             </SheetContent>
           </Sheet>
@@ -204,10 +129,12 @@ const DashboardBase: React.FC<DashboardBaseProps> = ({ user }) => {
             </DropdownMenuContent>
           </DropdownMenu>
         </header>
-        <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 lg:grid-cols-3 xl:grid-cols-3"></main>
+        <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 lg:grid-cols-3 xl:grid-cols-3">
+          <BooksList />
+        </main>
       </div>
     </div>
   );
 };
 
-export default DashboardBase;
+export default DashboardHome;
