@@ -15,7 +15,6 @@ export default async function HomeDashboard({
 
   return (
     <>
-      <h1>{id}</h1>
       <DashboardBase />
     </>
   );
