@@ -1,16 +1,9 @@
-"use client";
-import useUserVerification from "@/hooks/useUserVerification";
-import { redirect } from "next/navigation";
+"use server";
 
-export default function DashboardLayout({
+export default async function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const { userData, error } = useUserVerification();
-  console.log(userData);
-
-  if (!userData) return redirect("/");
-
   return <div>{children}</div>;
 }

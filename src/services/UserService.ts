@@ -23,37 +23,6 @@ class UserService {
             return null
         }
     }
-
-    async verifyUser(params?: string | null) {
-        try {
-            const session = await getCurrentUser()
-
-            if (!session) {
-                return null
-            }
-
-            const user = await db.user.findUnique({
-                where: {
-                    id: session.id
-                }
-            })
-
-            if (!user) {
-                return null
-            }
-
-            if (params) {
-                if (params !== user.id || params !== session.id) {
-                    return null
-                }
-            }
-
-            return user
-        } catch (error) {
-            console.error("Error fetching user:", error)
-            return null
-        }
-    }
 }
 
 export default UserService;
