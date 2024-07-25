@@ -5,9 +5,13 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "*.googleusercontent.com",
+        hostname: "*.googleusercontent.com", 
         port: "",
         pathname: "**",
+      },
+      {
+        protocol: "http",
+        hostname: "books.google.com", 
       },
     ],
   },

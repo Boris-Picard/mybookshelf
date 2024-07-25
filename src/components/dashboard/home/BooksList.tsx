@@ -1,21 +1,21 @@
 "use client";
 
 import useSearchBooks from "@/hooks/useSearchBooks";
+import CardList from "@/components/dashboard/home/CardList";
 
-const BooksList = () => {
+const BooksList: React.FC = () => {
   const { books, errorMessage } = useSearchBooks();
-  console.log(books);
-
-  if(errorMessage) {
-    return <h1 className="text-xl text-red-500">{errorMessage}</h1>
-  }
   
+  if (errorMessage) {
+    return <h1 className="text-xl text-red-500">{errorMessage}</h1>;
+  }
+
   return (
     <div>
       <h1 className="text-xl text-slate-50">liste des livres</h1>
       <ul>
-        {books.map(({ title }) => {
-          return <li>{title}</li>;
+        {books.map((item) => {
+          return <CardList books={item} />;
         })}
       </ul>
     </div>

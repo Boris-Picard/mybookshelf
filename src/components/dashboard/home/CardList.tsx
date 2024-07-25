@@ -6,37 +6,47 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Books } from "@/types/Books";
 import Image from "next/image";
 
-export default function CardList() {
+interface CardListProps {
+  books: Books;
+}
+
+const CardList: React.FC<CardListProps> = ({ books }: CardListProps) => {
+  console.log(books);
+
+  const thumbnail = books.thumbnail || "/assets/4TARc7mw.jpg";
   return (
-    <Card className="p-6">
+    <Card className="p-6 max-h-[500px]">
       <div className="flex flex-col sm:flex-row items-center">
-        <CardHeader className="p-0 sm:pr-6 pb-6 sm:pb-0">
+        <CardHeader className="p-0 sm:pr-6 pb-6 sm:pb-0 w-full h-full">
           <Image
-            src="/assets/4TARc7mw.jpg"
+            src={thumbnail}
             alt="test"
-            width="500"
-            height="400"
+            layout="responsive"
+            width={500}
+            height={500}
             className="rounded-xl"
-          ></Image>
+          />
         </CardHeader>
-        <div className="flex flex-col space-y-3">
-          <CardTitle>JK Rowling</CardTitle>
-          <CardDescription>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut enim
-            ipsam blanditiis aliquid ipsum illo laudantium natus sunt quidem
-            tempora. Iste eaque, quibusdam a odit voluptas id! Autem, sit
-            dolorum.
+        <div className="flex flex-col w-full sm:w-auto space-y-3">
+          <CardTitle className="text-lg sm:text-xl font-semibold">
+            {books.authors}
+          </CardTitle>
+          <CardDescription className="text-sm sm:text-base text-pretty line-clamp-3">
+            {books.description}
           </CardDescription>
           <CardContent>
-            <p>Card Content</p>
+            <p className="text-sm sm:text-base">Card Content</p>
           </CardContent>
           <CardFooter>
-            <p>Card Footer</p>
+            <p className="text-sm sm:text-base">Card Footer</p>
           </CardFooter>
         </div>
       </div>
     </Card>
   );
-}
+};
+
+export default CardList;

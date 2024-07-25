@@ -3,9 +3,6 @@
 import { Books } from "@/types/Books";
 import { useState, useEffect } from "react";
 
-
-
-
 const useSearchBooks = () => {
     const [books, setBooks] = useState<Books[]>([]);
     const [errorMessage, setErrorMessage] = useState<string>("");
@@ -19,20 +16,20 @@ const useSearchBooks = () => {
                 throw new Error(`Error: ${response.status}`);
             }
             const data = await response.json();
-
+            
             const filteredBooks: Books[] = data.items.map((item: any) => ({
                 id: item.id,
                 title: item.volumeInfo.title,
                 authors: item.volumeInfo.authors,
                 description: item.volumeInfo.description,
-                thumbnail: item.volumeInfo.imageLinks?.thumbnail,
+                thumbnail: item.volumeInfo.imageLinks.thumbnail,
                 categories: item.volumeInfo.categories,
                 averageRating: item.volumeInfo.averageRating,
                 ratingsCount: item.volumeInfo.ratingsCount,
                 previewLink: item.volumeInfo.previewLink,
                 infoLink: item.volumeInfo.infoLink,
-                amount: item.saleInfo?.listPrice?.amount,
-                currencyCode: item.saleInfo?.listPrice?.currencyCode,
+                amount: item.saleInfo.listPrice?.amount,
+                currencyCode: item.saleInfo.listPrice?.currencyCode,
                 pdf: item.accessInfo.pdf.acsTokenLink,
                 webReader: item.accessInfo.webReaderLink,
                 searchInfo: item.searchInfo.textSnippet,
