@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/card";
 import { Books } from "@/types/Books";
 import Image from "next/image";
+import Ratings from "@/components/dashboard/Ratings";
 
 interface CardListProps {
   books: Books;
@@ -41,7 +42,8 @@ const CardList: React.FC<CardListProps> = ({ books }) => {
               <CardContent className="p-0">
                 {books.ratingsCount && (
                   <p className="text-sm sm:text-base">
-                    {books.ratingsCount} ratings
+                    {books.ratingsCount} ratings{" "}
+                    <Ratings ratings={books.averageRating} />
                   </p>
                 )}
               </CardContent>
