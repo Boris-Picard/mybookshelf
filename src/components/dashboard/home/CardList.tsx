@@ -2,7 +2,6 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -38,12 +37,11 @@ const CardList: React.FC<CardListProps> = ({ books }) => {
             <CardDescription className="text-sm sm:text-base text-pretty line-clamp-2 mt-4">
               {books.description}
             </CardDescription>
-            <div className="flex-row flex">
+            <div className="flex flex-row">
               <CardContent className="p-0">
                 {books.ratingsCount && (
-                  <p className="text-sm sm:text-base">
-                    {books.ratingsCount} ratings{" "}
-                    <Ratings ratings={books.averageRating} />
+                  <p className="text-sm sm:text-base text-muted-foreground">
+                    {books.ratingsCount} ratings <Ratings ratings={books.averageRating} />
                   </p>
                 )}
               </CardContent>
