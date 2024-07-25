@@ -2,18 +2,46 @@
 
 import { useState, useEffect } from "react";
 
-interface Book {
+interface VolumeInfo {
     title: string;
     authors?: string[];
     publisher?: string;
     publishedDate?: string;
     description?: string;
-    [key: string]: any | undefined
+    industryIdentifiers?: { type: string; identifier: string }[];
+    readingModes?: { text: boolean; image: boolean };
+    pageCount?: number;
+    printType?: string;
+    categories?: string[];
+    averageRating?: number;
+    ratingsCount?: number;
+    maturityRating?: string;
+    allowAnonLogging?: boolean;
+    contentVersion?: string;
+    imageLinks?: {
+        smallThumbnail: string;
+        thumbnail: string;
+    };
+    language?: string;
+    previewLink?: string;
+    infoLink?: string;
+    canonicalVolumeLink?: string;
+}
+
+interface Book {
+    kind: string;
+    id: string;
+    etag: string;
+    selfLink: string;
+    volumeInfo: VolumeInfo;
+    saleInfo?: any;
+    accessInfo?: any;
+    searchInfo?: any;
 }
 
 const useSearchBooks = () => {
-    const [books, setBooks] = useState();
-    const [errorMessage, setErrorMessage] = useState<Book[] | undefined>([]);
+    const [books, setBooks] = useState<Book[]>([]);
+    const [errorMessage, setErrorMessage] = useState<string>("");
 
     const searchAuthor = async () => {
         try {
@@ -24,12 +52,15 @@ const useSearchBooks = () => {
                 throw new Error(`Error: ${response.status}`);
             }
             const data = await response.json();
-            console.log(data);
 
             setBooks(data?.items);
         } catch (error) {
-            console.log(error);
-            setErrorMessage(error.message);
+            // type guard avec instanceof on vérifie que error contient bien une erreur
+            if (error instanceof Error) {
+                setErrorMessage(error.message);
+            } else {
+                setErrorMessage('An unexpected error occurred');
+            }
         }
     };
 

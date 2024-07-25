@@ -6,7 +6,7 @@ const BooksList = () => {
   const { books, errorMessage } = useSearchBooks();
   console.log(books);
 
-  if(!books && errorMessage) {
+  if(errorMessage) {
     return <h1 className="text-xl text-red-500">{errorMessage}</h1>
   }
   
@@ -15,7 +15,7 @@ const BooksList = () => {
       <h1 className="text-xl text-slate-50">liste des livres</h1>
       <ul>
         {books.map(({ volumeInfo }) => {
-          return <li>{volumeInfo}</li>;
+          return <li>{volumeInfo.title}</li>;
         })}
       </ul>
     </div>
