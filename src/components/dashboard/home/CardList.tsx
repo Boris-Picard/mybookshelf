@@ -11,13 +11,13 @@ import Image from "next/image";
 export default function CardList() {
   return (
     <Card className="p-6">
-      <div className="flex items-center">
-        <CardHeader className="p-0 pr-6">
+      <div className="flex flex-col sm:flex-row items-center">
+        <CardHeader className="p-0 sm:pr-6 pb-6 sm:pb-0">
           <Image
             src="/assets/4TARc7mw.jpg"
             alt="test"
-            width="250"
-            height="250"
+            width="500"
+            height="400"
             className="rounded-xl"
           ></Image>
         </CardHeader>

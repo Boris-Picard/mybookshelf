@@ -1,46 +1,13 @@
 "use client";
 
+import { Books } from "@/types/Books";
 import { useState, useEffect } from "react";
 
-interface VolumeInfo {
-    title: string;
-    authors?: string[];
-    publisher?: string;
-    publishedDate?: string;
-    description?: string;
-    industryIdentifiers?: { type: string; identifier: string }[];
-    readingModes?: { text: boolean; image: boolean };
-    pageCount?: number;
-    printType?: string;
-    categories?: string[];
-    averageRating?: number;
-    ratingsCount?: number;
-    maturityRating?: string;
-    allowAnonLogging?: boolean;
-    contentVersion?: string;
-    imageLinks?: {
-        smallThumbnail: string;
-        thumbnail: string;
-    };
-    language?: string;
-    previewLink?: string;
-    infoLink?: string;
-    canonicalVolumeLink?: string;
-}
 
-interface Book {
-    kind: string;
-    id: string;
-    etag: string;
-    selfLink: string;
-    volumeInfo: VolumeInfo;
-    saleInfo?: any;
-    accessInfo?: any;
-    searchInfo?: any;
-}
+
 
 const useSearchBooks = () => {
-    const [books, setBooks] = useState<Book[]>([]);
+    const [books, setBooks] = useState<Books[]>([]);
     const [errorMessage, setErrorMessage] = useState<string>("");
 
     const searchAuthor = async () => {
@@ -53,7 +20,25 @@ const useSearchBooks = () => {
             }
             const data = await response.json();
 
-            setBooks(data?.items);
+            const filteredBooks: Books[] = data.items.map((item: any) => ({
+                id: item.id,
+                title: item.volumeInfo.title,
+                authors: item.volumeInfo.authors,
+                description: item.volumeInfo.description,
+                thumbnail: item.volumeInfo.imageLinks?.thumbnail,
+                categories: item.volumeInfo.categories,
+                averageRating: item.volumeInfo.averageRating,
+                ratingsCount: item.volumeInfo.ratingsCount,
+                previewLink: item.volumeInfo.previewLink,
+                infoLink: item.volumeInfo.infoLink,
+                amount: item.saleInfo?.listPrice?.amount,
+                currencyCode: item.saleInfo?.listPrice?.currencyCode,
+                pdf: item.accessInfo.pdf.acsTokenLink,
+                webReader: item.accessInfo.webReaderLink,
+                searchInfo: item.searchInfo.textSnippet,
+            }));
+
+            setBooks(filteredBooks);
         } catch (error) {
             // type guard avec instanceof pour vérifier que l'objet error est bien une instance de Error
             if (error instanceof Error) {

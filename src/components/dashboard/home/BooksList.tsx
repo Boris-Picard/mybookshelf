@@ -14,8 +14,8 @@ const BooksList = () => {
     <div>
       <h1 className="text-xl text-slate-50">liste des livres</h1>
       <ul>
-        {books.map(({ volumeInfo }) => {
-          return <li>{volumeInfo.title}</li>;
+        {books.map(({ title }) => {
+          return <li>{title}</li>;
         })}
       </ul>
     </div>
