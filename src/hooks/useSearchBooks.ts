@@ -55,7 +55,7 @@ const useSearchBooks = () => {
 
             setBooks(data?.items);
         } catch (error) {
-            // type guard avec instanceof on vérifie que error contient bien une erreur
+            // type guard avec instanceof pour vérifier que l'objet error est bien une instance de Error
             if (error instanceof Error) {
                 setErrorMessage(error.message);
             } else {
