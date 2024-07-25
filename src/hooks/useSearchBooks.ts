@@ -16,11 +16,13 @@ const useSearchBooks = () => {
                 throw new Error(`Error: ${response.status}`);
             }
             const data = await response.json();
+            console.log(data);
+            
             
             const filteredBooks: Books[] = data.items.map((item: any) => ({
                 id: item.id,
                 title: item.volumeInfo.title,
-                authors: item.volumeInfo.authors,
+                authors: item.volumeInfo.authors.join(" - "),
                 description: item.volumeInfo.description,
                 thumbnail: item.volumeInfo.imageLinks.thumbnail,
                 categories: item.volumeInfo.categories,
