@@ -1,7 +1,7 @@
 "use client";
 
 import useSearchBooks from "@/hooks/useSearchBooks";
-import CardList from "@/components/dashboard/home/CardList";
+import CardList from "@/components/dashboard/dashboardHome/CardTemplateList";
 
 const BooksList: React.FC = () => {
   const { books, errorMessage } = useSearchBooks();

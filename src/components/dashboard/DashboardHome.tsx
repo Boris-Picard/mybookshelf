@@ -27,12 +27,11 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 import { ModeToggle } from "@/components/dark-mode";
 import { User } from "next-auth";
-import BooksList from "./home/BooksList";
+import BooksList from "./dashboardHome/BooksList";
 import {
   Sidebar,
   SidebarSheet,
 } from "@/components/dashboard/navigation/SideBar";
-import CardList from "@/components/dashboard/home/CardList";
 
 interface DashboardHomeProps {
   user: User;
@@ -133,7 +132,6 @@ const DashboardHome: React.FC<DashboardHomeProps> = ({ user }) => {
 
         <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 sm:grid-cols-1 grid-cols-1 xl:grid-cols-2">
             <BooksList />
-          {/* <CardList /> */}
         </main>
       </div>
     </div>
