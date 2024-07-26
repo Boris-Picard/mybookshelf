@@ -20,8 +20,22 @@ const BooksList: React.FC = () => {
         return <CardList books={item} />;
       })}
       <div className="flex justify-between mx-auto space-x-3">
-        {slice < 20 && <Button onClick={() => setSlice(slice + 3)} className="w-1/4" variant="outline">Voir plus</Button>}
-        {slice > 3 && <Button onClick={() => setSlice(slice - 3)} className="w-1/4" variant="outline">Voir moins</Button>}
+        <Button
+          onClick={() => setSlice(slice + 3)}
+          className="w-1/4"
+          variant="outline"
+          disabled={slice > 20}
+        >
+          Voir plus
+        </Button>
+        <Button
+          onClick={() => setSlice(slice - 3)}
+          className="w-1/4"
+          variant="outline"
+          disabled={slice <= 3}
+        >
+          Voir moins
+        </Button>
       </div>
     </div>
   );
