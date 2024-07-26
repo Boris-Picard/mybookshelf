@@ -16,8 +16,6 @@ const useSearchBooks = () => {
                 throw new Error(`Error: ${response.status}`);
             }
             const data = await response.json();
-            console.log(data);
-
 
             const filteredBooks: Books[] = data.items.map((item: any) => ({
                 id: item.id,
@@ -45,7 +43,10 @@ const useSearchBooks = () => {
             // pour chaque titre, si le titre n'apparaît pas à un index supérieur dans titles, on le garde
             const filteredByTitle = filteredBooks.filter(({ title }, index) => !titles.includes(title, index + 1));
 
-            setBooks(filteredByTitle);
+            // filtre par date du plus récent au plus ancien
+            const sortByDate = filteredByTitle.sort((a, b) => new Date(b.publishedDate) - new Date(a.publishedDate));
+            
+            setBooks(sortByDate);
         } catch (error) {
             // type guard avec instanceof pour vérifier que l'objet error est bien une instance de Error
             if (error instanceof Error) {
