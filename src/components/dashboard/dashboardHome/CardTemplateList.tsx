@@ -47,10 +47,10 @@ const CardList: React.FC<CardListProps> = ({ books }) => {
             </div>
             <div className="flex flex-row">
               <small className="text-muted-foreground">
-                by {books.authors}
+                by {books.authors} -
               </small>
-              <small className="text-muted-foreground ml-3">
-                Date de parution : {books.publishedDate}
+              <small className="text-muted-foreground ml-1">
+                Date de parution : {new Date(books.publishedDate).toLocaleDateString()}
               </small>
             </div>
             <CardDescription className="text-sm sm:text-base text-pretty line-clamp-2 mt-4">

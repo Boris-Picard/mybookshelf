@@ -10,15 +10,15 @@ const useSearchBooks = () => {
     const searchAuthor = async () => {
         try {
             const response = await fetch(
-                `https://www.googleapis.com/books/v1/volumes?q=bestsellers&orderBy=newest&key=${process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API}`
+                `https://www.googleapis.com/books/v1/volumes?q=bestsellers&orderBy=newest&maxResults=40&key=${process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API}`
             );
             if (!response.ok) {
                 throw new Error(`Error: ${response.status}`);
             }
             const data = await response.json();
             console.log(data);
-            
-            
+
+
             const filteredBooks: Books[] = data.items.map((item: any) => ({
                 id: item.id,
                 title: item.volumeInfo.title,
@@ -38,7 +38,14 @@ const useSearchBooks = () => {
                 searchInfo: item.searchInfo.textSnippet,
             }));
 
-            setBooks(filteredBooks);
+            // on récupère tous les titres de filteredBooks dans un tableau titles
+            const titles = filteredBooks.map(({ title }) => title);
+
+            // on filtre filteredBooks en excluant les doublons de titres
+            // pour chaque titre, si le titre n'apparaît pas à un index supérieur dans titles, on le garde
+            const filteredByTitle = filteredBooks.filter(({ title }, index) => !titles.includes(title, index + 1));
+
+            setBooks(filteredByTitle);
         } catch (error) {
             // type guard avec instanceof pour vérifier que l'objet error est bien une instance de Error
             if (error instanceof Error) {
