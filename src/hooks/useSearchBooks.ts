@@ -47,6 +47,7 @@ const useSearchBooks = ({ slice }: { slice: number }) => {
 
             // filtre par date du plus récent au plus ancien
             const sortByDate = filteredByTitle.sort((a, b) => new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime());
+            // setBooks(sortByDate.slice(0, slice));
             setBooks(sortByDate.slice(0, slice));
         } catch (error) {
             // type guard avec instanceof pour vérifier que l'objet error est bien une instance de Error
