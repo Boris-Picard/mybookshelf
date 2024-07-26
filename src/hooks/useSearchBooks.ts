@@ -40,12 +40,14 @@ const useSearchBooks = () => {
             const titles = filteredBooks.map(({ title }) => title);
 
             // on filtre filteredBooks en excluant les doublons de titres
-            // pour chaque titre, si le titre n'apparaît pas à un index supérieur dans titles, on le garde
-            const filteredByTitle = filteredBooks.filter(({ title }, index) => !titles.includes(title, index + 1));
+            const filteredByTitle = filteredBooks.filter(({ title }, index) => {
+                // pour chaque titre, si le titre n'apparaît pas à un index supérieur dans titles, on le garde
+                return titles.indexOf(title) === index;
+            });
 
             // filtre par date du plus récent au plus ancien
             const sortByDate = filteredByTitle.sort((a, b) => new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime());
-            
+
             setBooks(sortByDate);
         } catch (error) {
             // type guard avec instanceof pour vérifier que l'objet error est bien une instance de Error
