@@ -50,7 +50,8 @@ const CardList: React.FC<CardListProps> = ({ books }) => {
                 by {books.authors} -
               </small>
               <small className="text-muted-foreground ml-1">
-                Date de parution : {new Date(books.publishedDate).toLocaleDateString()}
+                Date de parution :{" "}
+                {new Date(books.publishedDate).toLocaleDateString()}
               </small>
             </div>
             <CardDescription className="text-sm sm:text-base text-pretty line-clamp-2 mt-4">
