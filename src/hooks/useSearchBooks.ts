@@ -44,7 +44,7 @@ const useSearchBooks = () => {
             const filteredByTitle = filteredBooks.filter(({ title }, index) => !titles.includes(title, index + 1));
 
             // filtre par date du plus récent au plus ancien
-            const sortByDate = filteredByTitle.sort((a, b) => new Date(b.publishedDate) - new Date(a.publishedDate));
+            const sortByDate = filteredByTitle.sort((a, b) => new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime());
             
             setBooks(sortByDate);
         } catch (error) {
