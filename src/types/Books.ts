@@ -5,6 +5,7 @@ export interface Books {
     description: string;
     thumbnail: string;
     categories: string;
+    publishedDate: string;
     averageRating: number;
     ratingsCount: number;
     previewLink: string;

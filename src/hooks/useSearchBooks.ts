@@ -10,7 +10,7 @@ const useSearchBooks = () => {
     const searchAuthor = async () => {
         try {
             const response = await fetch(
-                `https://www.googleapis.com/books/v1/volumes?q=harrypotter&key=${process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API}`
+                `https://www.googleapis.com/books/v1/volumes?q=bestsellers&orderBy=newest&key=${process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API}`
             );
             if (!response.ok) {
                 throw new Error(`Error: ${response.status}`);
@@ -26,6 +26,7 @@ const useSearchBooks = () => {
                 description: item.volumeInfo.description,
                 thumbnail: item.volumeInfo.imageLinks.thumbnail,
                 categories: item.volumeInfo.categories,
+                publishedDate: item.volumeInfo.publishedDate,
                 averageRating: item.volumeInfo.averageRating,
                 ratingsCount: item.volumeInfo.ratingsCount,
                 previewLink: item.volumeInfo.previewLink,

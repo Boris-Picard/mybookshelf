@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   Card,
@@ -45,7 +45,14 @@ const CardList: React.FC<CardListProps> = ({ books }) => {
                 <Star />
               </div>
             </div>
-            <small className="text-muted-foreground">by {books.authors}</small>
+            <div className="flex flex-row">
+              <small className="text-muted-foreground">
+                by {books.authors}
+              </small>
+              <small className="text-muted-foreground ml-3">
+                Date de parution : {books.publishedDate}
+              </small>
+            </div>
             <CardDescription className="text-sm sm:text-base text-pretty line-clamp-2 mt-4">
               {books.description}
             </CardDescription>
