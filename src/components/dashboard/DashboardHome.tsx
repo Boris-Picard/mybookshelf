@@ -131,7 +131,7 @@ const DashboardHome: React.FC<DashboardHomeProps> = ({ user }) => {
           </DropdownMenu>
         </header>
 
-        <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 lg:grid-cols-2 xl:grid-cols-2">
+        <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 sm:grid-cols-1 grid-cols-1 xl:grid-cols-2">
             <BooksList />
           {/* <CardList /> */}
         </main>

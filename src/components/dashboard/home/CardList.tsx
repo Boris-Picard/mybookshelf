@@ -36,9 +36,12 @@ const CardList: React.FC<CardListProps> = ({ books }) => {
               <CardTitle className="text-lg sm:text-xl font-semibold">
                 <span>{books.title}</span>
               </CardTitle>
-              <span className="font-semibold">
-                {books.amount} {books.currencyCode}
-              </span>
+              <div className="flex justify-end">
+                <span className="font-semibold mr-3">
+                  {books.amount} {books.currencyCode}
+                </span>
+                <Star />
+              </div>
             </div>
             <small className="text-muted-foreground">by {books.authors}</small>
             <CardDescription className="text-sm sm:text-base text-pretty line-clamp-2 mt-4">
@@ -47,7 +50,9 @@ const CardList: React.FC<CardListProps> = ({ books }) => {
             <div className="flex flex-row mt-4 justify-between text-sm sm:text-base text-muted-foreground">
               <CardContent className="p-0 w-full flex items-center">
                 <Link href="/">
-                  <Button variant="link" className="pl-0">Voir plus</Button>
+                  <Button variant="link" className="pl-0">
+                    Voir plus
+                  </Button>
                 </Link>
                 {books.ratingsCount && (
                   <div className="flex mx-auto">
