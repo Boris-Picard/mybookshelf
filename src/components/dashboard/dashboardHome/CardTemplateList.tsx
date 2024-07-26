@@ -31,11 +31,11 @@ const CardList: React.FC<CardListProps> = ({ books }) => {
           className="object-cover rounded-tl-xl rounded-bl-xl w-auto h-auto"
         />
       </div>
-      <div className="flex flex-col flex-grow ml-4 items-center justify-center">
+      <div className="flex flex-col mx-auto ml-4 justify-center">
         <CardHeader className="flex flex-row space-y-0 items-start py-0 px-3">
-          <div className="grid gap-1 flex-grow">
+          <div>
             <div className="flex justify-between">
-              <CardTitle className="text-lg sm:text-xl font-semibold">
+              <CardTitle className="text-lg sm:text-xl font-semibold text-balance">
                 <span>{books.title}</span>
               </CardTitle>
               <div className="flex justify-end">
@@ -46,13 +46,17 @@ const CardList: React.FC<CardListProps> = ({ books }) => {
               </div>
             </div>
             <div className="flex flex-row">
-              <small className="text-muted-foreground">
-                by {books.authors} -
-              </small>
-              <small className="text-muted-foreground ml-1">
-                Date de parution :{" "}
-                {new Date(books.publishedDate).toLocaleDateString()}
-              </small>
+              {books.authors && (
+                <small className="text-muted-foreground">
+                  by {books.authors} -
+                </small>
+              )}
+              {books.publishedDate && (
+                <small className="text-muted-foreground ml-1">
+                  Date de parution :{" "}
+                  {new Date(books.publishedDate).toLocaleDateString()}
+                </small>
+              )}
             </div>
             <CardDescription className="text-sm sm:text-base text-pretty line-clamp-2 mt-4">
               {books.description}

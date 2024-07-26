@@ -8,7 +8,6 @@ import { useState } from "react";
 const BooksList: React.FC = () => {
   const [slice, setSlice] = useState<number>(3);
   const { books, errorMessage } = useSearchBooks({ slice });
-  // console.log(Object.keys(books).length);
 
   if (errorMessage) {
     return <h1 className="text-xl text-red-500">{errorMessage}</h1>;
