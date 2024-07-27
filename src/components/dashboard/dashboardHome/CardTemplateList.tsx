@@ -12,8 +12,8 @@ import Image from "next/image";
 import Ratings from "@/components/dashboard/Ratings";
 import Link from "next/link";
 
-import { Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import FavoriteButton from "@/components/dashboard/dashboardHome/FavoriteButton";
 
 interface CardListProps {
   books: Books;
@@ -39,11 +39,11 @@ const CardList: React.FC<CardListProps> = ({ books }) => {
               <CardTitle className="text-lg sm:text-xl font-semibold text-balance">
                 <span>{books.title}</span>
               </CardTitle>
-              <div className="flex justify-end">
+              <div className="flex justify-end items-center">
                 <span className="font-semibold mr-3">
                   {books.amount} {books.currencyCode}
                 </span>
-                <Star />
+                <FavoriteButton />
               </div>
             </div>
             <div className="flex flex-row">
@@ -59,9 +59,9 @@ const CardList: React.FC<CardListProps> = ({ books }) => {
                 </small>
               )}
               {books.categories && (
-                  <small className="text-muted-foreground font-semibold ml-auto">
-                    {books.categories}
-                  </small>
+                <small className="text-muted-foreground font-semibold ml-auto mr-1">
+                  {books.categories}
+                </small>
               )}
             </div>
             <CardDescription className="text-sm sm:text-base text-pretty line-clamp-2 mt-4">
