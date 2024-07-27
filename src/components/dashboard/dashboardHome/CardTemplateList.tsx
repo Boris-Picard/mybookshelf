@@ -13,7 +13,7 @@ import Ratings from "@/components/dashboard/Ratings";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
-import FavoriteButton from "@/components/dashboard/dashboardHome/FavoriteButton";
+import FavoriteButtonClient from "@/components/dashboard/dashboardHome/FavoriteButtonClient";
 
 interface CardListProps {
   books: Books;
@@ -43,7 +43,7 @@ const CardList: React.FC<CardListProps> = ({ books }) => {
                 <span className="font-semibold mr-3">
                   {books.amount} {books.currencyCode}
                 </span>
-                <FavoriteButton />
+                <FavoriteButtonClient />
               </div>
             </div>
             <div className="flex flex-row">

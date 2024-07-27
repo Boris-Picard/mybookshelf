@@ -33,7 +33,7 @@ import {
   Sidebar,
   SidebarSheet,
 } from "@/components/dashboard/navigation/SideBar";
-import { LogoutDashBoardButton } from "../login/LogoutButton";
+import { LogoutDashBoardButton } from "@/components//login/LogoutButton";
 
 interface DashboardHomeProps {
   user: User;

@@ -8,7 +8,7 @@ datasource db {
 }
 
 model User {
-  id            String     @id @default(cuid())
+  id            String        @id @default(cuid())
   name          String?
   email         String     @unique
   emailVerified DateTime?
@@ -23,7 +23,7 @@ model User {
 }
 
 model Favorite {
-  id          String @id @default(cuid())
+  id          String      @id @default(cuid())
   bookId      String
   name        String
   author      String
@@ -32,7 +32,10 @@ model Favorite {
   category    String
   description String
   link        String
-  users       User[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  User        User?    @relation(fields: [userId], references: [id])
+  userId      String?
 
   @@map(name: "favorites")
 }
