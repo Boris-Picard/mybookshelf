@@ -1,3 +1,4 @@
+"use server"
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient()
@@ -14,8 +15,6 @@ interface UserBook {
 }
 
 const createFavorite = async ({ userBook }: { userBook: UserBook }) => {
-    console.log(userBook);
-
     const fav = await prisma.favorite.create({
         data: {
             ...userBook
