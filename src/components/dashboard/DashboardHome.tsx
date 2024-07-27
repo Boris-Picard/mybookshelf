@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 
 import {
   DropdownMenu,
+  DropdownMenuLabel,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
@@ -32,6 +33,7 @@ import {
   Sidebar,
   SidebarSheet,
 } from "@/components/dashboard/navigation/SideBar";
+import { LogoutDashBoardButton } from "../login/LogoutButton";
 
 interface DashboardHomeProps {
   user: User;
@@ -120,18 +122,19 @@ const DashboardHome: React.FC<DashboardHomeProps> = ({ user }) => {
             </DropdownMenuTrigger>
             <ModeToggle />
             <DropdownMenuContent align="end">
-              {/* <DropdownMenuLabel>{user?.user?.name}</DropdownMenuLabel> */}
+              <DropdownMenuLabel>{user.email}</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem>Settings</DropdownMenuItem>
               <DropdownMenuItem>Support</DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>Logout</DropdownMenuItem>
+              <DropdownMenuItem>
+                <LogoutDashBoardButton/>
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </header>
-
         <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 sm:grid-cols-1 grid-cols-1 xl:grid-cols-2">
-            <BooksList />
+          <BooksList />
         </main>
       </div>
     </div>

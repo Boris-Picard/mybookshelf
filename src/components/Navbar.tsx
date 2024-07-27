@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { GithubSignIn } from "@/components/login/GithubButton";
 import { GoogleSignIn } from "@/components/login/GoogleButton";
-import LogoutButton from "@/components/login/LogoutButton";
+import { LogoutHomeButton } from "@/components/login/LogoutButton";
 
 interface NavbarProps {
   id: string | null | undefined;
@@ -47,7 +47,7 @@ const Navbar: React.FC<NavbarProps> = ({ id }) => {
               </DialogContent>
             </Dialog>
           ) : (
-            <LogoutButton />
+            <LogoutHomeButton />
           )}
         </div>
       </nav>

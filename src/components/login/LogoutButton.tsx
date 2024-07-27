@@ -1,17 +1,24 @@
-import { signOut } from "@/auth";
+"use client";
+
+import { handleSignOut } from "@/actions/logout.action";
 import { Button } from "@/components/ui/button";
 
-export default function LogoutButton() {
+const LogoutHomeButton = () => {
   return (
-    <form
-      action={async (formData) => {
-        "use server";
-        await signOut({ redirectTo: "/" });
-      }}
-    >
-      <Button type="submit" variant="secondary">
+    <form action={handleSignOut}>
+      <Button type="submit" variant="outline">
         Logout
       </Button>
     </form>
   );
-}
+};
+
+const LogoutDashBoardButton = () => {
+  return (
+    <form action={handleSignOut} className="flex w-full">
+      <button type="submit" className="w-full text-start">Logout</button>
+    </form>
+  );
+};
+
+export { LogoutHomeButton, LogoutDashBoardButton };
