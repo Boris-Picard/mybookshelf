@@ -10,12 +10,16 @@ const useSearchBooks = ({ slice }: { slice: number }) => {
     const fetchBooks = async () => {
         try {
             const response = await fetch(
-                `https://www.googleapis.com/books/v1/volumes?q=programmation&orderBy=relevance&maxResults=20&key=${process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API}`
+                `https://www.googleapis.com/books/v1/volumes?q=zaoidaniudazduadnuiazdnand&orderBy=relevance&maxResults=20&key=${process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API}`
             );
             if (!response.ok) {
                 throw new Error(`Error: ${response.status}`);
             }
             const data = await response.json();
+            
+            if(data.totalItems === 0 ){
+                return null
+            }
 
             const filteredData: Books[] = data.items.map((item: any) => ({
                 id: item.id,
@@ -47,7 +51,7 @@ const useSearchBooks = ({ slice }: { slice: number }) => {
 
             // filtre par date du plus récent au plus ancien
             const sortByDate = filteredByTitle.sort((a, b) => new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime());
-            // setBooks(sortByDate.slice(0, slice));
+
             setBooks(sortByDate.slice(0, slice));
         } catch (error) {
             // type guard avec instanceof pour vérifier que l'objet error est bien une instance de Error

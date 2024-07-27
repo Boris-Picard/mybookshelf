@@ -8,9 +8,12 @@ import { useState } from "react";
 const BooksList: React.FC = () => {
   const [slice, setSlice] = useState<number>(3);
   const { books, errorMessage } = useSearchBooks({ slice });
-
+  
   if (errorMessage) {
     return <h1 className="text-xl text-red-500">{errorMessage}</h1>;
+  }
+  if (books.length === 0) {
+    return <h2 className="text-muted-foreground text-xl">Pas de livres trouvés !</h2>;
   }
 
   return (
