@@ -24,15 +24,16 @@ const CardList: React.FC<CardListProps> = ({ books }) => {
     <Card className="w-full flex px-4 pl-0 py-0">
       <div className="flex-shrink-0">
         <Image
-          src={books.thumbnail}
+          src={books.thumbnail ?? "/assets/default-book.png"}
           alt={books.title}
           width={180}
           height={180}
-          className="object-cover rounded-tl-xl rounded-bl-xl w-auto h-auto"
+          priority
+          className="object-cover rounded-tl-xl rounded-bl-xl h-auto w-auto"
         />
       </div>
-      <div className="flex flex-col mx-auto ml-4 justify-center">
-        <CardHeader className="flex flex-row space-y-0 items-start py-0 px-3">
+      <div className="flex items-center w-full ml-4">
+        <CardHeader className="flex  space-y-0 py-0 px-3">
           <div>
             <div className="flex justify-between">
               <CardTitle className="text-lg sm:text-xl font-semibold text-balance">
