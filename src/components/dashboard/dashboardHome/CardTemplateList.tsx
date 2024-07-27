@@ -20,7 +20,6 @@ interface CardListProps {
 }
 
 const CardList: React.FC<CardListProps> = ({ books }) => {
-
   return (
     <Card className="w-full flex px-4 pl-0 py-0">
       <div className="flex-shrink-0">
@@ -58,6 +57,11 @@ const CardList: React.FC<CardListProps> = ({ books }) => {
                   Date de parution :{" "}
                   {new Date(books.publishedDate).toLocaleDateString()}
                 </small>
+              )}
+              {books.categories && (
+                  <small className="text-muted-foreground font-semibold ml-auto">
+                    {books.categories}
+                  </small>
               )}
             </div>
             <CardDescription className="text-sm sm:text-base text-pretty line-clamp-2 mt-4">
