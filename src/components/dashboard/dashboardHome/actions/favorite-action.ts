@@ -10,7 +10,7 @@ interface UserBook {
     author: string,
     date: string,
     price: string,
-    category: string,
+    category: string[],
     description: string,
     link: string
 }

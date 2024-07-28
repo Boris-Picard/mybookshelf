@@ -23,13 +23,14 @@ export default function FavoriteButtonClient({ book }: { book: Books }) {
       description,
       previewLink: link,
     } = book;
+
     createFavorite({
-      bookId, 
+      bookId,
       name,
       author,
       date,
       price: price.toString(),
-      category: "dadad",
+      category: category,
       description,
       link,
     });

@@ -29,7 +29,7 @@ model Favorite {
   author      String
   date        String
   price       String
-  category    String
+  category    String[]
   description String
   link        String
   createdAt   DateTime @default(now())
