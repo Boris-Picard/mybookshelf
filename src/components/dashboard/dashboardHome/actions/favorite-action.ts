@@ -2,22 +2,13 @@
 import UserService from "@/services/UserService";
 import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient()
+import { FavoriteBook } from "@/types/FavoriteBook"
 
-interface UserBook {
-    bookId: string
-    name: string,
-    author: string,
-    date: string,
-    price: string,
-    category: string[],
-    description: string,
-    link: string
-}
+const prisma = new PrismaClient()
 
 const userService = new UserService()
 
-const createFavorite = async (userBook: UserBook) => {
+const createFavorite = async (userBook: FavoriteBook) => {
     try {
         const user = await userService.getUser()
 
@@ -25,10 +16,21 @@ const createFavorite = async (userBook: UserBook) => {
             throw new Error("User not found")
         }
 
+        const favorite = await prisma.favorite.findUnique({
+            where: {
+                bookId: userBook.bookId,
+                userId: user.id
+            }
+        })
+
+        if(favorite) {
+            throw new Error("Book already in favorite")
+        }
+
         const addFavorite = await prisma.favorite.create({
             data: {
                 ...userBook,
-                userId: user.id
+                userId: user.id,
             }
         })
         console.log("Added favorite", addFavorite);

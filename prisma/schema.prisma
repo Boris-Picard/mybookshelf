@@ -23,20 +23,20 @@ model User {
 }
 
 model Favorite {
-  id          String   @id @default(cuid())
   bookId      String
-  name        String
-  author      String
-  date        String
-  price       String
+  name        String?
+  author      String?
+  date        String?
+  price       String?
   category    String[]
-  description String
-  link        String
+  description String?
+  link        String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  User        User     @relation(fields: [userId], references: [id])
   userId      String
+  User        User     @relation(fields: [userId], references: [id])
 
+  @@id([bookId])
   @@map(name: "favorites")
 }
 
