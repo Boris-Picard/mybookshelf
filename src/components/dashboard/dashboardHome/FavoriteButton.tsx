@@ -14,7 +14,7 @@ export default function FavoriteButtonClient({ book }: { book: Books }) {
 
   const handleSubmit = () => {
     const {
-      id,
+      id: bookId,
       title: name,
       authors: author,
       publishedDate: date,
@@ -24,14 +24,14 @@ export default function FavoriteButtonClient({ book }: { book: Books }) {
       previewLink: link,
     } = book;
     createFavorite({
-      bookId: id,
-      title: name,
-      authors: author,
-      publishedDate: date,
-      amount: price,
-      categories: category,
+      bookId, 
+      name,
+      author,
+      date,
+      price: price.toString(),
+      category: "dadad",
       description,
-      previewLink: link,
+      link,
     });
   };
 

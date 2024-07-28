@@ -32,11 +32,10 @@ const createFavorite = async (userBook: UserBook) => {
             }
         })
         console.log("Added favorite", addFavorite);
-        
+
     } catch (error) {
         console.log(error);
     }
-
 }
 
 
