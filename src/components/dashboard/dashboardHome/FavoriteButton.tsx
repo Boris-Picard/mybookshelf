@@ -5,6 +5,8 @@ import { useState } from "react";
 import { createFavorite } from "@/components/dashboard/dashboardHome/actions/favorite-action";
 import { Books } from "@/types/Books";
 
+import { toast } from "react-toastify";
+
 export default function FavoriteButtonClient({ book }: { book: Books }) {
   const [isClicked, setIsClicked] = useState<boolean>(false);
 
@@ -12,7 +14,7 @@ export default function FavoriteButtonClient({ book }: { book: Books }) {
     setIsClicked(!isClicked);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const {
       id,
       title: name,
@@ -24,7 +26,7 @@ export default function FavoriteButtonClient({ book }: { book: Books }) {
       previewLink: link,
     } = book;
 
-    createFavorite({
+    const addFavorite = await createFavorite({
       bookId: id,
       name,
       author,
@@ -34,6 +36,8 @@ export default function FavoriteButtonClient({ book }: { book: Books }) {
       description,
       link,
     });
+
+    toast.error(addFavorite);
   };
 
   return (

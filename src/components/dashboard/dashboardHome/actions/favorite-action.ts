@@ -23,7 +23,7 @@ const createFavorite = async (userBook: FavoriteBook) => {
             }
         })
 
-        if(favorite) {
+        if (favorite) {
             throw new Error("Book already in favorite")
         }
 
@@ -36,7 +36,11 @@ const createFavorite = async (userBook: FavoriteBook) => {
         console.log("Added favorite", addFavorite);
 
     } catch (error) {
-        console.log(error);
+        if (error instanceof Error) {
+            return error.message
+        } else {
+            throw new Error("An error occured")
+        }
     }
 }
 
