@@ -1,7 +1,7 @@
 "use server";
 
 import DashboardHome from "@/components/dashboard/DashboardHome";
-import { getCurrentUser } from "@/services/CurrentUser";
+import UserService from "@/services/UserService";
 import { User } from "next-auth";
 import { redirect } from "next/navigation";
 
@@ -10,7 +10,8 @@ export default async function HomeDashboard({
 }: {
   params: { userId: string };
 }) {
-  const user: User | null = await getCurrentUser();
+  const userService = new UserService()
+  const user: User | null = await userService.getUser();
 
   if (!user) return redirect("/");
 

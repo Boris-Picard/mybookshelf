@@ -44,7 +44,7 @@ const CardList: React.FC<CardListProps> = ({ books }) => {
                 <span className="font-semibold mr-3">
                   {books.amount} {books.currencyCode}
                 </span>
-                <FavoriteButton bookId={books.id} />
+                <FavoriteButton book={books} />
               </div>
             </div>
             <div className="flex flex-row">
