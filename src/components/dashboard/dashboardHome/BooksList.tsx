@@ -8,18 +8,20 @@ import { useState } from "react";
 const BooksList: React.FC = () => {
   const [slice, setSlice] = useState<number>(3);
   const { books, errorMessage } = useSearchBooks({ slice });
-  
+
   if (errorMessage) {
     return <h1 className="text-xl text-red-500">{errorMessage}</h1>;
   }
   if (books.length === 0) {
-    return <h2 className="text-muted-foreground text-xl">Pas de livres trouvés !</h2>;
+    return (
+      <h2 className="text-muted-foreground text-xl">Pas de livres trouvés !</h2>
+    );
   }
 
   return (
     <div className="space-y-4">
       {books.map((item) => {
-        return <CardList books={item} />;
+        return <CardList key={item.id} books={item} />;
       })}
       <div className="flex justify-between mx-auto space-x-3">
         <Button

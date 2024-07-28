@@ -12,26 +12,13 @@ interface UserBook {
     category: string,
     description: string,
     link: string
+    userId: string
 }
 
-interface FavoriteProps {
-    userBook: UserBook[]
-}
-
-const createFavorite = async ({ userBook }: FavoriteProps) => {
-
-
+const createFavorite = async (userBook: UserBook) => {
     const fav = await prisma.favorite.create({
         data: {
-            bookId: "deux",
-            name: "deux",
-            author: "deux",
-            date: "deux",
-            price: "deux",
-            category: "deux",
-            description: "deux",
-            link: "deux",
-            userId: "clz5du9qw000dpen02o5cssxl"
+            ...userBook
         }
     })
 }
