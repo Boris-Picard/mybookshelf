@@ -5,11 +5,12 @@ import CardList from "@/components/dashboard/dashboardHome/CardTemplateList";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { getFavorite } from "@/components/dashboard/dashboardHome/actions/favorite-action";
+import { FavoriteBook } from "@/types/FavoriteBook";
 
 const BooksList: React.FC = () => {
   const [slice, setSlice] = useState<number>(3);
   const { books, errorMessage } = useSearchBooks({ slice });
-  const [myFavorite, setMyFavorite] = useState<string | object>();
+  const [myFavorite, setMyFavorite] = useState<FavoriteBook>();
 
   useEffect(() => {
     const favorites = async () => {
@@ -32,7 +33,7 @@ const BooksList: React.FC = () => {
   return (
     <div className="space-y-4">
       {books.map((item) => {
-        return <CardList key={item.id} books={item} />;
+        return <CardList key={item.id} books={item} favorites={myFavorite} />;
       })}
       <div className="flex justify-between mx-auto space-x-3">
         <Button

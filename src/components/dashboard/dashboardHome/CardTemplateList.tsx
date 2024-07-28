@@ -14,13 +14,14 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import FavoriteButton from "@/components/dashboard/dashboardHome/FavoriteButton";
+import { FavoriteBook } from "@/types/FavoriteBook";
 
 interface CardListProps {
   books: Books;
+  favorites: FavoriteBook;
 }
 
-const CardList: React.FC<CardListProps> = ({ books }) => {
-  
+const CardList: React.FC<CardListProps> = ({ books, favorites }) => {
   return (
     <Card className="w-full flex px-4 pl-0 py-0">
       <div className="flex-shrink-0">
@@ -44,7 +45,7 @@ const CardList: React.FC<CardListProps> = ({ books }) => {
                 <span className="font-semibold mr-3">
                   {books.amount} {books.currencyCode}
                 </span>
-                <FavoriteButton book={books} />
+                <FavoriteButton book={books} isFavorite={favorites} />
               </div>
             </div>
             <div className="flex flex-row">
