@@ -36,8 +36,12 @@ export default function FavoriteButtonClient({ book }: { book: Books }) {
       description,
       link,
     });
-
-    toast.error(addFavorite);
+    
+    if (addFavorite === true) {
+      toast.success("Livre ajouté aux favoris");
+    } else {
+      toast.error(addFavorite);
+    }
   };
 
   return (

@@ -33,7 +33,8 @@ const createFavorite = async (userBook: FavoriteBook) => {
                 userId: user.id,
             }
         })
-        console.log("Added favorite", addFavorite);
+
+        return true
 
     } catch (error) {
         if (error instanceof Error) {
@@ -44,5 +45,29 @@ const createFavorite = async (userBook: FavoriteBook) => {
     }
 }
 
+const getFavorite = async () => {
+    try {
+        const user = await userService.getUser()
 
-export { createFavorite }
+        if (!user) {
+            throw new Error("User not found")
+        }
+
+        const favorite = await prisma.favorite.findMany({
+            where: {
+                userId: user.id
+            }
+        })
+        console.log(favorite);
+        return favorite
+    } catch (error) {
+        if (error instanceof Error) {
+            return error.message
+        } else {
+            throw new Error("An error occured")
+        }
+    }
+}
+
+
+export { createFavorite, getFavorite }
