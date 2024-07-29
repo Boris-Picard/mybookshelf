@@ -15,7 +15,7 @@ export default auth((req) => {
     
     if (auth &&
         nextUrl.pathname.startsWith("/dashboard") &&
-        (nextUrl.pathname !== `/dashboard/${userId}` && nextUrl.pathname !== `/dashboard/favoris/${userId}`)) {
+        (nextUrl.pathname !== `/dashboard/${userId}` && nextUrl.pathname !== `/dashboard/favorites/${userId}`)) {
         const newUrl = new URL("/", nextUrl.origin)
         return Response.redirect(newUrl)
     }

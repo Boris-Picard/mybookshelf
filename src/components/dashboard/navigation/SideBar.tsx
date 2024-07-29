@@ -27,7 +27,7 @@ const Sidebar: React.FC<SiderbarProps> = ({ user }) => {
     },
     {
       title: "Favoris",
-      href: `/dashboard/favoris/${user.id}`,
+      href: `/dashboard/favorites/${user.id}`,
       icon: Heart,
     },
   ];
@@ -70,7 +70,7 @@ const SidebarSheet: React.FC<SiderbarProps> = ({ user }) => {
     },
     {
       title: "Favoris",
-      href: `/dashboard/favoris/${user.id}`,
+      href: `/dashboard/favorites/${user.id}`,
       icon: Heart,
     },
   ];
