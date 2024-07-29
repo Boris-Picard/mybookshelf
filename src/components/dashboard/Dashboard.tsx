@@ -35,7 +35,7 @@ import {
 import { LogoutDashBoardButton } from "@/components//login/LogoutButton";
 import { User } from "next-auth";
 import { usePathname } from "next/navigation";
-import List from "@/components/dashboard/dashboardFavorites/List";
+import FavoriteList from "@/components/dashboard/dashboardFavorites/FavoriteList";
 
 interface DashboardProps {
   user: User;
@@ -142,7 +142,7 @@ const Dashboard: React.FC<DashboardProps> = ({ user }) => {
         </header>
         <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 sm:grid-cols-1 grid-cols-1 xl:grid-cols-2">
           {isHome && <BooksList />}
-          {isFavorite && <List />}
+          {isFavorite && <FavoriteList />}
         </main>
       </div>
     </div>
