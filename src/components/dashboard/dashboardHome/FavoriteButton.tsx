@@ -2,7 +2,10 @@
 
 import { Star } from "lucide-react";
 import { useEffect, useState } from "react";
-import { createFavorite } from "@/components/dashboard/dashboardHome/actions/favorite-action";
+import {
+  createFavorite,
+  deleteFavorite,
+} from "@/components/dashboard/dashboardHome/actions/favorite-action";
 import { Books } from "@/types/Books";
 
 import { toast } from "react-toastify";
@@ -41,32 +44,46 @@ export default function FavoriteButtonClient({
   }, []);
 
   const handleSubmit = async () => {
-    const {
-      id,
-      title: name,
-      authors: author,
-      publishedDate: date,
-      amount: price,
-      categories: category,
-      description,
-      previewLink: link,
-    } = book;
+    try {
+      if (isClicked) {
+        const {
+          id,
+          title: name,
+          authors: author,
+          publishedDate: date,
+          amount: price,
+          categories: category,
+          description,
+          previewLink: link,
+        } = book;
 
-    const addFavorite = await createFavorite({
-      bookId: id,
-      name,
-      author,
-      date,
-      price: price?.toString(),
-      category,
-      description,
-      link,
-    });
+        const addFavorite = await createFavorite({
+          bookId: id,
+          name,
+          author,
+          date,
+          price: price?.toString(),
+          category,
+          description,
+          link,
+        });
 
-    if (addFavorite === true) {
-      toast.success("Livre ajouté aux favoris");
-    } else {
-      toast.error(addFavorite);
+        if (addFavorite === true) {
+          toast.success("Livre ajouté aux favoris");
+        } else {
+          toast.error(addFavorite);
+        }
+      } else {
+        const delFavorite = await deleteFavorite(book.id);
+
+        if (delFavorite === true) {
+          toast.success("Favori supprimé avec succès !");
+        } else {
+          toast.error(delFavorite)
+        }
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 

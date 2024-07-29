@@ -66,4 +66,28 @@ const getFavorites = async (): Promise<FavoriteResponse[] | null | string> => {
     }
 }
 
-export { createFavorite, getFavorites }
+const deleteFavorite = async (bookId: string): Promise<boolean | string> => {
+    try {
+        const user = await userService.getUser()
+
+        if (!user) {
+            throw new Error("User not found")
+        }
+
+        const favorite = await db.favorite.delete({
+            where: {
+                bookId: bookId,
+                userId: user.id
+            }
+        })
+        return (true)
+    } catch (error) {
+        if (error instanceof Error) {
+            return error.message
+        } else {
+            throw new Error("An error occured")
+        }
+    }
+}
+
+export { createFavorite, getFavorites, deleteFavorite }
