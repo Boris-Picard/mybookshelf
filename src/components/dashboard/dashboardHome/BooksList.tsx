@@ -4,31 +4,30 @@ import useSearchBooks from "@/hooks/useSearchBooks";
 import CardList from "@/components/dashboard/dashboardHome/CardTemplateList";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
-import { getFavorite } from "@/components/dashboard/dashboardHome/actions/favorite-action";
 import { FavoriteResponse } from "@/types/FavoriteBook";
-
+import { getFavorites } from "@/components/dashboard/dashboardHome/actions/favorite-action";
 
 const BooksList: React.FC = () => {
   const [slice, setSlice] = useState<number>(3);
   const { books, errorMessage } = useSearchBooks({ slice });
-  const [myFavorite, setMyFavorite] = useState<FavoriteResponse[] | null | string>(null);
-
+  const [myFavorite, setMyFavorite] = useState<
+    FavoriteResponse[] | null | string
+  >(null);
+  
   useEffect(() => {
     const fetchFavorites = async () => {
       try {
-        const response = await getFavorite();
+        const response = await getFavorites();
         if (response === null) {
           return null;
         }
-        console.log(response);
-
         setMyFavorite(response);
       } catch (error) {
         console.log(error);
       }
     };
     fetchFavorites();
-  }, []);
+  }, [getFavorites]);
 
   if (errorMessage) {
     return <h1 className="text-xl text-red-500">{errorMessage}</h1>;

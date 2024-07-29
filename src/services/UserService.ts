@@ -1,9 +1,11 @@
 "use server"
 import db from "@/lib/db"
 import { getCurrentUser } from "@/services/CurrentUser"
+import { User } from "next-auth"
+
 
 class UserService {
-    async getUser() {
+    async getUser(): Promise<User | null> {
         try {
             const session = await getCurrentUser()
 

@@ -1,10 +1,8 @@
 "use server"
 import UserService from "@/services/UserService";
-import { PrismaClient } from "@prisma/client";
+import db from "@/lib/db"
 
 import { FavoriteBook, FavoriteResponse } from "@/types/FavoriteBook"
-
-const prisma = new PrismaClient()
 
 const userService = new UserService()
 
@@ -16,7 +14,7 @@ const createFavorite = async (userBook: FavoriteBook): Promise<boolean | string>
             throw new Error("User not found")
         }
 
-        const favorite = await prisma.favorite.findUnique({
+        const favorite = await db.favorite.findUnique({
             where: {
                 bookId: userBook.bookId,
                 userId: user.id
@@ -27,7 +25,7 @@ const createFavorite = async (userBook: FavoriteBook): Promise<boolean | string>
             throw new Error("Book already in favorite")
         }
 
-        const addFavorite = await prisma.favorite.create({
+        const addFavorite = await db.favorite.create({
             data: {
                 ...userBook,
                 userId: user.id,
@@ -45,7 +43,7 @@ const createFavorite = async (userBook: FavoriteBook): Promise<boolean | string>
     }
 }
 
-const getFavorite = async (): Promise<FavoriteResponse[] | null | string> => {
+const getFavorites = async (): Promise<FavoriteResponse[] | null | string> => {
     try {
         const user = await userService.getUser()
 
@@ -53,7 +51,7 @@ const getFavorite = async (): Promise<FavoriteResponse[] | null | string> => {
             throw new Error("User not found")
         }
 
-        const favorite = await prisma.favorite.findMany({
+        const favorite = await db.favorite.findMany({
             where: {
                 userId: user.id
             }
@@ -68,5 +66,4 @@ const getFavorite = async (): Promise<FavoriteResponse[] | null | string> => {
     }
 }
 
-
-export { createFavorite, getFavorite }
+export { createFavorite, getFavorites }
