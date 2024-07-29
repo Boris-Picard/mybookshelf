@@ -80,7 +80,7 @@ const deleteFavorite = async (bookId: string): Promise<boolean | string> => {
                 userId: user.id
             }
         })
-        return (true)
+        return true
     } catch (error) {
         if (error instanceof Error) {
             return error.message

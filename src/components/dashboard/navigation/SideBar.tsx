@@ -1,6 +1,6 @@
 "use client";
 import { Links } from "@/types/Links";
-import { Home, Package } from "lucide-react";
+import { Home, Heart } from "lucide-react";
 import {
   TooltipProvider,
   Tooltip,
@@ -10,22 +10,23 @@ import {
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
+import { User } from "next-auth";
 
-const links: Links[] = [
-  {
-    title: "Home",
-    href: "/dashboard",
-    icon: Home,
-  },
-  {
-    title: "Package",
-    href: "/dashboard/package",
-    icon: Package,
-  },
-];
-
-const Sidebar: React.FC = () => {
+const Sidebar: React.FC = ({ user }: User) => {
   const pathname = usePathname();
+
+  const links: Links[] = [
+    {
+      title: "Home",
+      href: `/dashboard/${user.id}`,
+      icon: Home,
+    },
+    {
+      title: "Favoris",
+      href: `/dashboard/favoris/${user.id}`,
+      icon: Heart,
+    },
+  ];
 
   return (
     <>
@@ -56,7 +57,7 @@ const Sidebar: React.FC = () => {
 
 const SidebarSheet: React.FC = () => {
   const pathname = usePathname();
-  
+
   return (
     <>
       {links.map(({ title, href, icon: Icon }: Links) => {

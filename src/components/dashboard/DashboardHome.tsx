@@ -51,7 +51,7 @@ const DashboardHome: React.FC<DashboardHomeProps> = ({ user }) => {
             <Package2 className="h-4 w-4 transition-all group-hover:scale-110" />
             <span className="sr-only">Acme Inc</span>
           </Link>
-          <Sidebar />
+          <Sidebar user={user} />
         </nav>
       </aside>
       <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
@@ -128,7 +128,7 @@ const DashboardHome: React.FC<DashboardHomeProps> = ({ user }) => {
               <DropdownMenuItem>Support</DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem>
-                <LogoutDashBoardButton/>
+                <LogoutDashBoardButton />
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
