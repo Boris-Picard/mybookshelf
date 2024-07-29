@@ -35,7 +35,7 @@ import {
 import { LogoutDashBoardButton } from "@/components//login/LogoutButton";
 import { User } from "next-auth";
 import { usePathname } from "next/navigation";
-import List from "@/components/dashboard/dashboardFavorites/list";
+import List from "@/components/dashboard/dashboardFavorites/List";
 
 interface DashboardProps {
   user: User;
@@ -46,7 +46,7 @@ const Dashboard: React.FC<DashboardProps> = ({ user }) => {
 
   const isHome = url.startsWith(`/dashboard/${user.id}`);
   const isFavorite = url.includes("favorites");
-
+  
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
       <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
