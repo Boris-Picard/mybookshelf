@@ -1,5 +1,6 @@
 "use server";
 
+import Dashboard from "@/components/dashboard/Dashboard";
 import UserService from "@/services/UserService";
 import { User } from "next-auth";
 import { redirect } from "next/navigation";
@@ -9,8 +10,6 @@ export default async function FavoriteDashboard({
 }: {
   params: { userId: string };
 }) {
-    console.log(params);
-    
   const userService = new UserService();
   const user: User | null = await userService.getUser();
 
@@ -24,7 +23,7 @@ export default async function FavoriteDashboard({
 
   return (
     <>
-      <h1 className="text-xl font-bold">Favoris</h1>
+      <Dashboard user={user}  />
     </>
   );
 }

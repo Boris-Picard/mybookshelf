@@ -1,6 +1,6 @@
 "use server";
 
-import DashboardHome from "@/components/dashboard/DashboardHome";
+import Dashboard from "@/components/dashboard/Dashboard";
 import UserService from "@/services/UserService";
 import { User } from "next-auth";
 import { redirect } from "next/navigation";
@@ -23,7 +23,7 @@ export default async function HomeDashboard({
 
   return (
     <>
-      <DashboardHome user={user} />
+      <Dashboard user={user} />
     </>
   );
 }

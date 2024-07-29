@@ -34,12 +34,19 @@ import {
 } from "@/components/dashboard/navigation/SideBar";
 import { LogoutDashBoardButton } from "@/components//login/LogoutButton";
 import { User } from "next-auth";
+import { usePathname } from "next/navigation";
+import List from "@/components/dashboard/dashboardFavorites/list";
 
-interface DashboardHomeProps {
+interface DashboardProps {
   user: User;
 }
 
-const DashboardHome: React.FC<DashboardHomeProps> = ({ user }) => {
+const Dashboard: React.FC<DashboardProps> = ({ user }) => {
+  const url = usePathname();
+
+  const isHome = url.startsWith(`/dashboard/${user.id}`);
+  const isFavorite = url.includes("favorites");
+
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
       <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
@@ -134,11 +141,12 @@ const DashboardHome: React.FC<DashboardHomeProps> = ({ user }) => {
           </DropdownMenu>
         </header>
         <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 sm:grid-cols-1 grid-cols-1 xl:grid-cols-2">
-          <BooksList />
+          {isHome && <BooksList />}
+          {isFavorite && <List />}
         </main>
       </div>
     </div>
   );
 };
 
-export default DashboardHome;
+export default Dashboard;
