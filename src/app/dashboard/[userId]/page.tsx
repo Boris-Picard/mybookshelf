@@ -10,12 +10,16 @@ export default async function HomeDashboard({
 }: {
   params: { userId: string };
 }) {
-  const userService = new UserService()
+  const userService = new UserService();
   const user: User | null = await userService.getUser();
 
-  if (!user) return redirect("/");
+  if (!user) {
+    return redirect("/");
+  }
 
-  if (user.id !== params.userId) return redirect("/");
+  if (user.id !== params.userId) {
+    return redirect("/");
+  }
 
   return (
     <>

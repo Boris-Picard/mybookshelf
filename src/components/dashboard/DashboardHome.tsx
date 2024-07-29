@@ -27,13 +27,13 @@ import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 import { ModeToggle } from "@/components/dark-mode";
-import { User } from "next-auth";
 import BooksList from "./dashboardHome/BooksList";
 import {
   Sidebar,
   SidebarSheet,
 } from "@/components/dashboard/navigation/SideBar";
 import { LogoutDashBoardButton } from "@/components//login/LogoutButton";
+import { User } from "next-auth";
 
 interface DashboardHomeProps {
   user: User;
@@ -72,7 +72,7 @@ const DashboardHome: React.FC<DashboardHomeProps> = ({ user }) => {
                   <Package2 className="h-5 w-5 transition-all group-hover:scale-110" />
                   <span className="sr-only">Acme Inc</span>
                 </Link>
-                <SidebarSheet />
+                <SidebarSheet user={user} />
               </nav>
             </SheetContent>
           </Sheet>

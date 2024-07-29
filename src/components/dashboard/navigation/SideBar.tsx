@@ -12,7 +12,11 @@ import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { User } from "next-auth";
 
-const Sidebar: React.FC = ({ user }: User) => {
+interface SiderbarProps {
+  user: User;
+}
+
+const Sidebar: React.FC<SiderbarProps> = ({ user }) => {
   const pathname = usePathname();
 
   const links: Links[] = [
@@ -55,8 +59,21 @@ const Sidebar: React.FC = ({ user }: User) => {
   );
 };
 
-const SidebarSheet: React.FC = () => {
+const SidebarSheet: React.FC<SiderbarProps> = ({ user }) => {
   const pathname = usePathname();
+
+  const links: Links[] = [
+    {
+      title: "Home",
+      href: `/dashboard/${user.id}`,
+      icon: Home,
+    },
+    {
+      title: "Favoris",
+      href: `/dashboard/favoris/${user.id}`,
+      icon: Heart,
+    },
+  ];
 
   return (
     <>
