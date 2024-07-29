@@ -9,3 +9,17 @@ export interface FavoriteBook {
     description?: string,
     link?: string
 }
+
+export type FavoriteResponse = {
+    bookId: string;
+    name: string | null;
+    author: string | null;
+    date: string | null;
+    price: string | null;
+    category: string[];
+    description: string | null;
+    link: string | null;
+    createdAt: Date;
+    updatedAt: Date;
+    userId: string;
+} | string

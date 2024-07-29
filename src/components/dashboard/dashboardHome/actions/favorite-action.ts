@@ -2,13 +2,13 @@
 import UserService from "@/services/UserService";
 import { PrismaClient } from "@prisma/client";
 
-import { FavoriteBook } from "@/types/FavoriteBook"
+import { FavoriteBook, FavoriteResponse } from "@/types/FavoriteBook"
 
 const prisma = new PrismaClient()
 
 const userService = new UserService()
 
-const createFavorite = async (userBook: FavoriteBook) => {
+const createFavorite = async (userBook: FavoriteBook): Promise<boolean | string> => {
     try {
         const user = await userService.getUser()
 
@@ -45,7 +45,7 @@ const createFavorite = async (userBook: FavoriteBook) => {
     }
 }
 
-const getFavorite = async () => {
+const getFavorite = async (): Promise<FavoriteResponse[] | null | string> => {
     try {
         const user = await userService.getUser()
 
@@ -58,7 +58,6 @@ const getFavorite = async () => {
                 userId: user.id
             }
         })
-        console.log(favorite);
         return favorite
     } catch (error) {
         if (error instanceof Error) {

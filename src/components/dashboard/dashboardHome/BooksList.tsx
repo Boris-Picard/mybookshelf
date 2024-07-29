@@ -5,20 +5,29 @@ import CardList from "@/components/dashboard/dashboardHome/CardTemplateList";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { getFavorite } from "@/components/dashboard/dashboardHome/actions/favorite-action";
-import { FavoriteBook } from "@/types/FavoriteBook";
+import { FavoriteResponse } from "@/types/FavoriteBook";
+
 
 const BooksList: React.FC = () => {
   const [slice, setSlice] = useState<number>(3);
   const { books, errorMessage } = useSearchBooks({ slice });
-  const [myFavorite, setMyFavorite] = useState<FavoriteBook>();
+  const [myFavorite, setMyFavorite] = useState<FavoriteResponse[] | null | string>(null);
 
   useEffect(() => {
-    const favorites = async () => {
-      const response = await getFavorite();
-      console.log(response);
-      setMyFavorite(response);
+    const fetchFavorites = async () => {
+      try {
+        const response = await getFavorite();
+        if (response === null) {
+          return null;
+        }
+        console.log(response);
+
+        setMyFavorite(response);
+      } catch (error) {
+        console.log(error);
+      }
     };
-    favorites();
+    fetchFavorites();
   }, []);
 
   if (errorMessage) {

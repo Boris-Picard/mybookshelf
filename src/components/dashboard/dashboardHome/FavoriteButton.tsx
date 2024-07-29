@@ -6,14 +6,14 @@ import { createFavorite } from "@/components/dashboard/dashboardHome/actions/fav
 import { Books } from "@/types/Books";
 
 import { toast } from "react-toastify";
-import { FavoriteBook } from "@/types/FavoriteBook";
+import { FavoriteResponse } from "@/types/FavoriteBook";
 
 export default function FavoriteButtonClient({
   book,
   isFavorite,
 }: {
   book: Books;
-  isFavorite: FavoriteBook;
+  isFavorite: FavoriteResponse[] | null | string;
 }) {
   const [isClicked, setIsClicked] = useState<boolean>(false);
 
@@ -22,16 +22,23 @@ export default function FavoriteButtonClient({
   };
 
   useEffect(() => {
-    // get all favorite ids
-    const favoritesIds = isFavorite.map(({ bookId }) => {
-      return bookId;
-    });
+    const getFavorites = () => {
+      // get all favorite ids
+      if (!isFavorite || typeof isFavorite === "string") return null;
+      const favoritesIds = isFavorite.map((favorite) => {
+        if (typeof favorite === "string") {
+          return null;
+        }
+        return favorite.bookId;
+      });
 
-    // if in favoritesIds include an id from fetched book fill star icon
-    if (favoritesIds.includes(book.id)) {
-      setIsClicked(true);
-    }
-  });
+      // if in favoritesIds include an id from fetched book fill star icon
+      if (favoritesIds.includes(book.id)) {
+        setIsClicked(true);
+      }
+    };
+    getFavorites();
+  }, []);
 
   const handleSubmit = async () => {
     const {

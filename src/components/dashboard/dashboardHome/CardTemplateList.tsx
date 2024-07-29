@@ -14,11 +14,11 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import FavoriteButton from "@/components/dashboard/dashboardHome/FavoriteButton";
-import { FavoriteBook } from "@/types/FavoriteBook";
+import { FavoriteResponse } from "@/types/FavoriteBook";
 
 interface CardListProps {
   books: Books;
-  favorites: FavoriteBook;
+  favorites: FavoriteResponse[] | null | string;
 }
 
 const CardList: React.FC<CardListProps> = ({ books, favorites }) => {
