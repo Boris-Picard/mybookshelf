@@ -21,7 +21,7 @@ export default function FavoriteButtonClient({
 }) {
   const [isClicked, setIsClicked] = useState<boolean>(false);
   // zustand store
-  const { addFavoriteBook, removeFavoriteBook } = useFavorites();
+  const { removeFavoriteBook, favorites } = useFavorites();
 
   const handleClick = () => {
     setIsClicked(!isClicked);
@@ -86,7 +86,6 @@ export default function FavoriteButtonClient({
 
         if (addFavorite && typeof addFavorite === "object") {
           toast.success("Livre ajouté aux favoris");
-          addFavoriteBook(addFavorite);
           setIsClicked(true);
         } else {
           toast.error(addFavorite);
