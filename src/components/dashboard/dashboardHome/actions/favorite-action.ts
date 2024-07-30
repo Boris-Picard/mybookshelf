@@ -10,7 +10,7 @@ const createFavorite = async (userBook: FavoriteBook): Promise<string | Favorite
     try {
         const user = await userService.getUser()
 
-        if (!user) {
+        if (!user || typeof user.id !== "string") {
             throw new Error("User not found")
         }
 
@@ -32,7 +32,7 @@ const createFavorite = async (userBook: FavoriteBook): Promise<string | Favorite
             }
         })
 
-        return addFavorite
+        return addFavorite as FavoriteResponse
 
     } catch (error) {
         if (error instanceof Error) {
@@ -56,7 +56,7 @@ const getFavorites = async (): Promise<FavoriteResponse[] | string> => {
                 userId: user.id
             }
         })
-        return favorite
+        return favorite as FavoriteResponse[]
     } catch (error) {
         if (error instanceof Error) {
             return error.message

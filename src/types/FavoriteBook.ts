@@ -3,6 +3,9 @@ export interface FavoriteBook {
     bookId: string,
     name?: string,
     author?: string,
+    thumbnail: string | null
+    averageRating: number | null
+    ratingsCount: number | null
     date?: string,
     price?: string,
     category?: string[],
@@ -12,7 +15,7 @@ export interface FavoriteBook {
 
 export type FavoriteResponse = {
     bookId: string;
-    name: string | null;
+    name: string;
     author: string | null;
     date: string | null;
     price: string | null;

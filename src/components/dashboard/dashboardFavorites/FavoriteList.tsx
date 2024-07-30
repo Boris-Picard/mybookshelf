@@ -5,9 +5,10 @@ import { useFavorites } from "@/store/favorites";
 
 const FavoriteList: React.FC = () => {
   const { favorites } = useFavorites();
+  console.log(favorites);
   
   return (
-    <div>
+    <div className="space-y-4">
       {favorites.map((item) => {
         if (typeof item === "string") {
           return null;

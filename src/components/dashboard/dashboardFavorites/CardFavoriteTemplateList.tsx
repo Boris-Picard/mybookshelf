@@ -18,6 +18,8 @@ import { FavoriteResponse } from "@/types/FavoriteBook";
 const CardFavoriteTemplateList: React.FC<{ favorites: FavoriteResponse }> = ({
   favorites,
 }) => {
+  console.log(favorites);
+
   return (
     <Card className="w-full flex px-4 pl-0 py-0">
       <div className="flex-shrink-0">
@@ -43,7 +45,7 @@ const CardFavoriteTemplateList: React.FC<{ favorites: FavoriteResponse }> = ({
                     {favorites.price} EUR
                   </span>
                 )}
-                <FavoriteButton book={favorites} isFavorite={favorites} />
+                <FavoriteButton isFavorite={favorites} />
               </div>
             </div>
             <div className="flex flex-col space-y-1">

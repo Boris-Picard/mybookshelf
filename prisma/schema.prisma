@@ -24,7 +24,7 @@ model User {
 
 model Favorite {
   bookId        String
-  name          String?
+  name          String
   author        String?
   date          String?
   price         String?

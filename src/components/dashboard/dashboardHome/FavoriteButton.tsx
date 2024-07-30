@@ -16,8 +16,8 @@ export default function FavoriteButtonClient({
   book,
   isFavorite,
 }: {
-  book: Books;
-  isFavorite: FavoriteResponse[] | null | string;
+  book?: Books;
+  isFavorite: FavoriteResponse[] | FavoriteResponse | null | string;
 }) {
   const [isClicked, setIsClicked] = useState<boolean>(false);
   // zustand store
@@ -31,15 +31,20 @@ export default function FavoriteButtonClient({
     const getFavorites = () => {
       // get all favorite ids
       if (!isFavorite || typeof isFavorite === "string") return null;
-      const favoritesIds = isFavorite.map((favorite) => {
-        if (typeof favorite === "string") {
-          return null;
+
+      if (Array.isArray(isFavorite)) {
+        const favoritesIds = isFavorite.map((favorite) => {
+          if (typeof favorite === "string") {
+            return null;
+          }
+          return favorite.bookId;
+        });
+        // if in favoritesIds include an id from fetched book fill star icon
+        if (typeof book !== "undefined") {
+          if (book && favoritesIds.includes(book.id)) {
+            setIsClicked(true);
+          }
         }
-        return favorite.bookId;
-      });
-      // if in favoritesIds include an id from fetched book fill star icon
-      if (favoritesIds.includes(book.id || book.bookId)) {
-        setIsClicked(true);
       }
     };
     getFavorites();
@@ -47,7 +52,7 @@ export default function FavoriteButtonClient({
 
   const handleSubmit = async () => {
     try {
-      if (isClicked) {
+      if (isClicked && typeof book === "object") {
         const {
           id,
           title: name,
@@ -55,12 +60,14 @@ export default function FavoriteButtonClient({
           publishedDate: date,
           amount: price,
           thumbnail,
-          categories: category,
+          categories,
           description,
           averageRating,
           ratingsCount,
           previewLink: link,
         } = book;
+
+        const categoryArray = Array.isArray(categories) ? categories : [categories];
 
         const addFavorite = await createFavorite({
           bookId: id,
@@ -71,29 +78,30 @@ export default function FavoriteButtonClient({
           price: price?.toString(),
           averageRating,
           ratingsCount,
-          category,
+          category: categoryArray,
           description,
           link,
         });
 
-        if (addFavorite) {
+        if (addFavorite && typeof addFavorite === "object") {
           toast.success("Livre ajouté aux favoris");
-          addFavoriteBook(addFavorite)
+          addFavoriteBook(addFavorite);
           setIsClicked(true);
         } else {
           toast.error(addFavorite);
           setIsClicked(false);
         }
       } else {
-        const delFavorite = await deleteFavorite(book.id || book.bookId);
-
-        if (delFavorite === true) {
-          toast.success("Favori supprimé avec succès !");
-          removeFavoriteBook(book.id || book.bookId)
-          setIsClicked(false);
-        } else {
-          toast.error(delFavorite);
-          setIsClicked(true);
+        if (typeof book !== "undefined") {
+          const delFavorite = await deleteFavorite(book.id);
+          if (delFavorite === true) {
+            toast.success("Favori supprimé avec succès !");
+            removeFavoriteBook(book.id);
+            setIsClicked(false);
+          } else {
+            toast.error(delFavorite);
+            setIsClicked(true);
+          }
         }
       }
     } catch (error) {
