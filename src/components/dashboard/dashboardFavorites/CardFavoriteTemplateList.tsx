@@ -15,11 +15,9 @@ import { Button } from "@/components/ui/button";
 import FavoriteButton from "@/components/dashboard/dashboardHome/FavoriteButton";
 import { FavoriteResponse } from "@/types/FavoriteBook";
 
-const CardFavoriteTemplateList: React.FC<FavoriteResponse> = ({
+const CardFavoriteTemplateList: React.FC<FavoriteResponse[]> = ({
   favorites,
 }) => {
-  console.log(favorites);
-  
   return (
     <Card className="w-full flex px-4 pl-0 py-0">
       <div className="flex-shrink-0">
@@ -43,7 +41,7 @@ const CardFavoriteTemplateList: React.FC<FavoriteResponse> = ({
                 <span className="font-semibold mr-3">
                   {favorites.price} EUR
                 </span>
-                {/* <FavoriteButton book={favorites} isFavorite={favorites} /> */}
+                <FavoriteButton book={favorites} isFavorite={[favorites]} />
               </div>
             </div>
             <div className="flex flex-row">

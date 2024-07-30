@@ -23,7 +23,10 @@ export default function FavoriteButtonClient({
   const handleClick = () => {
     setIsClicked(!isClicked);
   };
-
+  console.log(book);
+  console.log(isFavorite);
+  
+  
   useEffect(() => {
     const getFavorites = () => {
       // get all favorite ids
@@ -34,9 +37,8 @@ export default function FavoriteButtonClient({
         }
         return favorite.bookId;
       });
-
       // if in favoritesIds include an id from fetched book fill star icon
-      if (favoritesIds.includes(book.id)) {
+      if (favoritesIds.includes(book.id || book.bookId)) {
         setIsClicked(true);
       }
     };
@@ -76,6 +78,7 @@ export default function FavoriteButtonClient({
         
         if (addFavorite === true) {
           toast.success("Livre ajouté aux favoris");
+          setIsClicked(true);
         } else {
           toast.error(addFavorite);
           setIsClicked(false);
