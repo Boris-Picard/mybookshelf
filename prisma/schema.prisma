@@ -31,7 +31,7 @@ model Favorite {
   thumbnail     String?
   averageRating Int?
   ratingsCount  Int?
-  category      String[]
+  category      String?
   description   String?
   link          String?
   createdAt     DateTime @default(now())

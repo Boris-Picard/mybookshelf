@@ -5,7 +5,6 @@ import { useFavorites } from "@/store/favorites";
 
 const FavoriteList: React.FC = () => {
   const { favorites } = useFavorites();
-  console.log(favorites);
   
   return (
     <div className="space-y-4">

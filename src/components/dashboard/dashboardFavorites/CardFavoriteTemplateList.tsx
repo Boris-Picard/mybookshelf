@@ -18,8 +18,6 @@ import { FavoriteResponse } from "@/types/FavoriteBook";
 const CardFavoriteTemplateList: React.FC<{ favorites: FavoriteResponse }> = ({
   favorites,
 }) => {
-  console.log(favorites);
-
   return (
     <Card className="w-full flex px-4 pl-0 py-0">
       <div className="flex-shrink-0">

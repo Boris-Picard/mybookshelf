@@ -31,11 +31,13 @@ const createFavorite = async (userBook: FavoriteBook): Promise<string | Favorite
                 userId: user.id,
             }
         })
-
+        
         return addFavorite as FavoriteResponse
 
     } catch (error) {
         if (error instanceof Error) {
+            console.log(error.message);
+            
             return error.message
         } else {
             throw new Error("An error occured")

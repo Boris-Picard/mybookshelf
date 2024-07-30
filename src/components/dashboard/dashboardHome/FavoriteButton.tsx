@@ -39,11 +39,10 @@ export default function FavoriteButtonClient({
           }
           return favorite.bookId;
         });
+
         // if in favoritesIds include an id from fetched book fill star icon
-        if (typeof book !== "undefined") {
-          if (book && favoritesIds.includes(book.id)) {
-            setIsClicked(true);
-          }
+        if (book && favoritesIds.includes(book.id)) {
+          setIsClicked(true);
         }
       }
     };
@@ -67,7 +66,9 @@ export default function FavoriteButtonClient({
           previewLink: link,
         } = book;
 
-        const categoryArray = Array.isArray(categories) ? categories : [categories];
+        const categoryString = Array.isArray(categories)
+          ? categories.join(", ")
+          : categories;
 
         const addFavorite = await createFavorite({
           bookId: id,
@@ -78,7 +79,7 @@ export default function FavoriteButtonClient({
           price: price?.toString(),
           averageRating,
           ratingsCount,
-          category: categoryArray,
+          category: categoryString,
           description,
           link,
         });
