@@ -6,7 +6,7 @@ import { FavoriteBook, FavoriteResponse } from "@/types/FavoriteBook"
 
 const userService = new UserService()
 
-const createFavorite = async (userBook: FavoriteBook): Promise<string | null | FavoriteResponse> => {
+const createFavorite = async (userBook: FavoriteBook): Promise<string | FavoriteResponse> => {
     try {
         const user = await userService.getUser()
 
@@ -43,7 +43,7 @@ const createFavorite = async (userBook: FavoriteBook): Promise<string | null | F
     }
 }
 
-const getFavorites = async (): Promise<FavoriteResponse[] | null | string> => {
+const getFavorites = async (): Promise<FavoriteResponse[] | string> => {
     try {
         const user = await userService.getUser()
 

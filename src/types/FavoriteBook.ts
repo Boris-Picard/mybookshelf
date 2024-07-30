@@ -16,10 +16,12 @@ export type FavoriteResponse = {
     author: string | null;
     date: string | null;
     price: string | null;
-    category: string[];
+    category: string[] | null;
     description: string | null;
+    averageRating: number | null
+    ratingsCount: number | null
     link: string | null;
     createdAt: Date;
     updatedAt: Date;
     userId: string;
-} | string
+}
