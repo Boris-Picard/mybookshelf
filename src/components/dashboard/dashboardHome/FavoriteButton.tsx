@@ -52,6 +52,7 @@ export default function FavoriteButtonClient({
           authors: author,
           publishedDate: date,
           amount: price,
+          thumbnail,
           categories: category,
           description,
           previewLink: link,
@@ -62,6 +63,7 @@ export default function FavoriteButtonClient({
           name,
           author,
           date,
+          thumbnail,
           price: price?.toString(),
           category,
           description,
@@ -72,6 +74,7 @@ export default function FavoriteButtonClient({
           toast.success("Livre ajouté aux favoris");
         } else {
           toast.error(addFavorite);
+          setIsClicked(false);
         }
       } else {
         const delFavorite = await deleteFavorite(book.id);
@@ -79,7 +82,7 @@ export default function FavoriteButtonClient({
         if (delFavorite === true) {
           toast.success("Favori supprimé avec succès !");
         } else {
-          toast.error(delFavorite)
+          toast.error(delFavorite);
         }
       }
     } catch (error) {

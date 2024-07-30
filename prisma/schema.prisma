@@ -28,6 +28,7 @@ model Favorite {
   author      String?
   date        String?
   price       String?
+  thumbnail   String?
   category    String[]
   description String?
   link        String?

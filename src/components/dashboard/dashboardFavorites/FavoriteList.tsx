@@ -6,16 +6,19 @@ import { useEffect, useState } from "react";
 import CardFavoriteTemplateList from "@/components/dashboard/dashboardFavorites/CardFavoriteTemplateList";
 
 const FavoriteList: React.FC = () => {
-  const [favorites, setFavorites] = useState<FavoriteResponse | null | string>(
-    null
-  );
+  const [favorites, setFavorites] = useState<
+    FavoriteResponse[] | null | string
+  >(null);
   const [errorMessage, setErrorMessage] = useState<string>();
 
   useEffect(() => {
     const fetchFavorites = async () => {
       try {
         const response = await getFavorites();
-        console.log(response);
+
+        if (response === null) {
+          return null;
+        }
 
         setFavorites(response);
       } catch (error) {
@@ -45,7 +48,13 @@ const FavoriteList: React.FC = () => {
   return (
     <div>
       {favorites.map((item) => {
-        return <CardFavoriteTemplateList key={item.bookId} favorites={item} />;
+        if (typeof item === "string") {
+          return null;
+        } else {
+          return (
+            <CardFavoriteTemplateList key={item.bookId} favorite={item} />
+          );
+        }
       })}
     </div>
   );

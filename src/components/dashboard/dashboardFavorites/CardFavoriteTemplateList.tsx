@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/button";
 import FavoriteButton from "@/components/dashboard/dashboardHome/FavoriteButton";
 import { FavoriteResponse } from "@/types/FavoriteBook";
 
-const CardFavoriteTemplateList: React.FC<FavoriteResponse[]> = ({
+const CardFavoriteTemplateList: React.FC<{ favorites: FavoriteResponse }> = ({
   favorites,
 }) => {
   return (
