@@ -31,7 +31,6 @@ const FavoriteList: React.FC = () => {
     };
     fetchFavorites();
   }, []);
-  console.log(favorites);
 
   if (favorites === null) {
     return (
@@ -52,7 +51,7 @@ const FavoriteList: React.FC = () => {
           return null;
         } else {
           return (
-            <CardFavoriteTemplateList key={item.bookId} favorite={item} />
+            <CardFavoriteTemplateList key={item.bookId} favorites={item} />
           );
         }
       })}

@@ -15,15 +15,17 @@ import { Button } from "@/components/ui/button";
 import FavoriteButton from "@/components/dashboard/dashboardHome/FavoriteButton";
 import { FavoriteResponse } from "@/types/FavoriteBook";
 
-const CardFavoriteTemplateList: React.FC<{ favorites: FavoriteResponse }> = ({
+const CardFavoriteTemplateList: React.FC<FavoriteResponse> = ({
   favorites,
 }) => {
+  console.log(favorites);
+  
   return (
     <Card className="w-full flex px-4 pl-0 py-0">
       <div className="flex-shrink-0">
         <Image
           src={favorites.thumbnail ?? "/assets/default-book.png"}
-          alt={favorites.title}
+          alt={favorites.name}
           width={180}
           height={180}
           priority
@@ -35,30 +37,30 @@ const CardFavoriteTemplateList: React.FC<{ favorites: FavoriteResponse }> = ({
           <div>
             <div className="flex justify-between">
               <CardTitle className="text-lg sm:text-xl font-semibold text-balance">
-                <span>{favorites.title}</span>
+                <span>{favorites.name}</span>
               </CardTitle>
               <div className="flex justify-end items-center">
                 <span className="font-semibold mr-3">
-                  {favorites.amount} {favorites.currencyCode}
+                  {favorites.price} EUR
                 </span>
                 {/* <FavoriteButton book={favorites} isFavorite={favorites} /> */}
               </div>
             </div>
             <div className="flex flex-row">
-              {favorites.authors && (
+              {favorites.author && (
                 <small className="text-muted-foreground">
-                  by {favorites.authors} -
+                  by {favorites.author} -
                 </small>
               )}
-              {favorites.publishedDate && (
+              {favorites.date && (
                 <small className="text-muted-foreground ml-1">
                   Date de parution :{" "}
-                  {new Date(favorites.publishedDate).toLocaleDateString()}
+                  {new Date(favorites.date).toLocaleDateString()}
                 </small>
               )}
-              {favorites.categories && (
+              {favorites.category && (
                 <small className="text-muted-foreground font-semibold ml-auto mr-1">
-                  {favorites.categories}
+                  {favorites.category}
                 </small>
               )}
             </div>
@@ -83,9 +85,9 @@ const CardFavoriteTemplateList: React.FC<{ favorites: FavoriteResponse }> = ({
                     </span>
                   </div>
                 )}
-                {favorites.webReader && (
+                {favorites.link && (
                   <Link
-                    href={favorites.webReader}
+                    href={favorites.link}
                     className="ml-auto"
                     target="_blank"
                   >

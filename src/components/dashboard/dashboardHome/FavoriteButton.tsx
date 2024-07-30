@@ -55,6 +55,8 @@ export default function FavoriteButtonClient({
           thumbnail,
           categories: category,
           description,
+          averageRating,
+          ratingsCount,
           previewLink: link,
         } = book;
 
@@ -65,11 +67,13 @@ export default function FavoriteButtonClient({
           date,
           thumbnail,
           price: price?.toString(),
+          averageRating,
+          ratingsCount,
           category,
           description,
           link,
         });
-
+        
         if (addFavorite === true) {
           toast.success("Livre ajouté aux favoris");
         } else {
