@@ -28,10 +28,10 @@ const CardList: React.FC<CardListProps> = ({ books, favorites }) => {
         <Image
           src={books.thumbnail ?? "/assets/default-book.png"}
           alt={books.title}
-          width={180}
-          height={180}
+          width={150}
+          height={150}
           priority
-          className="object-cover rounded-tl-xl rounded-bl-xl h-auto w-auto"
+          className="object-cover rounded-tl-xl rounded-bl-xl h-full"
         />
       </div>
       <div className="flex items-center w-full ml-4">
@@ -48,45 +48,51 @@ const CardList: React.FC<CardListProps> = ({ books, favorites }) => {
                 <FavoriteButton book={books} isFavorite={favorites} />
               </div>
             </div>
-            <div className="flex flex-row">
+            <div className="flex flex-col space-y-1">
               {books.authors && (
                 <small className="text-muted-foreground">
-                  by {books.authors} -
+                  By {books.authors}
                 </small>
               )}
               {books.publishedDate && (
-                <small className="text-muted-foreground ml-1">
+                <small className="text-muted-foreground">
                   Date de parution :{" "}
                   {new Date(books.publishedDate).toLocaleDateString()}
                 </small>
               )}
               {books.categories && (
-                <small className="text-muted-foreground font-semibold ml-auto mr-1">
+                <small className="text-muted-foreground">
                   {books.categories}
                 </small>
               )}
             </div>
+            {books.averageRating && (
+              <div className="flex flex-row items-center mt-3">
+                <small>
+                  <Ratings ratings={books.averageRating} />
+                </small>
+                <span className="text-muted-foreground ml-2">
+                  {books.averageRating}
+                </span>
+              </div>
+            )}
             <CardDescription className="text-sm sm:text-base text-pretty line-clamp-2 mt-4">
               {books.description}
             </CardDescription>
-            <div className="flex flex-row mt-4 justify-between text-sm sm:text-base text-muted-foreground">
-              <CardContent className="p-0 w-full flex items-center">
+            <div className="flex flex-row mt-4 text-sm sm:text-base text-muted-foreground">
+              <CardContent className="p-0 flex items-center w-full">
+                {books.ratingsCount && (
+                  <div className="flex items-center">
+                    <span className="text-muted-foreground mr-5">
+                      {books.ratingsCount} ratings
+                    </span>
+                  </div>
+                )}
                 <Link href="/">
                   <Button variant="link" className="pl-0">
                     Voir plus
                   </Button>
                 </Link>
-                {books.ratingsCount && (
-                  <div className="flex mx-auto">
-                    <span className="text-muted-foreground w-full">
-                      {books.ratingsCount} ratings
-                    </span>
-                    <Ratings ratings={books.averageRating} />
-                    <span className="text-muted-foreground ml-2">
-                      {books.averageRating}
-                    </span>
-                  </div>
-                )}
                 {books.webReader && (
                   <Link
                     href={books.webReader}

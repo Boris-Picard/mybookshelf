@@ -17,7 +17,7 @@ const Ratings: React.FC<Rate> = ({ ratings }: Rate) => {
         readOnly
         value={value}
         key={value}
-        className="h-6 w-6"
+        className="h-5 w-5"
         itemStyles={myStyles}
       />
     );

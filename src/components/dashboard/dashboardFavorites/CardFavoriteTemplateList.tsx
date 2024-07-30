@@ -24,10 +24,10 @@ const CardFavoriteTemplateList: React.FC<{ favorites: FavoriteResponse }> = ({
         <Image
           src={favorites.thumbnail ?? "/assets/default-book.png"}
           alt={favorites.name}
-          width={180}
-          height={180}
+          width={150}
+          height={150}
           priority
-          className="object-cover rounded-tl-xl rounded-bl-xl h-auto w-auto"
+          className="object-cover rounded-tl-xl rounded-bl-xl h-full"
         />
       </div>
       <div className="flex items-center w-full ml-4">
@@ -38,51 +38,59 @@ const CardFavoriteTemplateList: React.FC<{ favorites: FavoriteResponse }> = ({
                 <span>{favorites.name}</span>
               </CardTitle>
               <div className="flex justify-end items-center">
-                <span className="font-semibold mr-3">
-                  {favorites.price} EUR
-                </span>
-                <FavoriteButton book={favorites} isFavorite={[favorites]} />
+                {favorites.price && (
+                  <span className="font-semibold mr-3">
+                    {favorites.price} EUR
+                  </span>
+                )}
+                <FavoriteButton book={favorites} isFavorite={favorites} />
               </div>
             </div>
-            <div className="flex flex-row">
+            <div className="flex flex-col space-y-1">
               {favorites.author && (
                 <small className="text-muted-foreground">
-                  by {favorites.author} -
+                  By {favorites.author}
                 </small>
               )}
               {favorites.date && (
-                <small className="text-muted-foreground ml-1">
+                <small className="text-muted-foreground">
                   Date de parution :{" "}
                   {new Date(favorites.date).toLocaleDateString()}
                 </small>
               )}
               {favorites.category && (
-                <small className="text-muted-foreground font-semibold ml-auto mr-1">
+                <small className="text-muted-foreground">
                   {favorites.category}
                 </small>
               )}
             </div>
+            {favorites.averageRating && (
+              <div className="flex flex-row items-center mt-3">
+                <small>
+                  <Ratings ratings={favorites.averageRating} />
+                </small>
+                <span className="text-muted-foreground ml-2">
+                  {favorites.averageRating}
+                </span>
+              </div>
+            )}
             <CardDescription className="text-sm sm:text-base text-pretty line-clamp-2 mt-4">
               {favorites.description}
             </CardDescription>
-            <div className="flex flex-row mt-4 justify-between text-sm sm:text-base text-muted-foreground">
-              <CardContent className="p-0 w-full flex items-center">
+            <div className="flex flex-row mt-4 text-sm sm:text-base text-muted-foreground">
+              <CardContent className="p-0 flex items-center w-full">
+                {favorites.ratingsCount && (
+                  <div className="flex items-center">
+                    <span className="text-muted-foreground mr-5">
+                      {favorites.ratingsCount} ratings
+                    </span>
+                  </div>
+                )}
                 <Link href="/">
                   <Button variant="link" className="pl-0">
                     Voir plus
                   </Button>
                 </Link>
-                {favorites.ratingsCount && (
-                  <div className="flex mx-auto">
-                    <span className="text-muted-foreground w-full">
-                      {favorites.ratingsCount} ratings
-                    </span>
-                    <Ratings ratings={favorites.averageRating} />
-                    <span className="text-muted-foreground ml-2">
-                      {favorites.averageRating}
-                    </span>
-                  </div>
-                )}
                 {favorites.link && (
                   <Link
                     href={favorites.link}

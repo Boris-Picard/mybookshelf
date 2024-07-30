@@ -17,6 +17,7 @@ export type FavoriteResponse = {
     date: string | null;
     price: string | null;
     category: string[] | null;
+    thumbnail: string | null
     description: string | null;
     averageRating: number | null
     ratingsCount: number | null

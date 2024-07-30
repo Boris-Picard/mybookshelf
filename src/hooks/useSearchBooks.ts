@@ -10,7 +10,7 @@ const useSearchBooks = ({ slice }: { slice: number }) => {
     const fetchBooks = async () => {
         try {
             const response = await fetch(
-                `https://www.googleapis.com/books/v1/volumes?q=za&orderBy=relevance&maxResults=20&key=${process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API}`
+                `https://www.googleapis.com/books/v1/volumes?q=harrypotter&orderBy=relevance&maxResults=20&key=${process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API}`
             );
             if (!response.ok) {
                 throw new Error(`Error: ${response.status}`);
