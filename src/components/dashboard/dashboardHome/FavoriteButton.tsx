@@ -25,8 +25,7 @@ export default function FavoriteButtonClient({
   };
   console.log(book);
   console.log(isFavorite);
-  
-  
+
   useEffect(() => {
     const getFavorites = () => {
       // get all favorite ids
@@ -75,7 +74,7 @@ export default function FavoriteButtonClient({
           description,
           link,
         });
-        
+
         if (addFavorite === true) {
           toast.success("Livre ajouté aux favoris");
           setIsClicked(true);
@@ -84,12 +83,14 @@ export default function FavoriteButtonClient({
           setIsClicked(false);
         }
       } else {
-        const delFavorite = await deleteFavorite(book.id);
+        const delFavorite = await deleteFavorite(book.id || book.bookId);
 
         if (delFavorite === true) {
           toast.success("Favori supprimé avec succès !");
+          setIsClicked(false);
         } else {
           toast.error(delFavorite);
+          setIsClicked(true);
         }
       }
     } catch (error) {
