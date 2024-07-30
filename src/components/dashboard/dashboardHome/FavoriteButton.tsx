@@ -10,6 +10,7 @@ import { Books } from "@/types/Books";
 
 import { toast } from "react-toastify";
 import { FavoriteResponse } from "@/types/FavoriteBook";
+import { useFavorites } from "@/store/favorites";
 
 export default function FavoriteButtonClient({
   book,
@@ -19,12 +20,12 @@ export default function FavoriteButtonClient({
   isFavorite: FavoriteResponse[] | null | string;
 }) {
   const [isClicked, setIsClicked] = useState<boolean>(false);
+  // zustand store
+  const { addFavoriteBook, removeFavoriteBook } = useFavorites();
 
   const handleClick = () => {
     setIsClicked(!isClicked);
   };
-  console.log(book);
-  console.log(isFavorite);
 
   useEffect(() => {
     const getFavorites = () => {
@@ -75,8 +76,9 @@ export default function FavoriteButtonClient({
           link,
         });
 
-        if (addFavorite === true) {
+        if (addFavorite) {
           toast.success("Livre ajouté aux favoris");
+          addFavoriteBook(addFavorite)
           setIsClicked(true);
         } else {
           toast.error(addFavorite);
@@ -87,6 +89,7 @@ export default function FavoriteButtonClient({
 
         if (delFavorite === true) {
           toast.success("Favori supprimé avec succès !");
+          removeFavoriteBook(book.id || book.bookId)
           setIsClicked(false);
         } else {
           toast.error(delFavorite);

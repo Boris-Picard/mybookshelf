@@ -6,7 +6,7 @@ import { FavoriteBook, FavoriteResponse } from "@/types/FavoriteBook"
 
 const userService = new UserService()
 
-const createFavorite = async (userBook: FavoriteBook): Promise<boolean | string> => {
+const createFavorite = async (userBook: FavoriteBook): Promise<string | null | FavoriteResponse> => {
     try {
         const user = await userService.getUser()
 
@@ -32,7 +32,7 @@ const createFavorite = async (userBook: FavoriteBook): Promise<boolean | string>
             }
         })
 
-        return true
+        return addFavorite
 
     } catch (error) {
         if (error instanceof Error) {
