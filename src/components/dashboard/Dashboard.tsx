@@ -36,6 +36,7 @@ import { LogoutDashBoardButton } from "@/components//login/LogoutButton";
 import { User } from "next-auth";
 import { usePathname } from "next/navigation";
 import FavoriteList from "@/components/dashboard/dashboardFavorites/FavoriteList";
+import CategoriesList from "@/components/dashboard/dashboardCategories/CategoriesList";
 
 interface DashboardProps {
   user: User;
@@ -45,8 +46,9 @@ const Dashboard: React.FC<DashboardProps> = ({ user }) => {
   const url = usePathname();
 
   const isHome = url.startsWith(`/dashboard/${user.id}`);
-  const isFavorite = url.includes("favorites");
-  
+  const isFavorites = url.includes("favorites");
+  const isCategories = url.includes("categories");
+
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
       <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
@@ -142,7 +144,8 @@ const Dashboard: React.FC<DashboardProps> = ({ user }) => {
         </header>
         <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 sm:grid-cols-1 grid-cols-1 xl:grid-cols-2">
           {isHome && <BooksList />}
-          {isFavorite && <FavoriteList />}
+          {isFavorites && <FavoriteList />}
+          {isCategories && <CategoriesList />}
         </main>
       </div>
     </div>
