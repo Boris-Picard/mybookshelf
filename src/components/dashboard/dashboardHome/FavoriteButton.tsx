@@ -15,8 +15,10 @@ import { useFavorites } from "@/store/favorites";
 export default function FavoriteButtonClient({
   book,
   isFavorite,
+  fromFavorite,
 }: {
   book?: Books;
+  fromFavorite?: FavoriteResponse;
   isFavorite: FavoriteResponse[] | FavoriteResponse | null | string;
 }) {
   const [isClicked, setIsClicked] = useState<boolean>(false);
@@ -39,6 +41,10 @@ export default function FavoriteButtonClient({
 
         // if in favoritesIds include an id from fetched book fill star icon
         if (book && favoritesIds.includes(book.id)) {
+          setIsClicked(true);
+        }
+
+        if (fromFavorite) {
           setIsClicked(true);
         }
       }
@@ -89,6 +95,17 @@ export default function FavoriteButtonClient({
           setIsClicked(false);
         }
       } else {
+        if (fromFavorite) {
+          const deleteFavoriteBook = await deleteFavorite(fromFavorite.bookId);
+          if (deleteFavoriteBook === true) {
+            toast.success("Favori supprimé avec succès !");
+            removeFavoriteBook(fromFavorite.bookId);
+            setIsClicked(false);
+          } else {
+            toast.error(deleteFavoriteBook);
+            setIsClicked(true);
+          }
+        }
         if (typeof book !== "undefined") {
           const delFavorite = await deleteFavorite(book.id);
           if (delFavorite === true) {
