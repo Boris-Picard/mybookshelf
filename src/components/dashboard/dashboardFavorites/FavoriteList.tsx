@@ -13,16 +13,7 @@ const FavoriteList: React.FC = () => {
       try {
         const response = await getFavorites();
         if (typeof response !== "string") {
-          const addedBookIds = new Set();
-          response.map((favorite) => {
-            if (
-              favorite.bookId.length === 1 &&
-              !addedBookIds.has(favorite.bookId)
-            ) {
-              addFavoriteBook(favorite);
-              addedBookIds.add(favorite.bookId);
-            }
-          });
+          response.map((item) => addFavoriteBook(item));
         }
       } catch (error) {
         console.log(error);
@@ -30,7 +21,6 @@ const FavoriteList: React.FC = () => {
     };
     fetchFavorites();
   }, []);
-console.log(favorites);
 
   if (favorites.length === 0) {
     <div>
