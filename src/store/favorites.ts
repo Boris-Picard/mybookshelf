@@ -13,7 +13,7 @@ type FavoritesStore = {
 export const useFavorites = create<FavoritesStore>((set) => ({
     favorites: [],
     addFavoriteBook: (newFavorite) => set((state) => {
-        const isAlreadyFavorite = state.favorites.some(favorite => favorite.bookId === newFavorite.bookId);
+        const isAlreadyFavorite = state.favorites.find(favorite => favorite.bookId === newFavorite.bookId);
         if (isAlreadyFavorite) {
             return state;
         }

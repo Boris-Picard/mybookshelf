@@ -21,7 +21,7 @@ export default function FavoriteButtonClient({
 }) {
   const [isClicked, setIsClicked] = useState<boolean>(false);
   // zustand store
-  const { removeFavoriteBook, favorites } = useFavorites();
+  const { removeFavoriteBook } = useFavorites();
 
   const handleClick = () => {
     setIsClicked(!isClicked);
@@ -34,9 +34,6 @@ export default function FavoriteButtonClient({
 
       if (Array.isArray(isFavorite)) {
         const favoritesIds = isFavorite.map((favorite) => {
-          if (typeof favorite === "string") {
-            return null;
-          }
           return favorite.bookId;
         });
 

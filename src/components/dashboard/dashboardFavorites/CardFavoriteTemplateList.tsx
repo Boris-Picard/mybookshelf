@@ -12,8 +12,9 @@ import Ratings from "@/components/dashboard/Ratings";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
-import FavoriteButton from "@/components/dashboard/dashboardHome/FavoriteButton";
+// import FavoriteButton from "@/components/dashboard/dashboardHome/FavoriteButton";
 import { FavoriteResponse } from "@/types/FavoriteBook";
+import FromFavoriteButton from "@/components/dashboard/dashboardFavorites/FromFavoriteButton";
 
 const CardFavoriteTemplateList: React.FC<{ favorites: FavoriteResponse }> = ({
   favorites,
@@ -43,7 +44,8 @@ const CardFavoriteTemplateList: React.FC<{ favorites: FavoriteResponse }> = ({
                     {favorites.price} EUR
                   </span>
                 )}
-                <FavoriteButton isFavorite={favorites} />
+                {/* <FavoriteButton isFavorite={[favorites]} /> */}
+                <FromFavoriteButton />
               </div>
             </div>
             <div className="flex flex-col space-y-1">
