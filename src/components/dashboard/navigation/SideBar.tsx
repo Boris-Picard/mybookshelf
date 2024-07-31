@@ -1,6 +1,6 @@
 "use client";
 import { Links } from "@/types/Links";
-import { Home, Heart } from "lucide-react";
+import { Home, Heart, Library } from "lucide-react";
 import {
   TooltipProvider,
   Tooltip,
@@ -29,6 +29,11 @@ const Sidebar: React.FC<SiderbarProps> = ({ user }) => {
       title: "Favoris",
       href: `/dashboard/favorites/${user.id}`,
       icon: Heart,
+    },
+    {
+      title: "Categories",
+      href: `/dashboard/categories/${user.id}`,
+      icon: Library,
     },
   ];
 
