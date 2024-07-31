@@ -4,30 +4,27 @@ import useSearchBooks from "@/hooks/useSearchBooks";
 import CardList from "@/components/dashboard/dashboardHome/CardTemplateList";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
-import { FavoriteResponse } from "@/types/FavoriteBook";
 import { getFavorites } from "@/components/dashboard/dashboardHome/actions/favorite-action";
+import { useFavorites } from "@/store/favorites";
 
 const BooksList: React.FC = () => {
   const [slice, setSlice] = useState<number>(3);
   const { books, errorMessage } = useSearchBooks({ slice });
-  const [myFavorite, setMyFavorite] = useState<
-    FavoriteResponse[] | null | string
-  >(null);
-  
+  const { favorites, addFavoriteBook } = useFavorites();
+
   useEffect(() => {
     const fetchFavorites = async () => {
       try {
         const response = await getFavorites();
-        if (response === null) {
-          return null;
+        if (typeof response !== "string") {
+          response.map((item) => addFavoriteBook(item));
         }
-        setMyFavorite(response);
       } catch (error) {
         console.log(error);
       }
     };
     fetchFavorites();
-  }, [getFavorites]);
+  }, []);
 
   if (errorMessage) {
     return <h1 className="text-xl text-red-500">{errorMessage}</h1>;
@@ -41,7 +38,7 @@ const BooksList: React.FC = () => {
   return (
     <div className="space-y-4">
       {books.map((item) => {
-        return <CardList key={item.id} books={item} favorites={myFavorite} />;
+        return <CardList key={item.id} books={item} favorites={favorites} />;
       })}
       <div className="flex justify-between mx-auto space-x-3">
         <Button
