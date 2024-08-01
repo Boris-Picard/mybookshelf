@@ -39,11 +39,13 @@ import FavoriteList from "@/components/dashboard/dashboardFavorites/FavoriteList
 import CategoriesList from "@/components/dashboard/dashboardCategories/CategoriesList";
 
 interface DashboardProps {
-  user: User;
+  user?: User;
 }
 
 const Dashboard: React.FC<DashboardProps> = ({ user }) => {
   const url = usePathname();
+
+  if (!user) return null;
 
   const isHome = url.startsWith(`/dashboard/${user.id}`);
   const isFavorites = url.includes("favorites");
@@ -145,7 +147,7 @@ const Dashboard: React.FC<DashboardProps> = ({ user }) => {
         <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 sm:grid-cols-1 grid-cols-1 xl:grid-cols-2">
           {isHome && <BooksList />}
           {isFavorites && <FavoriteList />}
-          {isCategories && <CategoriesList />}
+          {isCategories && <CategoriesList user={user} />}
         </main>
       </div>
     </div>

@@ -12,13 +12,30 @@ export default auth((req) => {
 
     // verify if user is connected & dashboard id correspond to user
     const userId = auth?.user?.id;
-    
-    if (auth &&
-        nextUrl.pathname.startsWith("/dashboard") &&
-        (nextUrl.pathname !== `/dashboard/${userId}` && nextUrl.pathname !== `/dashboard/favorites/${userId}` && nextUrl.pathname !== `/dashboard/categories/${userId}`)) {
+    if (!auth) {
         const newUrl = new URL("/", nextUrl.origin)
         return Response.redirect(newUrl)
     }
+
+    if (auth && nextUrl.pathname.startsWith("/dashboard")) {
+        const allowedPaths = [
+            `/dashboard/${userId}`,
+            `/dashboard/favorites/${userId}`,
+            `/dashboard/categories/${userId}`,
+            `/dashboard/categories/${userId}/:path*`
+        ];
+
+        const isAllowed = allowedPaths.some(path => {
+            const regex = new RegExp(`^${path.replace(":path*", ".*")}$`);
+            return regex.test(nextUrl.pathname);
+        });
+
+        if (!isAllowed) {
+            const newUrl = new URL("/", nextUrl.origin);
+            return Response.redirect(newUrl);
+        }
+    }
+
 })
 
 export const config = {

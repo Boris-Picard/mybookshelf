@@ -8,7 +8,7 @@ import { redirect } from "next/navigation";
 export default async function Categories({
   params,
 }: {
-  params: { userId: string };
+  params: { userId: string; name: string };
 }) {
   const userService = new UserService();
   const user: User | null = await userService.getUser();
