@@ -239,9 +239,9 @@ const CategoriesList: React.FC = () => {
     <div className="space-y-3">
       {categories.map((item) => {
         return (
-          <div className="space-y-3" key={item.title}>
+          <div key={item.title}>
             <h5 className="font-bold text-xl">{item.title}</h5>
-            <div className="space-x-3">
+            <div className="space-y-3">
               {item.categories.name.map((name, index) => {
                 const Icon = item.categories.icon[index];
                 return (
@@ -249,7 +249,7 @@ const CategoriesList: React.FC = () => {
                     size="lg"
                     variant="outline"
                     key={name}
-                    className="rounded-full"
+                    className="rounded-full mr-3"
                   >
                     <Icon className="mr-3 h-5 w-5" />
                     <Link href={item.categories.href[index]}>{name}</Link>
