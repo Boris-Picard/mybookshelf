@@ -8,11 +8,11 @@ import { redirect } from "next/navigation";
 export default async function Categories({
   params,
 }: {
-  params: { userId: string; name: string };
+  params: { userId: string; category: string };
 }) {
   const userService = new UserService();
   const user: User | null = await userService.getUser();
-  
+
   if (!user) {
     return redirect("/");
   }
@@ -23,7 +23,7 @@ export default async function Categories({
 
   return (
     <>
-      <Dashboard user={user} />
+      <Dashboard user={user} category={params.category} />
     </>
   );
 }

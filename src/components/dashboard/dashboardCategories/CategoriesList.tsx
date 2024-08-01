@@ -63,7 +63,7 @@ const CategoriesList = ({ user }: { user: User }) => {
       categories: {
         href: [
           `/dashboard/categories/${user.id}/art`,
-          "/design",
+          `/dashboard/categories/${user.id}/design`,
           "/architecture",
           "/photographie",
         ],

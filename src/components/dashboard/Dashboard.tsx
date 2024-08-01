@@ -37,19 +37,25 @@ import { User } from "next-auth";
 import { usePathname } from "next/navigation";
 import FavoriteList from "@/components/dashboard/dashboardFavorites/FavoriteList";
 import CategoriesList from "@/components/dashboard/dashboardCategories/CategoriesList";
+import CardCategoriesTemplateList from "@/components/dashboard/dashboardCategories/CardCategoriesTemplateList";
 
 interface DashboardProps {
   user?: User;
+  category?: string;
 }
 
-const Dashboard: React.FC<DashboardProps> = ({ user }) => {
+const Dashboard: React.FC<DashboardProps> = ({ user, category }) => {
   const url = usePathname();
 
   if (!user) return null;
 
   const isHome = url.startsWith(`/dashboard/${user.id}`);
-  const isFavorites = url.includes("favorites");
-  const isCategories = url.includes("categories");
+  const isFavorites = url.startsWith(`/dashboard/favorites/${user.id}`);
+  const isCategory = url.startsWith(
+    `/dashboard/categories/${user.id}/${category}`
+  );
+  const isCategories =
+    !isCategory && url.startsWith(`/dashboard/categories/${user.id}`);
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
@@ -148,6 +154,7 @@ const Dashboard: React.FC<DashboardProps> = ({ user }) => {
           {isHome && <BooksList />}
           {isFavorites && <FavoriteList />}
           {isCategories && <CategoriesList user={user} />}
+          {isCategory && category && <CardCategoriesTemplateList category={category} />}
         </main>
       </div>
     </div>
