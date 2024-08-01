@@ -251,19 +251,21 @@ const CategoriesList = ({ user }: { user: User }) => {
         return (
           <div key={item.title}>
             <h5 className="font-bold text-xl">{item.title}</h5>
-            <div className="space-y-3">
+            <div>
               {item.categories.name.map((name, index) => {
                 const Icon = item.categories.icon[index];
                 return (
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    key={name}
-                    className="rounded-full mr-3"
-                  >
-                    <Icon className="mr-3 h-5 w-5" />
-                    <Link href={item.categories.href[index]}>{name}</Link>
-                  </Button>
+                  <Link href={item.categories.href[index]}>
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      key={name}
+                      className="rounded-full mr-3 mt-3"
+                    >
+                      <Icon className="mr-3 h-5 w-5" />
+                      {name}
+                    </Button>
+                  </Link>
                 );
               })}
             </div>
