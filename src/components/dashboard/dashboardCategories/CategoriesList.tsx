@@ -57,6 +57,7 @@ import {
 import { User } from "next-auth";
 import CardCategoriesTemplateList from "@/components/dashboard/dashboardCategories/CardCategoriesTemplateList";
 import useCategoriesBooks from "@/hooks/useCategoriesBooks";
+import { toast } from "react-toastify";
 
 const CategoriesList = ({
   user,
@@ -257,6 +258,13 @@ const CategoriesList = ({
   const { categoriesBooks } = useCategoriesBooks({ category });
 
   if (category) {
+    if (categoriesBooks.length === 0) {
+      return (
+        <h1 className="text-muted-foreground text-xl">
+          Pas livres trouvés dans cette catégorie !
+        </h1>
+      );
+    }
     return (
       <div className="space-y-3">
         {categoriesBooks.map((books) => (

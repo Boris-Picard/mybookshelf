@@ -12,7 +12,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 const CardCategoriesTemplateList = ({ books }: { books: Books }) => {
-  
+
   return (
     <>
       <h1 className="text-xl"></h1>
