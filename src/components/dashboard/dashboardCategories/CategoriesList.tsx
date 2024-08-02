@@ -57,7 +57,6 @@ import {
 import { User } from "next-auth";
 import CardCategoriesTemplateList from "@/components/dashboard/dashboardCategories/CardCategoriesTemplateList";
 import useCategoriesBooks from "@/hooks/useCategoriesBooks";
-import { toast } from "react-toastify";
 import { useFavorites } from "@/store/favorites";
 import { useEffect } from "react";
 import { getFavorites } from "../dashboardHome/actions/favorite-action";
@@ -69,15 +68,17 @@ const CategoriesList = ({
   user: User;
   category: string | undefined;
 }) => {
+  const url = `/dashboard/categories/${user.id}/`
+
   const categories: Title[] = [
     {
       title: "Art et Design",
       categories: {
         href: [
-          `/dashboard/categories/${user.id}/art`,
-          `/dashboard/categories/${user.id}/design`,
-          "/architecture",
-          "/photographie",
+          `${url}art`,
+          `${url}design`,
+          `${url}architecture`,
+          `${url}photographie`,
         ],
         name: ["Art", "Design", "Architecture", "Photographie"],
         icon: [Palette, PenTool, House, Camera],
@@ -86,7 +87,7 @@ const CategoriesList = ({
     {
       title: "Biographies et Mémoires",
       categories: {
-        href: ["/biographies", "/autobiographies", "/memoires"],
+        href: [`${url}biographies`, `${url}autobiographies`, `${url}memoires`],
         name: ["Biographies", "Autobiographies", "Mémoires"],
         icon: [ScanFace, NotebookPen, UserRoundPen],
       },
@@ -94,7 +95,7 @@ const CategoriesList = ({
     {
       title: "Affaires et Économie",
       categories: {
-        href: ["/economie", "/gestion", "/marketing", "/finances-personnelles"],
+        href: [`${url}economie`, `${url}gestion`, `${url}marketing`, `${url}finances-personnelles`],
         name: ["Économie", "Gestion", "Marketing", "Finances personnelles"],
         icon: [Briefcase, DollarSign, ShoppingCart, PiggyBank],
       },
@@ -102,7 +103,7 @@ const CategoriesList = ({
     {
       title: "Bande Dessinée et Romans Graphiques",
       categories: {
-        href: ["/manga", "/comics", "/romans-graphiques"],
+        href: [`${url}manga`, `${url}comics`, `${url}romans-graphiques`],
         name: ["Manga", "Comics", "Romans graphiques"],
         icon: [BookOpen, BookOpen, BookOpen],
       },
@@ -111,10 +112,10 @@ const CategoriesList = ({
       title: "Informatique et Internet",
       categories: {
         href: [
-          "/programmation",
-          "/reseaux",
-          "/securite-informatique",
-          "/intelligence-artificielle",
+          `${url}programmation`,
+          `${url}reseaux`,
+          `${url}securite-informatique`,
+          `${url}intelligence-artificielle`,
         ],
         name: [
           "Programmation",
@@ -129,10 +130,10 @@ const CategoriesList = ({
       title: "Cuisine et Boissons",
       categories: {
         href: [
-          "/recettes",
-          "/cuisine-internationale",
-          "/nutrition",
-          "/vins-et-boissons",
+          `${url}recettes`,
+          `${url}cuisine-internationale`,
+          `${url}nutrition`,
+          `${url}vins-et-boissons`,
         ],
         name: [
           "Recettes",
@@ -146,7 +147,7 @@ const CategoriesList = ({
     {
       title: "Enseignement et Pédagogie",
       categories: {
-        href: ["/methodes-enseignement", "/pedagogie", "/developpement-enfant"],
+        href: [`${url}methodes-enseignement`, `${url}pedagogie`, `${url}developpement-enfant`],
         name: [
           "Méthodes d'enseignement",
           "Pédagogie",
@@ -158,7 +159,7 @@ const CategoriesList = ({
     {
       title: "Fiction et Littérature",
       categories: {
-        href: ["/romans", "/poesie", "/theatre", "/nouvelles"],
+        href: [`${url}romans`, `${url}poesie`, `${url}theatre`, `${url}nouvelles`],
         name: ["Romans", "Poésie", "Théâtre", "Nouvelles"],
         icon: [BookOpen, HandCoins, FileText, FileText],
       },
@@ -167,10 +168,10 @@ const CategoriesList = ({
       title: "Santé et Bien-être",
       categories: {
         href: [
-          "/medecine",
-          "/nutrition",
-          "/developpement-personnel",
-          "/fitness",
+          `${url}medecine`,
+          `${url}nutrition`,
+          `${url}developpement-personnel`,
+          `${url}fitness`,
         ],
         name: ["Médecine", "Nutrition", "Développement personnel", "Fitness"],
         icon: [BriefcaseMedical, Sword, Heart, Dumbbell],
@@ -180,9 +181,9 @@ const CategoriesList = ({
       title: "Histoire",
       categories: {
         href: [
-          "/histoire-mondiale",
-          "/histoire-regionale",
-          "/biographies-historiques",
+          `${url}histoire-mondiale`,
+          `${url}histoire-regionale`,
+          `${url}biographies-historiques`,
         ],
         name: [
           "Histoire mondiale",
@@ -195,7 +196,7 @@ const CategoriesList = ({
     {
       title: "Maison et Jardin",
       categories: {
-        href: ["/jardinage", "/bricolage", "/decoration-interieure"],
+        href: [`${url}jardinage`, `${url}bricolage`, `${url}decoration-interieure`],
         name: ["Jardinage", "Bricolage", "Décoration intérieure"],
         icon: [Flower, Hammer, Bed],
       },
@@ -203,7 +204,7 @@ const CategoriesList = ({
     {
       title: "Jeunesse",
       categories: {
-        href: ["/livres-enfants", "/litterature-jeune-adulte", "/education"],
+        href: [`${url}livres-enfants`, `${url}litterature-jeune-adulte`, `${url}education`],
         name: ["Livres pour enfants", "Littérature jeune adulte", "Éducation"],
         icon: [Shapes, Book, Shapes],
       },
@@ -211,7 +212,7 @@ const CategoriesList = ({
     {
       title: "Loisirs et Passions",
       categories: {
-        href: ["/sports", "/jeux", "/loisirs-creatifs"],
+        href: [`${url}sports`, `${url}jeux`, `${url}loisirs-creatifs`],
         name: ["Sports", "Jeux", "Loisirs créatifs"],
         icon: [Trophy, Gamepad, PenTool],
       },
@@ -219,7 +220,7 @@ const CategoriesList = ({
     {
       title: "Religion et Spiritualité",
       categories: {
-        href: ["/religion", "/spiritualite", "/philosophie"],
+        href: [`${url}religion`, `${url}spiritualite`, `${url}philosophie`],
         name: ["Religion", "Spiritualité", "Philosophie"],
         icon: [NotebookTabs, Sun, Moon],
       },
@@ -227,7 +228,7 @@ const CategoriesList = ({
     {
       title: "Sciences",
       categories: {
-        href: ["/physique", "/chimie", "/biologie", "/mathematiques"],
+        href: [`${url}physique`, `${url}chimie`, `${url}biologie`, `${url}mathematiques`],
         name: ["Physique", "Chimie", "Biologie", "Mathématiques"],
         icon: [Microscope, FlaskConical, Microscope, Calculator],
       },
@@ -235,7 +236,7 @@ const CategoriesList = ({
     {
       title: "Science-fiction et Fantasy",
       categories: {
-        href: ["/science-fiction", "/fantasy", "/horreur"],
+        href: [`${url}science-fiction`, `${url}fantasy`, `${url}horreur`],
         name: ["Science-fiction", "Fantasy", "Horreur"],
         icon: [Rocket, Wand, Skull],
       },
@@ -243,7 +244,7 @@ const CategoriesList = ({
     {
       title: "Voyages et Guides",
       categories: {
-        href: ["/guides-voyage", "/recits-voyage", "/cartes-plans"],
+        href: [`${url}guides-voyage`, `${url}recits-voyage`, `${url}cartes-plans`],
         name: ["Guides de voyage", "Récits de voyage", "Cartes et plans"],
         icon: [Map, Plane, Map],
       },
@@ -251,7 +252,7 @@ const CategoriesList = ({
     {
       title: "Policiers et Thrillers",
       categories: {
-        href: ["/romans-policiers", "/thrillers", "/mysteres"],
+        href: [`${url}romans-policiers`, `${url}thrillers`, `${url}mysteres`],
         name: ["Romans policiers", "Thrillers", "Mystères"],
         icon: [VenetianMask, Skull, VenetianMask],
       },
