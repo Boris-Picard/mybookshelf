@@ -255,14 +255,15 @@ const CategoriesList = ({
   ];
 
   const { categoriesBooks } = useCategoriesBooks({ category });
-console.log(categoriesBooks);
 
-  if (category !== undefined) {
-    {
-      categoriesBooks.map((books) => {
-        return <CardCategoriesTemplateList books={books} />;
-      });
-    }
+  if (category) {
+    return (
+      <div className="space-y-3">
+        {categoriesBooks.map((books) => (
+          <CardCategoriesTemplateList key={books.id} books={books} />
+        ))}
+      </div>
+    );
   }
 
   return (

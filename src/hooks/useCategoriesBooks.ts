@@ -8,7 +8,6 @@ import React, { useState, useEffect } from "react";
 const useCategoriesBooks = ({ category }: { category: string | undefined}) => {
     const [categoriesBooks, setCategoriesBooks] = useState<Books[]>([]);
     const [errorMessage, setErrorMessage] = useState<string>("");
-    console.log(category);
     
     const fetchBooks = async () => {
         try {

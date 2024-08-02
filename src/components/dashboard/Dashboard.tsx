@@ -45,16 +45,15 @@ interface DashboardProps {
 
 const Dashboard: React.FC<DashboardProps> = ({ user, category }) => {
   const url = usePathname();
-  
+
   if (!user) return null;
 
   const isHome = url.startsWith(`/dashboard/${user.id}`);
   const isFavorites = url.startsWith(`/dashboard/favorites/${user.id}`);
-  const isCategory = url.startsWith(
-    `/dashboard/categories/${user.id}/${category}`
-  );
-  const isCategories =
-    !isCategory && url.startsWith(`/dashboard/categories/${user.id}`);
+  // const isCategory = url.startsWith(
+  //   `/dashboard/categories/${user.id}/${category}`
+  // );
+  const isCategories = url.startsWith(`/dashboard/categories/${user.id}`);
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
