@@ -78,6 +78,11 @@ const SidebarSheet: React.FC<SiderbarProps> = ({ user }) => {
       href: `/dashboard/favorites/${user.id}`,
       icon: Heart,
     },
+    {
+      title: "Categories",
+      href: `/dashboard/categories/${user.id}`,
+      icon: Library,
+    },
   ];
 
   return (

@@ -25,7 +25,6 @@ const CardCategoriesTemplateList: React.FC<CardCategoriesProps> = ({
 }) => {
   return (
     <>
-      <h1 className="text-xl"></h1>
       <Card className="w-full flex px-4 pl-0 py-0">
         <div className="flex-shrink-0">
           <Image
@@ -82,7 +81,7 @@ const CardCategoriesTemplateList: React.FC<CardCategoriesProps> = ({
                 </div>
               )}
               {books.description && (
-                <CardDescription className="text-sm sm:text-base text-pretty line-clamp-2 mt-4">
+                <CardDescription className="text-sm sm:text-base text-pretty line-clamp-3 mt-4">
                   {books.description}
                 </CardDescription>
               )}

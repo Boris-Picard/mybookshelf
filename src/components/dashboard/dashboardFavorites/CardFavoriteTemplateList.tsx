@@ -77,9 +77,11 @@ const CardFavoriteTemplateList: React.FC<{ favorites: FavoriteResponse }> = ({
                 </span>
               </div>
             )}
-            <CardDescription className="text-sm sm:text-base text-pretty line-clamp-2 mt-4">
-              {favorites.description}
-            </CardDescription>
+            {favorites.description && (
+              <CardDescription className="text-sm sm:text-base text-pretty line-clamp-3 mt-4">
+                {favorites.description}
+              </CardDescription>
+            )}
             <div className="flex flex-row mt-4 text-sm sm:text-base text-muted-foreground">
               <CardContent className="p-0 flex items-center w-full">
                 {favorites.ratingsCount && (

@@ -68,7 +68,7 @@ const CategoriesList = ({
   user: User;
   category: string | undefined;
 }) => {
-  const url = `/dashboard/categories/${user.id}/`
+  const url = `/dashboard/categories/${user.id}/`;
 
   const categories: Title[] = [
     {
@@ -95,7 +95,12 @@ const CategoriesList = ({
     {
       title: "Affaires et Économie",
       categories: {
-        href: [`${url}economie`, `${url}gestion`, `${url}marketing`, `${url}finances-personnelles`],
+        href: [
+          `${url}economie`,
+          `${url}gestion`,
+          `${url}marketing`,
+          `${url}finances-personnelles`,
+        ],
         name: ["Économie", "Gestion", "Marketing", "Finances personnelles"],
         icon: [Briefcase, DollarSign, ShoppingCart, PiggyBank],
       },
@@ -147,7 +152,11 @@ const CategoriesList = ({
     {
       title: "Enseignement et Pédagogie",
       categories: {
-        href: [`${url}methodes-enseignement`, `${url}pedagogie`, `${url}developpement-enfant`],
+        href: [
+          `${url}methodes-enseignement`,
+          `${url}pedagogie`,
+          `${url}developpement-enfant`,
+        ],
         name: [
           "Méthodes d'enseignement",
           "Pédagogie",
@@ -159,7 +168,12 @@ const CategoriesList = ({
     {
       title: "Fiction et Littérature",
       categories: {
-        href: [`${url}romans`, `${url}poesie`, `${url}theatre`, `${url}nouvelles`],
+        href: [
+          `${url}romans`,
+          `${url}poesie`,
+          `${url}theatre`,
+          `${url}nouvelles`,
+        ],
         name: ["Romans", "Poésie", "Théâtre", "Nouvelles"],
         icon: [BookOpen, HandCoins, FileText, FileText],
       },
@@ -196,7 +210,11 @@ const CategoriesList = ({
     {
       title: "Maison et Jardin",
       categories: {
-        href: [`${url}jardinage`, `${url}bricolage`, `${url}decoration-interieure`],
+        href: [
+          `${url}jardinage`,
+          `${url}bricolage`,
+          `${url}decoration-interieure`,
+        ],
         name: ["Jardinage", "Bricolage", "Décoration intérieure"],
         icon: [Flower, Hammer, Bed],
       },
@@ -204,7 +222,11 @@ const CategoriesList = ({
     {
       title: "Jeunesse",
       categories: {
-        href: [`${url}livres-enfants`, `${url}litterature-jeune-adulte`, `${url}education`],
+        href: [
+          `${url}livres-enfants`,
+          `${url}litterature-jeune-adulte`,
+          `${url}education`,
+        ],
         name: ["Livres pour enfants", "Littérature jeune adulte", "Éducation"],
         icon: [Shapes, Book, Shapes],
       },
@@ -228,7 +250,12 @@ const CategoriesList = ({
     {
       title: "Sciences",
       categories: {
-        href: [`${url}physique`, `${url}chimie`, `${url}biologie`, `${url}mathematiques`],
+        href: [
+          `${url}physique`,
+          `${url}chimie`,
+          `${url}biologie`,
+          `${url}mathematiques`,
+        ],
         name: ["Physique", "Chimie", "Biologie", "Mathématiques"],
         icon: [Microscope, FlaskConical, Microscope, Calculator],
       },
@@ -244,7 +271,11 @@ const CategoriesList = ({
     {
       title: "Voyages et Guides",
       categories: {
-        href: [`${url}guides-voyage`, `${url}recits-voyage`, `${url}cartes-plans`],
+        href: [
+          `${url}guides-voyage`,
+          `${url}recits-voyage`,
+          `${url}cartes-plans`,
+        ],
         name: ["Guides de voyage", "Récits de voyage", "Cartes et plans"],
         icon: [Map, Plane, Map],
       },
@@ -288,6 +319,7 @@ const CategoriesList = ({
     }
     return (
       <div className="space-y-3">
+        <h1 className="text-center text-3xl font-bold uppercase mb-10">{category}</h1>
         {categoriesBooks.map((books) => (
           <CardCategoriesTemplateList
             key={books.id}
