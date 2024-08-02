@@ -34,7 +34,7 @@ const CardList: React.FC<CardListProps> = ({ books, favorites }) => {
           className="object-cover rounded-tl-xl rounded-bl-xl h-full"
         />
       </div>
-      <div className="flex items-center w-full ml-4">
+      <div className="flex flex-col w-full ml-4 flex-grow">
         <CardHeader className="flex space-y-0 py-3 px-3">
           <div>
             <div className="flex justify-between">

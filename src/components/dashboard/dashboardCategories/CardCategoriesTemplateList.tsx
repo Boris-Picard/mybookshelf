@@ -23,7 +23,6 @@ const CardCategoriesTemplateList: React.FC<CardCategoriesProps> = ({
   books,
   favorites,
 }) => {
-  
   return (
     <>
       <h1 className="text-xl"></h1>
@@ -38,8 +37,8 @@ const CardCategoriesTemplateList: React.FC<CardCategoriesProps> = ({
             className="object-cover rounded-tl-xl rounded-bl-xl h-full"
           />
         </div>
-        <div className="flex items-center w-full ml-4">
-          <CardHeader className="flex  space-y-0 py-3 px-3">
+        <div className="flex flex-col w-full ml-4 flex-grow">
+          <CardHeader className="flex px-3 min-h-full">
             <div>
               <div className="flex justify-between">
                 <CardTitle className="text-lg sm:text-xl font-semibold text-balance">
@@ -82,9 +81,11 @@ const CardCategoriesTemplateList: React.FC<CardCategoriesProps> = ({
                   </span>
                 </div>
               )}
-              <CardDescription className="text-sm sm:text-base text-pretty line-clamp-2 mt-4">
-                {books.description}
-              </CardDescription>
+              {books.description && (
+                <CardDescription className="text-sm sm:text-base text-pretty line-clamp-2 mt-4">
+                  {books.description}
+                </CardDescription>
+              )}
               <div className="flex flex-row mt-4 text-sm sm:text-base text-muted-foreground">
                 <CardContent className="p-0 flex items-center w-full">
                   {books.ratingsCount && (
