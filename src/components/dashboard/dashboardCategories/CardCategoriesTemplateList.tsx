@@ -39,7 +39,7 @@ const CardCategoriesTemplateList: React.FC<CardCategoriesProps> = ({
         </div>
         <div className="flex flex-col w-full ml-4 flex-grow">
           <CardHeader className="flex px-3 min-h-full">
-            <div>
+            <div className="flex-grow justify-between flex flex-col">
               <div className="flex justify-between">
                 <CardTitle className="text-lg sm:text-xl font-semibold text-balance">
                   <span>{books.title}</span>

@@ -31,8 +31,8 @@ const CardFavoriteTemplateList: React.FC<{ favorites: FavoriteResponse }> = ({
         />
       </div>
       <div className="flex flex-col w-full ml-4 flex-grow">
-        <CardHeader className="flex  space-y-0 py-3 px-3">
-          <div>
+        <CardHeader className="flex px-3 min-h-full">
+          <div className="flex-grow justify-between flex flex-col">
             <div className="flex justify-between">
               <CardTitle className="text-lg sm:text-xl font-semibold text-balance">
                 <span>{favorites.name}</span>
