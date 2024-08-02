@@ -263,17 +263,19 @@ const CategoriesList = ({
 
   useEffect(() => {
     const fetchFavorites = async () => {
-      try {
-        const response = await getFavorites();
-        if (typeof response !== "string") {
-          response.map((item) => addFavoriteBook(item));
+      if (categoriesBooks.length > 0) {
+        try {
+          const response = await getFavorites();
+          if (typeof response !== "string") {
+            response.map((item) => addFavoriteBook(item));
+          }
+        } catch (error) {
+          console.log(error);
         }
-      } catch (error) {
-        console.log(error);
       }
     };
     fetchFavorites();
-  }, []);
+  }, [categoriesBooks]);
 
   if (category) {
     if (categoriesBooks.length === 0) {
@@ -286,7 +288,11 @@ const CategoriesList = ({
     return (
       <div className="space-y-3">
         {categoriesBooks.map((books) => (
-          <CardCategoriesTemplateList key={books.id} books={books} favorites={favorites} />
+          <CardCategoriesTemplateList
+            key={books.id}
+            books={books}
+            favorites={favorites}
+          />
         ))}
       </div>
     );
