@@ -10,9 +10,20 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import Ratings from "@/components/dashboard/Ratings";
+import FavoriteButtonClient from "@/components/dashboard/dashboardHome/FavoriteButton";
+import { FavoriteResponse } from "@/types/FavoriteBook";
 
-const CardCategoriesTemplateList = ({ books }: { books: Books }) => {
+interface CardCategoriesProps {
+  books: Books;
+  favorites: FavoriteResponse[];
+}
 
+const CardCategoriesTemplateList: React.FC<CardCategoriesProps> = ({
+  books,
+  favorites,
+}) => {
+  
   return (
     <>
       <h1 className="text-xl"></h1>
@@ -40,10 +51,7 @@ const CardCategoriesTemplateList = ({ books }: { books: Books }) => {
                       {books.amount} EUR
                     </span>
                   )}
-                  {/* <FavoriteButton
-                    fromFavorite={books}
-                    isFavorite={[books]}
-                  /> */}
+                  <FavoriteButtonClient book={books} isFavorite={favorites} />
                 </div>
               </div>
               <div className="flex flex-col space-y-1">
@@ -67,7 +75,7 @@ const CardCategoriesTemplateList = ({ books }: { books: Books }) => {
               {books.averageRating && (
                 <div className="flex flex-row items-center mt-3">
                   <small>
-                    {/* <Ratings ratings={books.averageRating} /> */}
+                    <Ratings ratings={books.averageRating} />
                   </small>
                   <span className="text-muted-foreground ml-2">
                     {books.averageRating}

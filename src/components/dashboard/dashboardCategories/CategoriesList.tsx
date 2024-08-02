@@ -58,6 +58,9 @@ import { User } from "next-auth";
 import CardCategoriesTemplateList from "@/components/dashboard/dashboardCategories/CardCategoriesTemplateList";
 import useCategoriesBooks from "@/hooks/useCategoriesBooks";
 import { toast } from "react-toastify";
+import { useFavorites } from "@/store/favorites";
+import { useEffect } from "react";
+import { getFavorites } from "../dashboardHome/actions/favorite-action";
 
 const CategoriesList = ({
   user,
@@ -256,6 +259,21 @@ const CategoriesList = ({
   ];
 
   const { categoriesBooks } = useCategoriesBooks({ category });
+  const { favorites, addFavoriteBook } = useFavorites();
+
+  useEffect(() => {
+    const fetchFavorites = async () => {
+      try {
+        const response = await getFavorites();
+        if (typeof response !== "string") {
+          response.map((item) => addFavoriteBook(item));
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchFavorites();
+  }, []);
 
   if (category) {
     if (categoriesBooks.length === 0) {
@@ -268,7 +286,7 @@ const CategoriesList = ({
     return (
       <div className="space-y-3">
         {categoriesBooks.map((books) => (
-          <CardCategoriesTemplateList key={books.id} books={books} />
+          <CardCategoriesTemplateList key={books.id} books={books} favorites={favorites} />
         ))}
       </div>
     );
