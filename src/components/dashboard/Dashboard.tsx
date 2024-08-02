@@ -37,8 +37,6 @@ import { User } from "next-auth";
 import { usePathname } from "next/navigation";
 import FavoriteList from "@/components/dashboard/dashboardFavorites/FavoriteList";
 import CategoriesList from "@/components/dashboard/dashboardCategories/CategoriesList";
-import CardCategoriesTemplateList from "@/components/dashboard/dashboardCategories/CardCategoriesTemplateList";
-import useCategoriesBooks from "@/hooks/useCategoriesBooks";
 
 interface DashboardProps {
   user?: User;
@@ -47,7 +45,7 @@ interface DashboardProps {
 
 const Dashboard: React.FC<DashboardProps> = ({ user, category }) => {
   const url = usePathname();
-
+  
   if (!user) return null;
 
   const isHome = url.startsWith(`/dashboard/${user.id}`);
@@ -57,8 +55,6 @@ const Dashboard: React.FC<DashboardProps> = ({ user, category }) => {
   );
   const isCategories =
     !isCategory && url.startsWith(`/dashboard/categories/${user.id}`);
-
-  const { categoriesBooks } = useCategoriesBooks({ category });
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
@@ -156,10 +152,7 @@ const Dashboard: React.FC<DashboardProps> = ({ user, category }) => {
         <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 sm:grid-cols-1 grid-cols-1 xl:grid-cols-2">
           {isHome && <BooksList />}
           {isFavorites && <FavoriteList />}
-          {isCategories && <CategoriesList user={user} />}
-          {isCategory && category && (
-            <CardCategoriesTemplateList books={categoriesBooks} />
-          )}
+          {isCategories && <CategoriesList user={user} category={category} />}
         </main>
       </div>
     </div>

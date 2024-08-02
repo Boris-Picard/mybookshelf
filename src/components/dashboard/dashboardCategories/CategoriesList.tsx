@@ -55,8 +55,16 @@ import {
   Skull,
 } from "lucide-react";
 import { User } from "next-auth";
+import CardCategoriesTemplateList from "@/components/dashboard/dashboardCategories/CardCategoriesTemplateList";
+import useCategoriesBooks from "@/hooks/useCategoriesBooks";
 
-const CategoriesList = ({ user }: { user: User }) => {
+const CategoriesList = ({
+  user,
+  category,
+}: {
+  user: User;
+  category: string | undefined;
+}) => {
   const categories: Title[] = [
     {
       title: "Art et Design",
@@ -245,6 +253,18 @@ const CategoriesList = ({ user }: { user: User }) => {
       },
     },
   ];
+
+  const { categoriesBooks } = useCategoriesBooks({ category });
+console.log(categoriesBooks);
+
+  if (category !== undefined) {
+    {
+      categoriesBooks.map((books) => {
+        return <CardCategoriesTemplateList books={books} />;
+      });
+    }
+  }
+
   return (
     <div className="space-y-3">
       {categories.map((item) => {
