@@ -16,7 +16,7 @@ export default async function BookId({
 
   return (
     <>
-      <Dashboard user={user} detailed={params.bookId} />
+      <Dashboard user={user} bookId={params.bookId} />
     </>
   );
 }

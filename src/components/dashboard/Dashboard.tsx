@@ -42,13 +42,14 @@ import DetailedPage from "@/components/dashboard/dashboardDetailedPage/DetailedP
 interface DashboardProps {
   user?: User;
   category?: string;
-  detailed?: string;
+  bookId?: string;
 }
 
-const Dashboard: React.FC<DashboardProps> = ({ user, category, detailed }) => {
+const Dashboard: React.FC<DashboardProps> = ({ user, category, bookId }) => {
   const url = usePathname();
 
   if (!user?.id) return null;
+  if (!user) return null;
 
   const isHome = url.startsWith(`/dashboard/${user.id}`);
   const isFavorites = url.startsWith(`/dashboard/favorites/${user.id}`);
@@ -56,7 +57,7 @@ const Dashboard: React.FC<DashboardProps> = ({ user, category, detailed }) => {
   //   `/dashboard/categories/${user.id}/${category}`
   // );
   const isCategories = url.startsWith(`/dashboard/categories/${user.id}`);
-  const isDetailed = url.startsWith(`/dashboard/book/${user.id}/${detailed}`);
+  const isDetailed = url.startsWith(`/dashboard/book/${user.id}/${bookId}`);
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
@@ -166,9 +167,9 @@ const Dashboard: React.FC<DashboardProps> = ({ user, category, detailed }) => {
             <CategoriesList user={user} category={category} />
           </main>
         )}
-        {isDetailed && (
+        {isDetailed && bookId && (
           <main className="grid grid-cols-1 gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
-            <DetailedPage />
+            <DetailedPage bookId={bookId} />
           </main>
         )}
       </div>
