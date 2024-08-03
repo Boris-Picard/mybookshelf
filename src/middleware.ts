@@ -22,7 +22,8 @@ export default auth((req) => {
             `/dashboard/${userId}`,
             `/dashboard/favorites/${userId}`,
             `/dashboard/categories/${userId}`,
-            `/dashboard/categories/${userId}/:path*`
+            `/dashboard/categories/${userId}/:path*`,
+            `/dashboard/book/${userId}/:path*`
         ];
 
         const isAllowed = allowedPaths.some(path => {

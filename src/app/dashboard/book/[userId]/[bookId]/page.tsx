@@ -7,7 +7,7 @@ import UserService from "@/services/UserService";
 export default async function BookId({
   params,
 }: {
-  params: { userId: string; book: string };
+  params: { userId: string; bookId: string };
 }) {
   const userService = new UserService();
   const user = await userService.verifyUser(params.userId);
@@ -16,7 +16,7 @@ export default async function BookId({
 
   return (
     <>
-      <Dashboard user={user} />
+      <Dashboard user={user} detailed={params.bookId} />
     </>
   );
 }

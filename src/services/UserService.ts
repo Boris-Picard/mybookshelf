@@ -25,10 +25,10 @@ class UserService {
             return null
         }
     }
-    async verifyUser(userId: string) {
+    async verifyUser(userId: string): Promise<User | null> {
         try {
             const user = await this.getUser();
-            
+
             if (!user) {
                 Response.redirect("/");
                 return null;
