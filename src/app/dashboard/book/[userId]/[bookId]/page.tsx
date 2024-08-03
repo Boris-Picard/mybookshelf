@@ -1,25 +1,17 @@
 "use server";
 
 import Dashboard from "@/components/dashboard/Dashboard";
-import UserService from "@/services/UserService";
-import { User } from "next-auth";
-import { redirect } from "next/navigation";
+import { verifyUser } from "@/services/VerifyUser";
+
 
 export default async function BookId({
   params,
 }: {
   params: { userId: string; book: string };
 }) {
-  const userService = new UserService();
-  const user: User | null = await userService.getUser();
+  const user = await verifyUser(params.userId);
 
-  if (!user) {
-    return redirect("/");
-  }
-
-  if (user.id !== params.userId) {
-    return redirect("/");
-  }
+  if (!user) return null;
 
   return (
     <>
