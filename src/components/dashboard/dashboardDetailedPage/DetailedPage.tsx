@@ -2,6 +2,7 @@
 
 import useDetailedBook from "@/hooks/useDetailedBook";
 import Image from "next/image";
+import DOMPurify from "dompurify";
 
 interface DetailedPageProps {
   bookId: string;
@@ -17,6 +18,8 @@ const DetailedPage: React.FC<DetailedPageProps> = ({ bookId }) => {
     );
   }
 
+  const description = book.description
+  const cleanDescription = DOMPurify.sanitize(description)
 
   return (
     <div className="flex flex-col">
@@ -34,7 +37,7 @@ const DetailedPage: React.FC<DetailedPageProps> = ({ bookId }) => {
         <div className="col-span-3">
           <div className="flex flex-col">
             <span>Auteur : {book.authors}</span>
-            <span>{book.description}</span>
+            <div dangerouslySetInnerHTML={{ __html: cleanDescription }} />
           </div>
         </div>
       </div>
