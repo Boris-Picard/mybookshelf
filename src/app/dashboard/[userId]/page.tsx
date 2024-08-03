@@ -1,15 +1,16 @@
 "use server";
 
 import Dashboard from "@/components/dashboard/Dashboard";
-import { verifyUser } from "@/services/VerifyUser";
+import UserService from "@/services/UserService";
 
 export default async function HomeDashboard({
   params,
 }: {
   params: { userId: string };
 }) {
-  const user = await verifyUser(params.userId);
-
+  const userService = new UserService();
+  const user = await userService.verifyUser(params.userId);
+  
   if (!user) return null;
 
   return (

@@ -25,6 +25,26 @@ class UserService {
             return null
         }
     }
+    async verifyUser(userId: string) {
+        try {
+            const user = await this.getUser();
+            
+            if (!user) {
+                Response.redirect("/");
+                return null;
+            }
+
+            if (user.id !== userId) {
+                Response.redirect("/");
+                return null;
+            }
+
+            return user;
+        } catch (error) {
+            console.log(error);
+            return null
+        }
+    }
 }
 
 export default UserService;
