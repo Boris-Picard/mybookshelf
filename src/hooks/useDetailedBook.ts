@@ -17,7 +17,7 @@ const useDetailedBook = (bookId: string) => {
                 throw new Error(`Error: ${response.status}`);
             }
             const data = await response.json();
-
+            
             if (data.totalItems === 0) {
                 return null
             }
@@ -27,7 +27,7 @@ const useDetailedBook = (bookId: string) => {
                 title: item.volumeInfo.title,
                 authors: item.volumeInfo?.authors?.join(" - "),
                 description: item.volumeInfo.description,
-                thumbnail: item.volumeInfo?.imageLinks?.large,
+                thumbnail: item.volumeInfo?.imageLinks?.medium,
                 categories: item.volumeInfo.categories,
                 publishedDate: item.volumeInfo.publishedDate,
                 averageRating: item.volumeInfo.averageRating,
@@ -40,7 +40,6 @@ const useDetailedBook = (bookId: string) => {
                 webReader: item.accessInfo.webReaderLink,
                 searchInfo: item.searchInfo?.textSnippet,
             }));
-            
             setdetailedBook(filteredData);
         } catch (error) {
             // type guard avec instanceof pour vérifier que l'objet error est bien une instance de Error
