@@ -48,7 +48,7 @@ interface DashboardProps {
 const Dashboard: React.FC<DashboardProps> = ({ user, category, detailed }) => {
   const url = usePathname();
 
-  if (!user) return null;
+  if (!user?.id) return null;
 
   const isHome = url.startsWith(`/dashboard/${user.id}`);
   const isFavorites = url.startsWith(`/dashboard/favorites/${user.id}`);
@@ -153,7 +153,7 @@ const Dashboard: React.FC<DashboardProps> = ({ user, category, detailed }) => {
         </header>
         {isHome && (
           <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 sm:grid-cols-1 grid-cols-1 xl:grid-cols-2">
-            <BooksList />
+            <BooksList userId={user.id} />
           </main>
         )}
         {isFavorites && (

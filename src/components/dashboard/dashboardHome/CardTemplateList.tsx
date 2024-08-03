@@ -19,9 +19,10 @@ import { FavoriteResponse } from "@/types/FavoriteBook";
 interface CardListProps {
   books: Books;
   favorites: FavoriteResponse[] | null | string;
+  userId: string;
 }
 
-const CardList: React.FC<CardListProps> = ({ books, favorites }) => {
+const CardList: React.FC<CardListProps> = ({ books, favorites, userId }) => {
   return (
     <Card className="w-full flex px-4 pl-0 py-0">
       <div className="flex-shrink-0">
@@ -88,7 +89,7 @@ const CardList: React.FC<CardListProps> = ({ books, favorites }) => {
                     </span>
                   </div>
                 )}
-                <Link href="/">
+                <Link href={`book/${userId}/${books.id}`}>
                   <Button variant="link" className="pl-0">
                     Voir plus
                   </Button>

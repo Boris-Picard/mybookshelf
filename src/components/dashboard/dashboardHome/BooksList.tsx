@@ -7,7 +7,15 @@ import { useEffect, useState } from "react";
 import { getFavorites } from "@/components/dashboard/dashboardHome/actions/favorite-action";
 import { useFavorites } from "@/store/favorites";
 
-const BooksList: React.FC = () => {
+interface BooksListProps {
+  userId: string;
+}
+
+const BooksList: React.FC<BooksListProps> = ({
+  userId,
+}: {
+  userId: string;
+}) => {
   const [slice, setSlice] = useState<number>(3);
   const { books, errorMessage } = useSearchBooks({ slice });
   const { favorites, addFavoriteBook } = useFavorites();
@@ -38,7 +46,14 @@ const BooksList: React.FC = () => {
   return (
     <div className="space-y-4">
       {books.map((item) => {
-        return <CardList key={item.id} books={item} favorites={favorites} />;
+        return (
+          <CardList
+            key={item.id}
+            books={item}
+            favorites={favorites}
+            userId={userId}
+          />
+        );
       })}
       <div className="flex justify-between mx-auto space-x-3">
         <Button
