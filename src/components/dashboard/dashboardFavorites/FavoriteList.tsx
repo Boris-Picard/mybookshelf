@@ -17,7 +17,7 @@ import {
 
 const FavoriteList = ({ userId }: { bookId?: string; userId: string }) => {
   const { favorites, addFavoriteBook } = useFavorites();
-  
+
   useEffect(() => {
     const fetchFavorites = async () => {
       try {
@@ -42,20 +42,36 @@ const FavoriteList = ({ userId }: { bookId?: string; userId: string }) => {
 
   return (
     <div className="space-y-4">
-      <Select>
-        <SelectTrigger className="w-[180px]">
-          <SelectValue placeholder="Trier par genres" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectGroup>
-            {favorites.map(({ category }) => {
-              return (
-                <SelectItem value={category}>{category}</SelectItem>
-              );
-            })}
-          </SelectGroup>
-        </SelectContent>
-      </Select>
+      <div className="flex space-x-3">
+        <Select>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Trier par genres" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              {favorites.map(({ category }) => {
+                if (category) {
+                  return <SelectItem value={category}>{category}</SelectItem>;
+                }
+              })}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+        <Select>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Trier par auteurs" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              {favorites.map(({ author }) => {
+                if (author) {
+                  return <SelectItem value={author}>{author}</SelectItem>;
+                }
+              })}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </div>
       {favorites.map((item) => {
         return (
           <CardFavoriteTemplateList
