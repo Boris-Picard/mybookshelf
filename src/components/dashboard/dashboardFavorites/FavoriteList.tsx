@@ -10,11 +10,9 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { FavoriteResponse } from "@/types/FavoriteBook";
 
 const FavoriteList = ({ userId }: { bookId?: string; userId: string }) => {
   const {
@@ -22,7 +20,11 @@ const FavoriteList = ({ userId }: { bookId?: string; userId: string }) => {
     filteredFavorites,
     addFavoriteBook,
     filterFavorites,
+    filteredAuthors,
+    filterAuthors,
   } = useFavorites();
+  const [categoriesValue, setCategoriesValue] = useState<string | null>(null);
+  const [authorsValue, setAuthorsValue] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchFavorites = async () => {
@@ -40,6 +42,12 @@ const FavoriteList = ({ userId }: { bookId?: string; userId: string }) => {
 
   const handleCategoriesValue = (value: string) => {
     filterFavorites(value);
+    setCategoriesValue(value);
+  };
+
+  const handleAuthorsValue = (value: string) => {
+    filterAuthors(value);
+    setAuthorsValue(value);
   };
 
   if (favorites.length === 0) {
@@ -72,7 +80,7 @@ const FavoriteList = ({ userId }: { bookId?: string; userId: string }) => {
             </SelectGroup>
           </SelectContent>
         </Select>
-        <Select>
+        <Select onValueChange={handleAuthorsValue}>
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Trier par auteurs" />
           </SelectTrigger>
@@ -87,13 +95,33 @@ const FavoriteList = ({ userId }: { bookId?: string; userId: string }) => {
           </SelectContent>
         </Select>
       </div>
-      {filteredFavorites.map((item) => (
-        <CardFavoriteTemplateList
-          key={item.bookId}
-          favorites={item}
-          userId={userId}
-        />
-      ))}
+      {categoriesValue &&
+        filteredFavorites.map((item) => (
+          <CardFavoriteTemplateList
+            key={item.bookId}
+            favorites={item}
+            userId={userId}
+          />
+        ))}
+      {authorsValue &&
+        filteredAuthors.map((item) => {
+          return (
+            <CardFavoriteTemplateList
+              key={item.bookId}
+              favorites={item}
+              userId={userId}
+            />
+          );
+        })}
+      {!authorsValue &&
+        !categoriesValue &&
+        favorites.map((item) => (
+          <CardFavoriteTemplateList
+            key={item.bookId}
+            favorites={item}
+            userId={userId}
+          />
+        ))}
     </div>
   );
 };
