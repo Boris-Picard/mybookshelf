@@ -325,6 +325,7 @@ const CategoriesList = ({
             key={books.id}
             books={books}
             favorites={favorites}
+            userId={user?.id}
           />
         ))}
       </div>

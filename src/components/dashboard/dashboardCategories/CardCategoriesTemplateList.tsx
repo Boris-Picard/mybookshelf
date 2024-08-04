@@ -17,11 +17,13 @@ import { FavoriteResponse } from "@/types/FavoriteBook";
 interface CardCategoriesProps {
   books: Books;
   favorites: FavoriteResponse[];
+  userId?: string;
 }
 
 const CardCategoriesTemplateList: React.FC<CardCategoriesProps> = ({
   books,
   favorites,
+  userId,
 }) => {
   return (
     <>
@@ -94,7 +96,7 @@ const CardCategoriesTemplateList: React.FC<CardCategoriesProps> = ({
                       </span>
                     </div>
                   )}
-                  <Link href="/">
+                  <Link href={`/dashboard/book/${userId}/${books.id}`}>
                     <Button variant="link" className="pl-0">
                       Voir plus
                     </Button>
