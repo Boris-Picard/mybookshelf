@@ -159,7 +159,7 @@ const Dashboard: React.FC<DashboardProps> = ({ user, category, bookId }) => {
         )}
         {isFavorites && (
           <main className="grid grid-cols-1 gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
-            <FavoriteList />
+            <FavoriteList userId={user.id} />
           </main>
         )}
         {isCategories && (

@@ -5,7 +5,7 @@ import { useFavorites } from "@/store/favorites";
 import { useEffect } from "react";
 import { getFavorites } from "@/components/dashboard/dashboardHome/actions/favorite-action";
 
-const FavoriteList: React.FC = () => {
+const FavoriteList = ({ userId }: { bookId?: string; userId: string }) => {
   const { favorites, addFavoriteBook } = useFavorites();
 
   useEffect(() => {
@@ -33,7 +33,13 @@ const FavoriteList: React.FC = () => {
   return (
     <div className="space-y-4">
       {favorites.map((item) => {
-        return <CardFavoriteTemplateList key={item.bookId} favorites={item} />;
+        return (
+          <CardFavoriteTemplateList
+            key={item.bookId}
+            favorites={item}
+            userId={userId}
+          />
+        );
       })}
     </div>
   );

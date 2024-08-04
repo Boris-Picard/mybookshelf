@@ -14,10 +14,18 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import FavoriteButton from "@/components/dashboard/dashboardHome/FavoriteButton";
 import { FavoriteResponse } from "@/types/FavoriteBook";
+import React from "react";
 
-const CardFavoriteTemplateList: React.FC<{ favorites: FavoriteResponse }> = ({
+interface CardFavoriteProps {
+  favorites: FavoriteResponse;
+  userId: string;
+}
+
+const CardFavoriteTemplateList: React.FC<CardFavoriteProps> = ({
   favorites,
+  userId,
 }) => {
+
   return (
     <Card className="w-full flex px-4 pl-0 py-0">
       <div className="flex-shrink-0">
@@ -91,7 +99,7 @@ const CardFavoriteTemplateList: React.FC<{ favorites: FavoriteResponse }> = ({
                     </span>
                   </div>
                 )}
-                <Link href="/">
+                <Link href={`/dashboard/book/${userId}/${favorites.bookId}`}>
                   <Button variant="link" className="pl-0">
                     Voir plus
                   </Button>
