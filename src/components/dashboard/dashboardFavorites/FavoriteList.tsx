@@ -2,7 +2,7 @@
 
 import CardFavoriteTemplateList from "@/components/dashboard/dashboardFavorites/CardFavoriteTemplateList";
 import { useFavorites } from "@/store/favorites";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getFavorites } from "@/components/dashboard/dashboardHome/actions/favorite-action";
 
 import {
@@ -14,9 +14,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { FavoriteResponse } from "@/types/FavoriteBook";
 
 const FavoriteList = ({ userId }: { bookId?: string; userId: string }) => {
   const { favorites, addFavoriteBook } = useFavorites();
+  const [categoriesValue, setCategoriesValue] = useState<FavoriteResponse[]>();
 
   useEffect(() => {
     const fetchFavorites = async () => {
@@ -32,6 +34,16 @@ const FavoriteList = ({ userId }: { bookId?: string; userId: string }) => {
     fetchFavorites();
   }, []);
 
+  const handleCategoriesValue = (value: string) => {
+    if (value === "all") {
+      return setCategoriesValue(favorites);
+    }
+    const filterFavorites = favorites.filter(
+      ({ category }) => value === category
+    );
+    setCategoriesValue(filterFavorites);
+  };
+
   if (favorites.length === 0) {
     <div>
       <span className="text-xl text-muted-foreground">
@@ -43,15 +55,20 @@ const FavoriteList = ({ userId }: { bookId?: string; userId: string }) => {
   return (
     <div className="space-y-4">
       <div className="flex space-x-3">
-        <Select>
+        <Select onValueChange={handleCategoriesValue}>
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Trier par genres" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              {favorites.map(({ category }) => {
-                if (category) {
-                  return <SelectItem value={category}>{category}</SelectItem>;
+              <SelectItem value="all">Tous les genres</SelectItem>
+              {favorites.map((item) => {
+                if (item.category) {
+                  return (
+                    <SelectItem value={item.category}>
+                      {item.category}
+                    </SelectItem>
+                  );
                 }
               })}
             </SelectGroup>
@@ -72,15 +89,25 @@ const FavoriteList = ({ userId }: { bookId?: string; userId: string }) => {
           </SelectContent>
         </Select>
       </div>
-      {favorites.map((item) => {
-        return (
-          <CardFavoriteTemplateList
-            key={item.bookId}
-            favorites={item}
-            userId={userId}
-          />
-        );
-      })}
+      {categoriesValue
+        ? categoriesValue.map((item) => {
+            return (
+              <CardFavoriteTemplateList
+                key={item.bookId}
+                favorites={item}
+                userId={userId}
+              />
+            );
+          })
+        : favorites.map((item) => {
+            return (
+              <CardFavoriteTemplateList
+                key={item.bookId}
+                favorites={item}
+                userId={userId}
+              />
+            );
+          })}
     </div>
   );
 };
