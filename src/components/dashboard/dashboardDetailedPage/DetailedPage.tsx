@@ -5,6 +5,7 @@ import Image from "next/image";
 import DOMPurify from "dompurify";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Ratings from "@/components/dashboard/Ratings";
 
 interface DetailedPageProps {
   bookId: string;
@@ -39,7 +40,9 @@ const DetailedPage: React.FC<DetailedPageProps> = ({ bookId }) => {
           />
           <div className="flex gap-3 mt-3 justify-start">
             <Button>Ajouter aux favoris</Button>
-            <Button>Lire sur Google</Button>
+            <Link href={book.webReader} target="_blank">
+              <Button variant="link">Lire sur Google</Button>
+            </Link>
           </div>
         </div>
         <div className="col-span-2 p-8 space-y-3">
@@ -63,9 +66,9 @@ const DetailedPage: React.FC<DetailedPageProps> = ({ bookId }) => {
               {book.publishedDate}
             </div>
             {book.averageRating && (
-              <div>
-                <span className="font-bold">Notes : </span>
-                {book.averageRating}
+              <div className="flex flex-nowrap w-1/4 items-center space-x-2">
+                <span className="font-bold">Notes</span>
+                <Ratings ratings={book.averageRating} />
               </div>
             )}
             {book.ratingsCount && (
