@@ -17,8 +17,12 @@ import {
 import { FavoriteResponse } from "@/types/FavoriteBook";
 
 const FavoriteList = ({ userId }: { bookId?: string; userId: string }) => {
-  const { favorites, addFavoriteBook } = useFavorites();
-  const [categoriesValue, setCategoriesValue] = useState<FavoriteResponse[]>();
+  const {
+    favorites,
+    filteredFavorites,
+    addFavoriteBook,
+    filterFavorites,
+  } = useFavorites();
 
   useEffect(() => {
     const fetchFavorites = async () => {
@@ -35,13 +39,7 @@ const FavoriteList = ({ userId }: { bookId?: string; userId: string }) => {
   }, []);
 
   const handleCategoriesValue = (value: string) => {
-    if (value === "all") {
-      return setCategoriesValue(favorites);
-    }
-    const filterFavorites = favorites.filter(
-      ({ category }) => value === category
-    );
-    setCategoriesValue(filterFavorites);
+    filterFavorites(value);
   };
 
   if (favorites.length === 0) {
@@ -89,25 +87,13 @@ const FavoriteList = ({ userId }: { bookId?: string; userId: string }) => {
           </SelectContent>
         </Select>
       </div>
-      {categoriesValue
-        ? categoriesValue.map((item) => {
-            return (
-              <CardFavoriteTemplateList
-                key={item.bookId}
-                favorites={item}
-                userId={userId}
-              />
-            );
-          })
-        : favorites.map((item) => {
-            return (
-              <CardFavoriteTemplateList
-                key={item.bookId}
-                favorites={item}
-                userId={userId}
-              />
-            );
-          })}
+      {filteredFavorites.map((item) => (
+        <CardFavoriteTemplateList
+          key={item.bookId}
+          favorites={item}
+          userId={userId}
+        />
+      ))}
     </div>
   );
 };
