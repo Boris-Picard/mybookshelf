@@ -20,16 +20,20 @@ const BooksList: React.FC<BooksListProps> = ({
   userId: string;
 }) => {
   const [slice, setSlice] = useState<number>(3);
-  const { books, errorMessage } = useSearchBooks({ slice });
+  const [category, setCategory] = useState<string | null>(null);
+  const { books, errorMessage } = useSearchBooks({ slice, category });
   const { favorites, addFavoriteBook } = useFavorites();
 
   useEffect(() => {
     const getCategory = async () => {
-      const response = await findMostFrequentCategory();
-      if (response !== null && typeof response !== "string") {
-        const [category] = response.map((item) => item.category);
-        console.log(category);
-        
+      try {
+        const response = await findMostFrequentCategory();
+        if (Array.isArray(response)) {
+          const [category] = response.map((item) => item.category);
+          setCategory(category);
+        }
+      } catch (error) {
+        console.log(error);
       }
     };
     getCategory();
@@ -47,7 +51,7 @@ const BooksList: React.FC<BooksListProps> = ({
       }
     };
     fetchFavorites();
-  }, [favorites]);
+  }, []);
 
   if (errorMessage) {
     return <h1 className="text-xl text-red-500">{errorMessage}</h1>;

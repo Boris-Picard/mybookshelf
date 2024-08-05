@@ -3,21 +3,25 @@
 import { Books } from "@/types/Books";
 import { useState, useEffect } from "react";
 
-const useSearchBooks = ({ slice }: { slice: number }) => {
+const useSearchBooks = ({ slice, category }: { slice: number, category: string | null }) => {
     const [books, setBooks] = useState<Books[]>([]);
     const [errorMessage, setErrorMessage] = useState<string>("");
 
     const fetchBooks = async () => {
+        if (category === null) {
+            category = "bestsellers"
+        };
+
         try {
             const response = await fetch(
-                `https://www.googleapis.com/books/v1/volumes?q=bestsellers+harrypotter&orderBy=newest&maxResults=20&key=${process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API}`
+                `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(category)}&orderBy=newest&maxResults=20&key=${process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API}`
             );
             if (!response.ok) {
                 throw new Error(`Error: ${response.status}`);
             }
             const data = await response.json();
 
-            if(data.totalItems === 0 ){
+            if (data.totalItems === 0) {
                 return null
             }
 

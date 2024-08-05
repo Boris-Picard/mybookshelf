@@ -14,7 +14,6 @@ interface DetailedPageProps {
 const DetailedPage: React.FC<DetailedPageProps> = ({ bookId }) => {
   const { detailedBook } = useDetailedBook(bookId);
   const [book] = detailedBook;
-  console.log(book);
 
   if (detailedBook.length === 0) {
     return (
