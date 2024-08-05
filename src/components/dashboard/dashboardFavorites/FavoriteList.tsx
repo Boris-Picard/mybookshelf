@@ -48,11 +48,20 @@ const FavoriteList = ({ userId }: { bookId?: string; userId: string }) => {
 
   // function to create a new array of categories with one category
   const getUniqueCategories = (favorites: FavoriteResponse[]): string[] => {
-    const categories = favorites.map((fav) => fav.category).filter((category) => category !== null );
-    return [...new Set(categories)];
+    const categories = favorites
+      .map((fav) => fav.category) // get all categories
+      .filter((category) => category !== null); // remove categories === null
+    return [...new Set(categories)]; // return a new array of categories without duplicates category
   };
-
   const uniqueCategories = getUniqueCategories(favorites);
+
+  const getUniqueAuthors = (favorites: FavoriteResponse[]): string[] => {
+    const authors = favorites
+      .map((fav) => fav.author)
+      .filter((author) => author !== null);
+    return [...new Set(authors)];
+  };
+  const uniqueAuthors = getUniqueAuthors(favorites);
 
   const handleAuthorsValue = (value: string) => {
     filterAuthors(value);
@@ -77,6 +86,9 @@ const FavoriteList = ({ userId }: { bookId?: string; userId: string }) => {
           <SelectContent>
             <SelectGroup>
               <SelectItem value="all">Tous les genres</SelectItem>
+              <div className="py-3">
+                <hr />
+              </div>
               {uniqueCategories.map((category) => {
                 return <SelectItem value={category}>{category}</SelectItem>;
               })}
@@ -89,10 +101,12 @@ const FavoriteList = ({ userId }: { bookId?: string; userId: string }) => {
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              {favorites.map(({ author }) => {
-                if (author) {
-                  return <SelectItem value={author}>{author}</SelectItem>;
-                }
+              <SelectItem value="all">Tous les auteurs</SelectItem>
+              <div className="py-3">
+                <hr />
+              </div>
+              {uniqueAuthors.map((author) => {
+                return <SelectItem value={author}>{author}</SelectItem>;
               })}
             </SelectGroup>
           </SelectContent>
