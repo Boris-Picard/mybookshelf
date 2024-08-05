@@ -29,6 +29,7 @@ const useCategoriesBooks = ({ category }: { category: string | undefined }) => {
                 authors: item.volumeInfo?.authors?.join(" - "),
                 description: item.volumeInfo.description,
                 thumbnail: item.volumeInfo?.imageLinks?.thumbnail,
+                page: item.volumeInfo?.pageCount,
                 categories: item.volumeInfo.categories,
                 publishedDate: item.volumeInfo.publishedDate,
                 averageRating: item.volumeInfo.averageRating,

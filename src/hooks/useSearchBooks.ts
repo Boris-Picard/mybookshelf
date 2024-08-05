@@ -20,7 +20,7 @@ const useSearchBooks = ({ slice, category }: { slice: number, category: string |
                 throw new Error(`Error: ${response.status}`);
             }
             const data = await response.json();
-
+            
             if (data.totalItems === 0) {
                 return null
             }
@@ -31,6 +31,7 @@ const useSearchBooks = ({ slice, category }: { slice: number, category: string |
                 authors: item.volumeInfo?.authors?.join(" - "),
                 description: item.volumeInfo.description,
                 thumbnail: item.volumeInfo?.imageLinks?.thumbnail,
+                page: item.volumeInfo?.pageCount,
                 categories: item.volumeInfo.categories,
                 publishedDate: item.volumeInfo.publishedDate,
                 averageRating: item.volumeInfo.averageRating,
@@ -43,7 +44,7 @@ const useSearchBooks = ({ slice, category }: { slice: number, category: string |
                 webReader: item.accessInfo.webReaderLink,
                 searchInfo: item.searchInfo?.textSnippet,
             }));
-
+            
             // on récupère tous les titres de filteredData dans un tableau titles
             const titles = filteredData.map(({ title }) => title);
 

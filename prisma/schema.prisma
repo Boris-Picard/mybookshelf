@@ -31,6 +31,7 @@ model Favorite {
   thumbnail     String?
   averageRating Int?
   ratingsCount  Int?
+  page          Int?
   category      String?
   description   String?
   link          String?

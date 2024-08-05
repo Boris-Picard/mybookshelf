@@ -4,6 +4,7 @@ export interface FavoriteBook {
     name: string,
     author?: string,
     thumbnail: string | null
+    page?: number,
     averageRating: number | null
     ratingsCount: number | null
     date?: string,
@@ -21,6 +22,7 @@ export type FavoriteResponse = {
     price: string | null;
     category: string | null;
     thumbnail: string | null
+    page: number | null;
     description: string | null;
     averageRating: number | null
     ratingsCount: number | null

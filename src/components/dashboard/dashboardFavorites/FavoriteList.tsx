@@ -74,7 +74,7 @@ const FavoriteList = ({ userId }: { bookId?: string; userId: string }) => {
     });
   };
 
-  const handleFilterFavorites = getFilteredFavorites();
+  const filteredFavorites = getFilteredFavorites();
 
   if (favorites.length === 0) {
     return (
@@ -122,7 +122,7 @@ const FavoriteList = ({ userId }: { bookId?: string; userId: string }) => {
           </SelectContent>
         </Select>
       </div>
-      {handleFilterFavorites.map((item) => (
+      {filteredFavorites.map((item) => (
         <CardFavoriteTemplateList
           key={item.bookId}
           favorites={item}
