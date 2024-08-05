@@ -127,15 +127,6 @@ const FavoriteList = ({ userId }: { bookId?: string; userId: string }) => {
           userId={userId}
         />
       ))}
-      {!authorsValue &&
-        !categoriesValue &&
-        favorites.map((item) => (
-          <CardFavoriteTemplateList
-            key={item.bookId}
-            favorites={item}
-            userId={userId}
-          />
-        ))}
     </div>
   );
 };
