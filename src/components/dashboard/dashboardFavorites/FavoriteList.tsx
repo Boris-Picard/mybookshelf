@@ -16,14 +16,7 @@ import {
 import { FavoriteResponse } from "@/types/FavoriteBook";
 
 const FavoriteList = ({ userId }: { bookId?: string; userId: string }) => {
-  const {
-    favorites,
-    filteredFavorites,
-    addFavoriteBook,
-    filterFavorites,
-    filteredAuthors,
-    filterAuthors,
-  } = useFavorites();
+  const { favorites, addFavoriteBook } = useFavorites();
   const [categoriesValue, setCategoriesValue] = useState<string | null>(null);
   const [authorsValue, setAuthorsValue] = useState<string | null>(null);
 
@@ -42,8 +35,11 @@ const FavoriteList = ({ userId }: { bookId?: string; userId: string }) => {
   }, []);
 
   const handleCategoriesValue = (value: string) => {
-    filterFavorites(value);
     setCategoriesValue(value);
+  };
+
+  const handleAuthorsValue = (value: string) => {
+    setAuthorsValue(value);
   };
 
   // function to create a new array of categories with one category
@@ -63,10 +59,22 @@ const FavoriteList = ({ userId }: { bookId?: string; userId: string }) => {
   };
   const uniqueAuthors = getUniqueAuthors(favorites);
 
-  const handleAuthorsValue = (value: string) => {
-    filterAuthors(value);
-    setAuthorsValue(value);
+  // function to filter list depending on both select
+  const getFilteredFavorites = (): FavoriteResponse[] => {
+    return favorites.filter((favorite) => {
+      const categoryMatches =
+        categoriesValue === "all" ||
+        categoriesValue === null ||
+        favorite.category === categoriesValue;
+      const authorMatches =
+        authorsValue === "all" ||
+        authorsValue === null ||
+        favorite.author === authorsValue;
+      return categoryMatches && authorMatches;
+    });
   };
+
+  const handleFilterFavorites = getFilteredFavorites();
 
   if (favorites.length === 0) {
     <div>
@@ -112,24 +120,13 @@ const FavoriteList = ({ userId }: { bookId?: string; userId: string }) => {
           </SelectContent>
         </Select>
       </div>
-      {categoriesValue &&
-        filteredFavorites.map((item) => (
-          <CardFavoriteTemplateList
-            key={item.bookId}
-            favorites={item}
-            userId={userId}
-          />
-        ))}
-      {authorsValue &&
-        filteredAuthors.map((item) => {
-          return (
-            <CardFavoriteTemplateList
-              key={item.bookId}
-              favorites={item}
-              userId={userId}
-            />
-          );
-        })}
+      {handleFilterFavorites.map((item) => (
+        <CardFavoriteTemplateList
+          key={item.bookId}
+          favorites={item}
+          userId={userId}
+        />
+      ))}
       {!authorsValue &&
         !categoriesValue &&
         favorites.map((item) => (
