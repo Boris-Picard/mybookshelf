@@ -31,13 +31,13 @@ const createFavorite = async (userBook: FavoriteBook): Promise<string | Favorite
                 userId: user.id,
             }
         })
-        
+
         return addFavorite as FavoriteResponse
 
     } catch (error) {
         if (error instanceof Error) {
             console.log(error.message);
-            
+
             return error.message
         } else {
             throw new Error("An error occured")
@@ -92,4 +92,39 @@ const deleteFavorite = async (bookId: string): Promise<boolean | string> => {
     }
 }
 
-export { createFavorite, getFavorites, deleteFavorite }
+const findMostFrequentCategory = async () => {
+    try {
+        const user = await userService.getUser()
+
+        if (!user) {
+            throw new Error("User not found")
+        }
+
+        const categoryCounts = await db.favorite.groupBy({
+            by: ['category'],
+            _count: {
+                category: true,
+            },
+            orderBy: {
+                _count: {
+                    category: "desc"
+                }
+            },
+            take: 1
+        })
+
+        if (categoryCounts === null || categoryCounts.length === 0) {
+            return null
+        }
+
+        return categoryCounts
+    } catch (error) {
+        if (error instanceof Error) {
+            return error.message
+        } else {
+            throw new Error("An error occured")
+        }
+    }
+}
+
+export { createFavorite, getFavorites, deleteFavorite, findMostFrequentCategory }

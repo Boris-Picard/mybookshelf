@@ -4,7 +4,10 @@ import useSearchBooks from "@/hooks/useSearchBooks";
 import CardList from "@/components/dashboard/dashboardHome/CardTemplateList";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
-import { getFavorites } from "@/components/dashboard/dashboardHome/actions/favorite-action";
+import {
+  getFavorites,
+  findMostFrequentCategory,
+} from "@/components/dashboard/dashboardHome/actions/favorite-action";
 import { useFavorites } from "@/store/favorites";
 
 interface BooksListProps {
@@ -21,6 +24,18 @@ const BooksList: React.FC<BooksListProps> = ({
   const { favorites, addFavoriteBook } = useFavorites();
 
   useEffect(() => {
+    const getCategory = async () => {
+      const response = await findMostFrequentCategory();
+      if (response !== null && typeof response !== "string") {
+        const [category] = response.map((item) => item.category);
+        console.log(category);
+        
+      }
+    };
+    getCategory();
+  }, []);
+
+  useEffect(() => {
     const fetchFavorites = async () => {
       try {
         const response = await getFavorites();
@@ -32,7 +47,7 @@ const BooksList: React.FC<BooksListProps> = ({
       }
     };
     fetchFavorites();
-  }, []);
+  }, [favorites]);
 
   if (errorMessage) {
     return <h1 className="text-xl text-red-500">{errorMessage}</h1>;

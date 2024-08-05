@@ -77,11 +77,13 @@ const FavoriteList = ({ userId }: { bookId?: string; userId: string }) => {
   const handleFilterFavorites = getFilteredFavorites();
 
   if (favorites.length === 0) {
-    <div>
-      <span className="text-xl text-muted-foreground">
-        Pas livres ajouté aux favoris !
-      </span>
-    </div>;
+    return (
+      <div>
+        <span className="text-xl text-muted-foreground">
+          Pas livres ajouté aux favoris !
+        </span>
+      </div>
+    );
   }
 
   return (
