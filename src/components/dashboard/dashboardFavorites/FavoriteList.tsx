@@ -13,6 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { FavoriteResponse } from "@/types/FavoriteBook";
 
 const FavoriteList = ({ userId }: { bookId?: string; userId: string }) => {
   const {
@@ -45,6 +46,14 @@ const FavoriteList = ({ userId }: { bookId?: string; userId: string }) => {
     setCategoriesValue(value);
   };
 
+  // function to create a new array of categories with one category
+  const getUniqueCategories = (favorites: FavoriteResponse[]): string[] => {
+    const categories = favorites.map((fav) => fav.category).filter((category) => category !== null );
+    return [...new Set(categories)];
+  };
+
+  const uniqueCategories = getUniqueCategories(favorites);
+
   const handleAuthorsValue = (value: string) => {
     filterAuthors(value);
     setAuthorsValue(value);
@@ -68,14 +77,8 @@ const FavoriteList = ({ userId }: { bookId?: string; userId: string }) => {
           <SelectContent>
             <SelectGroup>
               <SelectItem value="all">Tous les genres</SelectItem>
-              {favorites.map((item) => {
-                if (item.category) {
-                  return (
-                    <SelectItem value={item.category}>
-                      {item.category}
-                    </SelectItem>
-                  );
-                }
+              {uniqueCategories.map((category) => {
+                return <SelectItem value={category}>{category}</SelectItem>;
               })}
             </SelectGroup>
           </SelectContent>
