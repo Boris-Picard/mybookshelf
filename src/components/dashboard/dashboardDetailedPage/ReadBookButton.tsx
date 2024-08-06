@@ -8,10 +8,6 @@ const ReadBookButton = ({
   bookId: string;
   pageNumber: number;
 }) => {
-  console.log(pageNumber);
-  console.log(bookId);
-  
-
   return (
     <form action={() => AddReadBook(bookId, pageNumber)}>
       <Button type="submit">livre lu</Button>

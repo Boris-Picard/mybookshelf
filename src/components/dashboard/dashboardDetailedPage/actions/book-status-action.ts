@@ -12,20 +12,20 @@ const createReadBookStatus = async (bookId: string, pageNumber: number) => {
             throw new Error("User not found")
         }
 
-        // const alreadyRead = await db.readStatus.findUnique({
-        //     where: {
-        //         idBook: bookId,
-        //         userId: user.id
-        //     }
-        // })
+        const alreadyRead = await db.readStatus.findUnique({
+            where: {
+                bookId: bookId,
+                userId: user.id
+            }
+        })
 
-        // if (alreadyRead) {
-        //     throw new Error("Book already read")
-        // }
+        if (alreadyRead) {
+            throw new Error("Book already read")
+        }
 
         const addBook = await db.readStatus.create({
             data: {
-                idBook: bookId,
+                bookId: bookId,
                 userId: user.id,
                 isRead: true,
                 pageNumber: pageNumber,
