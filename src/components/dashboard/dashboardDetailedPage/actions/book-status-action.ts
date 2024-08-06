@@ -14,8 +14,10 @@ const createReadBookStatus = async (bookId: string, pageNumber: number) => {
 
         const alreadyRead = await db.readStatus.findUnique({
             where: {
-                bookId: bookId,
-                userId: user.id
+                bookId_userId: {
+                    bookId: bookId,
+                    userId: user.id
+                }
             }
         })
 
@@ -52,8 +54,10 @@ const getReadBook = async (bookId: string) => {
 
         const isRead = await db.readStatus.findUnique({
             where: {
-                bookId: bookId,
-                userId: user.id
+                bookId_userId: {
+                    bookId: bookId,
+                    userId: user.id
+                }
             }
         })
 
@@ -77,8 +81,10 @@ const deleteReadBook = async (bookId: string) => {
 
         const isRead = await db.readStatus.delete({
             where: {
-                bookId: bookId,
-                userId: user.id
+                bookId_userId: {
+                    bookId: bookId,
+                    userId: user.id
+                }
             }
         })
 

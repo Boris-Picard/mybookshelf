@@ -16,8 +16,10 @@ const createFavorite = async (userBook: FavoriteBook): Promise<string | Favorite
 
         const favorite = await db.favorite.findUnique({
             where: {
-                bookId: userBook.bookId,
-                userId: user.id
+                bookId_userId: {
+                    bookId: userBook.bookId,
+                    userId: user.id
+                }
             }
         })
 
@@ -72,14 +74,16 @@ const deleteFavorite = async (bookId: string): Promise<boolean | string> => {
     try {
         const user = await userService.getUser()
 
-        if (!user) {
+        if (!user || typeof user.id !== "string") {
             throw new Error("User not found")
         }
 
         const favorite = await db.favorite.delete({
             where: {
-                bookId: bookId,
-                userId: user.id
+                bookId_userId: {
+                    bookId: bookId,
+                    userId: user.id
+                }
             }
         })
         return true
