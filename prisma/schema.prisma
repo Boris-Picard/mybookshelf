@@ -24,12 +24,14 @@ model User {
 }
 
 model ReadStatus {
-  id         String  @id @default(cuid())
-  isRead     Boolean
-  pageNumber Int
-  bookId     String
+  id         String   @id @default(cuid())
+  isRead     Boolean?
+  pageNumber Int?
+  idBook     String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
   userId     String
-  User       User    @relation(fields: [userId], references: [id])
+  User       User     @relation(fields: [userId], references: [id])
 
   @@map(name: "readstatus")
 }
