@@ -20,7 +20,7 @@ const createReadBookStatus = async (bookId: string, pageNumber: number) => {
         })
 
         if (alreadyRead) {
-            throw new Error("Book already read")
+            throw new Error("Livre déjà lu")
         }
 
         const addBook = await db.readStatus.create({
@@ -31,13 +31,10 @@ const createReadBookStatus = async (bookId: string, pageNumber: number) => {
                 pageNumber: pageNumber,
             }
         })
-        console.log(addBook);
 
-        return addBook
+        return true
     } catch (error) {
         if (error instanceof Error) {
-            console.log(error.message);
-
             return error.message
         } else {
             throw new Error("An error occured")

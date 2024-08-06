@@ -4,7 +4,8 @@ import createReadBookStatus from "@/components/dashboard/dashboardDetailedPage/a
 
 const AddReadBook = async (bookId: string, pageNumber: number) => {
     try {
-        await createReadBookStatus(bookId, pageNumber)
+        const response = await createReadBookStatus(bookId, pageNumber)
+        return response
     } catch (error) {
         console.log(error);
     }
