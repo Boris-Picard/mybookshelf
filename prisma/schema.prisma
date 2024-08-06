@@ -8,18 +8,30 @@ datasource db {
 }
 
 model User {
-  id            String     @id @default(cuid())
+  id            String       @id @default(cuid())
   name          String?
-  email         String     @unique
+  email         String       @unique
   emailVerified DateTime?
   image         String?
-  createdAt     DateTime   @default(now())
-  updatedAt     DateTime   @updatedAt
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
   accounts      Account[]
   sessions      Session[]
   favorites     Favorite[]
+  ReadStatus    ReadStatus[]
 
   @@map(name: "users")
+}
+
+model ReadStatus {
+  id         String  @id @default(cuid())
+  isRead     Boolean
+  pageNumber Int
+  bookId     String
+  userId     String
+  User       User    @relation(fields: [userId], references: [id])
+
+  @@map(name: "readstatus")
 }
 
 model Favorite {
