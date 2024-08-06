@@ -4,6 +4,7 @@ import { AnimatedSubscribeButton } from "@/components/magicui/animated-subscribe
 import { CheckIcon, ChevronRightIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import GetBook from "@/components/dashboard/dashboardDetailedPage/GetBook";
+import DeleteBook from "@/components/dashboard/dashboardDetailedPage/DeleteBook";
 
 const ReadBookButton = ({
   bookId,
@@ -31,15 +32,29 @@ const ReadBookButton = ({
     retrieveBook();
   }, [bookId]);
 
-  const handleCreateBook = async () => {
+  const handleBook = async () => {
     try {
-      const response = await AddReadBook(bookId, pageNumber);
-      if (response === true) {
-        toast.success("Vous avez marqué ce livre comme lu avec succès.");
-        setIsSubscribed(true);
-      } else {
-        toast.error(response);
-        setIsSubscribed(false);
+      if (!isSubscribed) {
+        const response = await AddReadBook(bookId, pageNumber);
+        if (response) {
+          toast.success("Vous avez marqué ce livre comme lu avec succès.");
+          setIsSubscribed(true);
+        } else {
+          toast.error(response);
+          setIsSubscribed(false);
+        }
+      }
+      if (isSubscribed) {
+        const response = await DeleteBook(bookId);
+        if (response) {
+          toast.success(
+            "Vous avez supprimé le livre de la liste de lecture avec succès !"
+          );
+          setIsSubscribed(false);
+        } else {
+          toast.error(response);
+          setIsSubscribed(true);
+        }
       }
     } catch (error) {
       console.log(error);
@@ -49,7 +64,7 @@ const ReadBookButton = ({
   };
 
   return (
-    <button onClick={handleCreateBook}>
+    <button onClick={handleBook}>
       <AnimatedSubscribeButton
         buttonColor="#000000"
         buttonTextColor="#ffffff"
