@@ -1,10 +1,10 @@
-import AddReadBook from "@/components/dashboard/dashboardDetailedPage/AddReadBook";
+import AddReadBook from "@/components/dashboard/dashboardDetailedPage/add-read-book";
 import { toast } from "react-toastify";
 import { AnimatedSubscribeButton } from "@/components/magicui/animated-subscribe-button";
 import { CheckIcon, ChevronRightIcon } from "lucide-react";
 import { useEffect, useState } from "react";
-import GetBook from "@/components/dashboard/dashboardDetailedPage/GetBook";
-import DeleteBook from "@/components/dashboard/dashboardDetailedPage/DeleteBook";
+import GetBook from "@/components/dashboard/dashboardDetailedPage/get-book";
+import DeleteBook from "@/components/dashboard/dashboardDetailedPage/delete-book";
 
 const ReadBookButton = ({
   bookId,
