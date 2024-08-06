@@ -20,7 +20,7 @@ const createReadBookStatus = async (bookId: string, pageNumber: number) => {
         })
 
         if (alreadyRead) {
-            throw new Error("Livre déjà lu")
+            throw new Error("Livre déjà marqué comme lu")
         }
 
         const addBook = await db.readStatus.create({

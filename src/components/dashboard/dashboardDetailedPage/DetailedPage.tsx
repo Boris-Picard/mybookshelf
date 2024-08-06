@@ -15,7 +15,7 @@ interface DetailedPageProps {
 const DetailedPage: React.FC<DetailedPageProps> = ({ bookId }) => {
   const { detailedBook } = useDetailedBook(bookId);
   const [book] = detailedBook;
-  
+
   if (detailedBook.length === 0) {
     return (
       <h1 className="text-xl text-muted-foreground">Pas de livres trouvés</h1>
@@ -43,6 +43,8 @@ const DetailedPage: React.FC<DetailedPageProps> = ({ bookId }) => {
             <Link href={book.webReader} target="_blank">
               <Button variant="link">Lire sur Google</Button>
             </Link>
+          </div>
+          <div className="mt-3">
             <ReadBookButton bookId={bookId} pageNumber={book.page} />
           </div>
         </div>
