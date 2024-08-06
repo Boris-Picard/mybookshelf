@@ -1,6 +1,6 @@
 "use server"
 
-import createReadBookStatus from "@/components/dashboard/dashboardDetailedPage/actions/book-status-action"
+import { createReadBookStatus } from "@/components/dashboard/dashboardDetailedPage/actions/book-status-action"
 
 const AddReadBook = async (bookId: string, pageNumber: number) => {
     try {
@@ -9,7 +9,6 @@ const AddReadBook = async (bookId: string, pageNumber: number) => {
     } catch (error) {
         console.log(error);
     }
-
 }
 
 export default AddReadBook

@@ -2,7 +2,8 @@ import AddReadBook from "@/components/dashboard/dashboardDetailedPage/AddReadBoo
 import { toast } from "react-toastify";
 import { AnimatedSubscribeButton } from "@/components/magicui/animated-subscribe-button";
 import { CheckIcon, ChevronRightIcon } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import GetBook from "@/components/dashboard/dashboardDetailedPage/GetBook";
 
 const ReadBookButton = ({
   bookId,
@@ -11,7 +12,25 @@ const ReadBookButton = ({
   bookId: string;
   pageNumber: number;
 }) => {
-  const [isSubscribed, setIsSubscribed] = useState(false);
+  const [isSubscribed, setIsSubscribed] = useState<boolean>(false);
+
+  useEffect(() => {
+    const retrieveBook = async () => {
+      try {
+        const response = await GetBook(bookId);
+        if (typeof response !== "string" && response && response.isRead) {
+          setIsSubscribed(true);
+        } else {
+          setIsSubscribed(false);
+        }
+      } catch (error) {
+        console.log(error);
+        setIsSubscribed(false);
+      }
+    };
+    retrieveBook();
+  }, [bookId]);
+
   const handleCreateBook = async () => {
     try {
       const response = await AddReadBook(bookId, pageNumber);
