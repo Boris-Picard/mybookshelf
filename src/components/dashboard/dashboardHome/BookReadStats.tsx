@@ -9,7 +9,7 @@ const BookReadStats = () => {
   useEffect(() => {
     const fetchAllBooks = async () => {
       const response = await GetAllReadBooks();
-      if (response) {
+      if (response && typeof response !== "string") {
         setNbPages(response._sum.pageNumber);
         setNbBooks(response._count.id);
       }

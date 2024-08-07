@@ -118,9 +118,6 @@ const GetAllBooks = async () => {
             }
         });
 
-        console.log(totalPages);
-
-
         return totalPages
     } catch (error) {
         if (error instanceof Error) {
