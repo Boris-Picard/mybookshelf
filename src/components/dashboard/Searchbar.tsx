@@ -1,9 +1,16 @@
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { useState } from "react";
+import useSearchBooks from "@/hooks/useSearchBooks";
 
 const SearchBar = () => {
+  const [searchResult, setSearchResult] = useState<string | undefined>();
+  const [slice, setSlice] = useState<number>(3);
+  const { books, errorMessage } = useSearchBooks({ slice });
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log(e.target.value);
+    const value = e.target.value;
+    setSearchResult(value);
   };
 
   return (
@@ -12,9 +19,16 @@ const SearchBar = () => {
       <Input
         onChange={(e) => handleChange(e)}
         type="search"
+        value={searchResult}
         placeholder="Search..."
         className="w-full rounded-lg bg-background pl-8 xl:w-1/2 ml-auto"
       />
+      <div className="overflow-auto absolute w-full">
+        {books.length > 0 &&
+          books.map((item) => {
+            return <div className="flex relative">{item.id}</div>;
+          })}
+      </div>
     </div>
   );
 };
