@@ -106,16 +106,22 @@ const GetAllBooks = async () => {
             throw new Error("User not found")
         }
 
-        const allBooks = await db.readStatus.findMany({
+        const totalPages = await db.readStatus.aggregate({
+            _sum: {
+                pageNumber: true,
+            },
+            _count: {
+                id: true,
+            },
             where: {
-                userId: user.id,
+                userId: user.id
             }
-        })
+        });
 
-        console.log(allBooks);
+        console.log(totalPages);
 
 
-        return allBooks
+        return totalPages
     } catch (error) {
         if (error instanceof Error) {
             return error.message
