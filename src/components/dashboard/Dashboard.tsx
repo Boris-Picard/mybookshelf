@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Package2, PanelLeft, Search } from "lucide-react";
+import { Package2, PanelLeft } from "lucide-react";
 
 import {
   Breadcrumb,
@@ -22,7 +22,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
 
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
@@ -39,6 +38,7 @@ import FavoriteList from "@/components/dashboard/dashboardFavorites/FavoriteList
 import CategoriesList from "@/components/dashboard/dashboardCategories/CategoriesList";
 import DetailedPage from "@/components/dashboard/dashboardDetailedPage/DetailedPage";
 import BookReadStats from "@/components/dashboard/dashboardHome/BookReadStats";
+import SearchBar from "@/components/dashboard/Searchbar";
 
 interface DashboardProps {
   user?: User;
@@ -115,14 +115,7 @@ const Dashboard: React.FC<DashboardProps> = ({ user, category, bookId }) => {
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
-          <div className="relative ml-auto flex-1">
-            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground xl:ml-3 xl:w-full" />
-            <Input
-              type="search"
-              placeholder="Search..."
-              className="w-full rounded-lg bg-background pl-8 xl:w-1/2 ml-auto"
-            />
-          </div>
+         <SearchBar />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
