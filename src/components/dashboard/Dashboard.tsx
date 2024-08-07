@@ -38,6 +38,7 @@ import { usePathname } from "next/navigation";
 import FavoriteList from "@/components/dashboard/dashboardFavorites/FavoriteList";
 import CategoriesList from "@/components/dashboard/dashboardCategories/CategoriesList";
 import DetailedPage from "@/components/dashboard/dashboardDetailedPage/DetailedPage";
+import BookReadStats from "@/components/dashboard/dashboardHome/BookReadStats";
 
 interface DashboardProps {
   user?: User;
@@ -155,6 +156,7 @@ const Dashboard: React.FC<DashboardProps> = ({ user, category, bookId }) => {
         {isHome && (
           <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 sm:grid-cols-1 grid-cols-1 xl:grid-cols-2">
             <BooksList userId={user.id} />
+            <BookReadStats />
           </main>
         )}
         {isFavorites && (

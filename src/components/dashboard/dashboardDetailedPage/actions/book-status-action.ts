@@ -98,4 +98,31 @@ const deleteReadBook = async (bookId: string) => {
     }
 }
 
-export { createReadBookStatus, getReadBook, deleteReadBook }
+const GetAllBooks = async () => {
+    try {
+        const user = await userService.getUser()
+
+        if (!user || typeof user.id !== "string") {
+            throw new Error("User not found")
+        }
+
+        const allBooks = await db.readStatus.findMany({
+            where: {
+                userId: user.id,
+            }
+        })
+
+        console.log(allBooks);
+
+
+        return allBooks
+    } catch (error) {
+        if (error instanceof Error) {
+            return error.message
+        } else {
+            throw new Error("An error occured")
+        }
+    }
+}
+
+export { createReadBookStatus, getReadBook, deleteReadBook, GetAllBooks }
