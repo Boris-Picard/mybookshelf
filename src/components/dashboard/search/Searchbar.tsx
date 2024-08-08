@@ -15,19 +15,21 @@ const SearchBar = () => {
 
   return (
     <div className="relative ml-auto flex-1">
-      <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground xl:ml-3 xl:w-full" />
+      <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
       <Input
         onChange={(e) => handleChange(e)}
         type="search"
         value={searchResult}
         placeholder="Search..."
-        className="w-full rounded-lg bg-background pl-8 xl:w-1/2 ml-auto"
+        className="w-full rounded-lg bg-background pl-8 ml-auto"
       />
-      <div className="overflow-auto max-h-[875px] absolute w-full rounded-md">
-        {books && books.map((item) => {
-          return <TemplateSearchList books={item} />;
-        })}
-      </div>
+      {books && (
+        <div className="overflow-auto max-h-[875px] absolute w-full rounded-md">
+          {books.map((item) => {
+            return <TemplateSearchList books={item} />;
+          })}
+        </div>
+      )}
     </div>
   );
 };
