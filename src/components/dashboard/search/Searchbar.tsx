@@ -23,8 +23,10 @@ const SearchBar = () => {
         placeholder="Search..."
         className="w-full rounded-lg bg-background pl-8 xl:w-1/2 ml-auto"
       />
-      <div className="overflow-auto absolute w-full">
-        <TemplateSearchList books={books} />
+      <div className="overflow-auto max-h-[875px] absolute w-full rounded-md">
+        {books && books.map((item) => {
+          return <TemplateSearchList books={item} />;
+        })}
       </div>
     </div>
   );
