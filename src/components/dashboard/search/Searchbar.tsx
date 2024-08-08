@@ -2,17 +2,13 @@ import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import useSearchBarBooks from "@/hooks/useSearchBarBooks";
+import TemplateSearchList from "./TemplateSearchList";
 
 const SearchBar = () => {
   const [searchResult, setSearchResult] = useState<string | undefined>();
-  console.log(searchResult);
-
   const { books, errorMessage } = useSearchBarBooks(searchResult);
 
-  console.log(books);
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
     const value = e.target.value;
     setSearchResult(value);
   };
@@ -28,11 +24,7 @@ const SearchBar = () => {
         className="w-full rounded-lg bg-background pl-8 xl:w-1/2 ml-auto"
       />
       <div className="overflow-auto absolute w-full">
-        {books.length > 0 &&
-          books.map((item) => {
-            console.log(item);
-            return <div className="flex relative">{item.id}</div>;
-          })}
+        <TemplateSearchList books={books} />
       </div>
     </div>
   );

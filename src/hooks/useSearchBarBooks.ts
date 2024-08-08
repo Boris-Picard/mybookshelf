@@ -6,16 +6,13 @@ import { useState, useEffect } from "react";
 const useSearchBarBooks = (search: string | undefined) => {
     const [books, setBooks] = useState<Books[]>([]);
     const [errorMessage, setErrorMessage] = useState<string>("");
-    console.log(search);
-
-    console.log(books);
 
     useEffect(() => {
         const fetchBooks = async () => {
             try {
-                if (search === undefined) {
+                if (!search) {
                     setBooks([])
-                    return null
+                    return 
                 }
 
                 const response = await fetch(

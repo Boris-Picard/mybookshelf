@@ -38,7 +38,7 @@ import FavoriteList from "@/components/dashboard/dashboardFavorites/FavoriteList
 import CategoriesList from "@/components/dashboard/dashboardCategories/CategoriesList";
 import DetailedPage from "@/components/dashboard/dashboardDetailedPage/DetailedPage";
 import BookReadStats from "@/components/dashboard/dashboardHome/BookReadStats";
-import SearchBar from "@/components/dashboard/Searchbar";
+import SearchBar from "@/components/dashboard/search/Searchbar";
 
 interface DashboardProps {
   user?: User;
