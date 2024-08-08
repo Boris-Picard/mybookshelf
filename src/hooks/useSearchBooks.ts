@@ -6,12 +6,18 @@ import { useState, useEffect } from "react";
 const useSearchBooks = ({ slice, category }: { slice: number, category: string | null }) => {
     const [books, setBooks] = useState<Books[]>([]);
     const [errorMessage, setErrorMessage] = useState<string>("");
+    console.log(category);
+
+    if (category === null) {
+        category = "bestsellers"
+    }
+    console.log(category);
 
     useEffect(() => {
         const fetchBooks = async () => {
             try {
                 const response = await fetch(
-                    `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(category ?? "bestsellers")}&orderBy=newest&maxResults=20&key=${process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API}`
+                    `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(category)}&orderBy=newest&maxResults=20&key=${process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API}`
                 );
                 if (!response.ok) {
                     throw new Error(`Error: ${response.status}`);
@@ -64,7 +70,7 @@ const useSearchBooks = ({ slice, category }: { slice: number, category: string |
                 }
             }
         };
-        if (category !== null) {
+        if (category !== null || category !== undefined) {
             fetchBooks()
         }
     }, [slice, category])

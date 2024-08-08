@@ -114,6 +114,9 @@ const findMostFrequentCategory = async () => {
                     category: "desc"
                 }
             },
+            where: {
+                userId: user.id
+            },
             take: 1
         })
 
