@@ -6,7 +6,11 @@ import useSearchBooks from "@/hooks/useSearchBooks";
 const SearchBar = () => {
   const [searchResult, setSearchResult] = useState<string | undefined>();
   const [slice, setSlice] = useState<number>(3);
-  const { books, errorMessage } = useSearchBooks({ slice });
+
+  const { books, errorMessage } = useSearchBooks({ slice, searchResult });
+
+  console.log(books);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log(e.target.value);
     const value = e.target.value;
@@ -26,6 +30,7 @@ const SearchBar = () => {
       <div className="overflow-auto absolute w-full">
         {books.length > 0 &&
           books.map((item) => {
+            console.log(item);
             return <div className="flex relative">{item.id}</div>;
           })}
       </div>
