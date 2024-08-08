@@ -1,13 +1,13 @@
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
-import useSearchBooks from "@/hooks/useSearchBooks";
+import useSearchBarBooks from "@/hooks/useSearchBarBooks";
 
 const SearchBar = () => {
   const [searchResult, setSearchResult] = useState<string | undefined>();
-  const [slice, setSlice] = useState<number>(3);
+  console.log(searchResult);
 
-  const { books, errorMessage } = useSearchBooks({ slice, searchResult });
+  const { books, errorMessage } = useSearchBarBooks(searchResult);
 
   console.log(books);
 
