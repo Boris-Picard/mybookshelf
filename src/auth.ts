@@ -22,11 +22,11 @@ export const {
   callbacks: {
     session({ session, token }) {
       if (token.id) {
-        session.user.id = token.id;
+        session.user.id = token.id as string;
       }
       return session;
     },
-    jwt({ token, user }) {
+    jwt({ token, account, user }) {
       if (user) {
         token.id = user.id;
       }

@@ -1,6 +1,6 @@
-"use client";
-
+"use client"
 import { Books } from "@/types/Books";
+import { User } from "next-auth";
 import { useState, useEffect } from "react";
 
 const useSearchBarBooks = (search: string | undefined) => {
@@ -9,19 +9,22 @@ const useSearchBarBooks = (search: string | undefined) => {
 
     useEffect(() => {
         const fetchBooks = async () => {
+
             try {
                 if (!search) {
                     setBooks([])
-                    return 
+                    return
                 }
 
                 const response = await fetch(
                     `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(search)}&orderBy=newest&maxResults=20&key=${process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API}`
                 );
+
                 if (!response.ok) {
                     throw new Error(`Error: ${response.status}`);
                 }
                 const data = await response.json();
+                console.log(data);
 
                 if (data.totalItems === 0) {
                     setBooks([])
@@ -31,7 +34,7 @@ const useSearchBarBooks = (search: string | undefined) => {
                 const filteredData: Books[] = data.items.map((item: any) => ({
                     id: item.id,
                     title: item.volumeInfo.title,
-                    authors: item.volumeInfo?.authors?.slice(0,1),
+                    authors: item.volumeInfo?.authors?.slice(0, 1),
                     description: item.volumeInfo.description,
                     thumbnail: item.volumeInfo?.imageLinks?.thumbnail,
                     page: item.volumeInfo?.pageCount,

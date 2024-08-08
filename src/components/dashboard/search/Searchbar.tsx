@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import useSearchBarBooks from "@/hooks/useSearchBarBooks";
 import TemplateSearchList from "./TemplateSearchList";
+import { User } from "next-auth";
 
 const SearchBar = () => {
   const [searchResult, setSearchResult] = useState<string | undefined>();

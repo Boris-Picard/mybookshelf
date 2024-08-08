@@ -115,7 +115,7 @@ const Dashboard: React.FC<DashboardProps> = ({ user, category, bookId }) => {
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
-         <SearchBar />
+          <SearchBar />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
