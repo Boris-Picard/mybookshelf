@@ -24,7 +24,7 @@ const SearchBar = () => {
         className="w-full rounded-lg bg-background pl-8 ml-auto"
       />
       {books && (
-        <div className="overflow-auto max-h-[875px] absolute w-full rounded-md">
+        <div className="overflow-auto max-h-[875px] absolute w-full rounded-md mt-1">
           {books.map((item) => {
             return <TemplateSearchList books={item} />;
           })}

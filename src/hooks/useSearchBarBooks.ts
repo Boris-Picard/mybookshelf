@@ -31,7 +31,7 @@ const useSearchBarBooks = (search: string | undefined) => {
                 const filteredData: Books[] = data.items.map((item: any) => ({
                     id: item.id,
                     title: item.volumeInfo.title,
-                    authors: item.volumeInfo?.authors?.join(" - "),
+                    authors: item.volumeInfo?.authors?.slice(0,1),
                     description: item.volumeInfo.description,
                     thumbnail: item.volumeInfo?.imageLinks?.thumbnail,
                     page: item.volumeInfo?.pageCount,
