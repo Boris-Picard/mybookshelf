@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Ratings from "@/components/dashboard/Ratings";
 import ReadBookButton from "@/components/dashboard/dashboardDetailedPage/ReadBookButton";
+import AddFavoriteButton from "@/components/dashboard/dashboardDetailedPage/AddFavoriteButton";
+import { FavoriteResponse } from "@/types/FavoriteBook";
 
 interface DetailedPageProps {
   bookId: string;
@@ -15,7 +17,7 @@ interface DetailedPageProps {
 const DetailedPage: React.FC<DetailedPageProps> = ({ bookId }) => {
   const { detailedBook } = useDetailedBook(bookId);
   const [book] = detailedBook;
-
+  
   if (detailedBook.length === 0) {
     return (
       <h1 className="text-xl text-muted-foreground">Pas de livres trouvés</h1>
@@ -39,7 +41,7 @@ const DetailedPage: React.FC<DetailedPageProps> = ({ bookId }) => {
             priority={false}
           />
           <div className="flex gap-3 mt-3 justify-start">
-            <Button>Ajouter aux favoris</Button>
+            <AddFavoriteButton book={book} />
             <Link href={book.webReader} target="_blank">
               <Button variant="link">Lire sur Google</Button>
             </Link>

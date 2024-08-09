@@ -29,7 +29,7 @@ const useDetailedBook = (bookId: string) => {
                 description: item.volumeInfo.description,
                 thumbnail: item.volumeInfo?.imageLinks?.thumbnail,
                 page: item.volumeInfo?.pageCount,
-                categories: item.volumeInfo.categories,
+                categories: item.volumeInfo.categories.join("-"),
                 publishedDate: item.volumeInfo.publishedDate,
                 averageRating: item.volumeInfo.averageRating,
                 ratingsCount: item.volumeInfo.ratingsCount,
