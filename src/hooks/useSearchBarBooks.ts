@@ -9,7 +9,6 @@ const useSearchBarBooks = (search: string | undefined) => {
 
     useEffect(() => {
         const fetchBooks = async () => {
-
             try {
                 if (!search) {
                     setBooks([])
