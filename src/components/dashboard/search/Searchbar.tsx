@@ -10,11 +10,32 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { SelectProps } from "@/types/SearchSelect";
+
 
 const SearchBar = ({ userId }: { userId: string }) => {
   const [searchResult, setSearchResult] = useState<string | undefined>();
   const [selectValue, setSelectValue] = useState<string | null>(null);
   const { books, errorMessage } = useSearchBarBooks(searchResult, selectValue);
+
+  const selectValueTitle: SelectProps[] = [
+    {
+      value: "author",
+      title: "Par Auteur",
+    },
+    {
+      value: "title",
+      title: "Par Titre",
+    },
+    {
+      value: "publisher",
+      title: "Par Editeur",
+    },
+    {
+      value: "subject",
+      title: "Par sujet spécifique",
+    },
+  ];
 
   const handleSelectChange = (value: string) => {
     setSelectValue(value);
@@ -29,14 +50,13 @@ const SearchBar = ({ userId }: { userId: string }) => {
     <div className="relative ml-auto flex-1">
       <div className="absolute top-1/2 right-2 transform -translate-y-1/2">
         <Select onValueChange={handleSelectChange}>
-          <SelectTrigger className="w-full border-r-0 bg-transparent shadow-none">
+          <SelectTrigger className="w-full border-0 bg-transparent shadow-none bg-zinc-800 text-slate-50 dark:bg-slate-50 dark:text-zinc-800">
             <SelectValue placeholder="Faire une recherche ciblé" />
           </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="author">Par Auteur</SelectItem>
-            <SelectItem value="title">Par Titre</SelectItem>
-            <SelectItem value="publisher">Par Editeur</SelectItem>
-            <SelectItem value="subject">Par sujet spécifique</SelectItem>
+          <SelectContent className="bg-zinc-800 text-slate-50 dark:bg-slate-50 dark:text-zinc-800">
+            {selectValueTitle.map((item) => {
+              return <SelectItem value={item.value}>{item.title}</SelectItem>;
+            })}
           </SelectContent>
         </Select>
       </div>
