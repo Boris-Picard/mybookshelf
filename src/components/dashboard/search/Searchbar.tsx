@@ -28,11 +28,11 @@ const SearchBar = ({ userId }: { userId: string }) => {
     },
     {
       value: "publisher",
-      title: "Par Editeur",
+      title: "Par Éditeur",
     },
     {
       value: "subject",
-      title: "Par sujet spécifique",
+      title: "Par Sujet Spécifique",
     },
   ];
 
@@ -50,7 +50,7 @@ const SearchBar = ({ userId }: { userId: string }) => {
       <div className="absolute top-1/2 right-2 transform -translate-y-1/2">
         <Select onValueChange={handleSelectChange}>
           <SelectTrigger className="w-full border-0 bg-transparent shadow-none bg-zinc-800 text-slate-50 dark:bg-slate-50 dark:text-zinc-800">
-            <SelectValue placeholder="Faire une recherche ciblé" />
+            <SelectValue placeholder="Faire une recherche ciblée" />
           </SelectTrigger>
           <SelectContent className="bg-zinc-800 text-slate-50 dark:bg-slate-50 dark:text-zinc-800">
             <SelectItem value="all">Pas de type prédéfini</SelectItem>
@@ -58,7 +58,11 @@ const SearchBar = ({ userId }: { userId: string }) => {
               <hr />
             </div>
             {selectValueTitle.map((item) => {
-              return <SelectItem value={item.value}>{item.title}</SelectItem>;
+              return (
+                <SelectItem key={item.title} value={item.value}>
+                  {item.title}
+                </SelectItem>
+              );
             })}
           </SelectContent>
         </Select>
@@ -74,7 +78,9 @@ const SearchBar = ({ userId }: { userId: string }) => {
       {books && (
         <div className="overflow-auto max-h-[875px] absolute w-full rounded-md mt-1">
           {books.map((item) => {
-            return <TemplateSearchList userId={userId} books={item} />;
+            return (
+              <TemplateSearchList key={item.id} userId={userId} books={item} />
+            );
           })}
         </div>
       )}
