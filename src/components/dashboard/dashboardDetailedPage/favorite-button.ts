@@ -1,7 +1,7 @@
 "use server"
 
 import { Books } from "@/types/Books";
-import createFavoriteBook from "@/components/dashboard/dashboardDetailedPage/actions/add-favorite-book";
+import { createFavoriteBook } from "@/components/dashboard/dashboardDetailedPage/actions/favorite-book";
 
 const addFavoriteBook = async ({ book }: { book: Books }) => {
     try {

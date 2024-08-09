@@ -53,4 +53,34 @@ const createFavoriteBook = async (userBook: Books) => {
     }
 }
 
-export default createFavoriteBook
+
+const getFavorite = async (bookId: string) => {
+    try {
+        const user = await userService.getUser()
+
+        if (!user || typeof user.id !== "string") {
+            throw new Error("User not found")
+        }
+
+        const isFavorite = await db.favorite.findUnique({
+            where: {
+                bookId_userId: {
+                    bookId: bookId,
+                    userId: user.id,
+                }
+            }
+        })
+        
+        return true
+    } catch (error) {
+        if (error instanceof Error) {
+            console.log(error.message);
+
+            return error.message
+        } else {
+            throw new Error("An error occured")
+        }
+    }
+}
+
+export { createFavoriteBook, getFavorite }

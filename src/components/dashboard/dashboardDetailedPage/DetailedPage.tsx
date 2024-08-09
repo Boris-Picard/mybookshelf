@@ -7,8 +7,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Ratings from "@/components/dashboard/Ratings";
 import ReadBookButton from "@/components/dashboard/dashboardDetailedPage/ReadBookButton";
-import AddFavoriteButton from "@/components/dashboard/dashboardDetailedPage/AddFavoriteButton";
-import { FavoriteResponse } from "@/types/FavoriteBook";
+import AddFavoriteButton from "@/components/dashboard/dashboardDetailedPage/FavoriteButton";
 
 interface DetailedPageProps {
   bookId: string;
