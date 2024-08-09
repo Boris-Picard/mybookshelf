@@ -1,6 +1,5 @@
 "use client"
 import { Books } from "@/types/Books";
-import { User } from "next-auth";
 import { useState, useEffect } from "react";
 
 const useSearchBarBooks = (search: string | undefined, selectValue: string | null) => {
@@ -15,8 +14,22 @@ const useSearchBarBooks = (search: string | undefined, selectValue: string | nul
                     return
                 }
 
+                if (!selectValue) {
+                    selectValue = "all"
+                }
+
+                const queryMap: Record<string, string> = {
+                    author: `inauthor:${search}`,
+                    title: `intitle:${search}`,
+                    publisher: `inpublisher:${search}`,
+                    subject: `subject:${search}`,
+                    all: search
+                };
+
+                const query = queryMap[selectValue] || search
+
                 const response = await fetch(
-                    `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(search)}&orderBy=newest&maxResults=10&key=${process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API}`
+                    `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}&orderBy=newest&maxResults=10&key=${process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API}`
                 );
 
                 if (!response.ok) {
@@ -74,7 +87,7 @@ const useSearchBarBooks = (search: string | undefined, selectValue: string | nul
         };
         fetchBooks()
 
-    }, [search])
+    }, [search, selectValue])
 
     return { books, errorMessage }
 };

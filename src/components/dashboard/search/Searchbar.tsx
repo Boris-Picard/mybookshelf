@@ -12,7 +12,6 @@ import {
 } from "@/components/ui/select";
 import { SelectProps } from "@/types/SearchSelect";
 
-
 const SearchBar = ({ userId }: { userId: string }) => {
   const [searchResult, setSearchResult] = useState<string | undefined>();
   const [selectValue, setSelectValue] = useState<string | null>(null);
@@ -54,6 +53,10 @@ const SearchBar = ({ userId }: { userId: string }) => {
             <SelectValue placeholder="Faire une recherche ciblé" />
           </SelectTrigger>
           <SelectContent className="bg-zinc-800 text-slate-50 dark:bg-slate-50 dark:text-zinc-800">
+            <SelectItem value="all">Pas de type prédéfini</SelectItem>
+            <div className="py-3">
+              <hr />
+            </div>
             {selectValueTitle.map((item) => {
               return <SelectItem value={item.value}>{item.title}</SelectItem>;
             })}
