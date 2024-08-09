@@ -1,6 +1,7 @@
 import { Books } from "@/types/Books";
 import Image from "next/image";
 import Link from "next/link";
+import Ratings from "../Ratings";
 
 const TemplateSearchList = ({
   books,
@@ -9,7 +10,7 @@ const TemplateSearchList = ({
   books: Books;
   userId: string;
 }) => {
-  console.log(books);
+  
   return (
     <div className="flex p-3 items-center bg-slate-50 dark:bg-zinc-950">
       <Link
@@ -22,14 +23,24 @@ const TemplateSearchList = ({
             alt={books.title}
             width={100}
             height={100}
-            className="object-cover rounded-md"
+            className="object-cover rounded-md h-full"
           />
         </div>
-        <div className="flex flex-col flex-grow space-y-3 px-6">
+        <div className="flex flex-col flex-grow px-6">
           <span className="text-balance font-semibold line-clamp-1">
             {books.title}
           </span>
-          <span className="text-muted-foreground">{books.authors}</span>
+          <div className="flex flex-col py-2">
+            {books.authors && (
+              <span className="text-muted-foreground">{books.authors}</span>
+            )}
+            {books.categories && (
+              <span className="text-muted-foreground">
+                Catégorie : {books.categories}
+              </span>
+            )}
+            {books.averageRating && <Ratings ratings={books.averageRating} />}
+          </div>
           <span className="text-pretty line-clamp-2">{books.description}</span>
         </div>
       </Link>
