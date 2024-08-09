@@ -53,7 +53,7 @@ const SearchBar = ({ userId }: { userId: string }) => {
             <SelectValue placeholder="Faire une recherche ciblée" />
           </SelectTrigger>
           <SelectContent className="bg-zinc-800 text-slate-50 dark:bg-slate-50 dark:text-zinc-800">
-            <SelectItem value="all">Pas de type prédéfini</SelectItem>
+            <SelectItem value="all">Pas de recherche prédéfini</SelectItem>
             <div className="py-3">
               <hr />
             </div>

@@ -1,14 +1,16 @@
 import { Button } from "@/components/ui/button";
-import addFavoriteBook from "@/components/dashboard/dashboardDetailedPage/favorite-button";
+import addFavoriteBookButton from "@/components/dashboard/dashboardDetailedPage/favorite-button";
 import { Books } from "@/types/Books";
 import { Star } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getFavorite } from "@/components/dashboard/dashboardDetailedPage/actions/favorite-book";
 
 const AddFavoriteButton = ({ book }: { book: Books }) => {
+  const [favorite, setFavorite] = useState();
+
   const handleFavorite = async () => {
     try {
-      const response = await addFavoriteBook({ book });
+      const response = await addFavoriteBookButton({ book });
       return response;
     } catch (error) {
       console.log(error);
@@ -19,14 +21,18 @@ const AddFavoriteButton = ({ book }: { book: Books }) => {
     const fetchFavorite = async () => {
       const response = await getFavorite(book.id);
       console.log(response);
+      
+      if (typeof response !== "string" && typeof response !== "boolean") {
+        setFavorite(response);
+      }
     };
-    fetchFavorite()
+    fetchFavorite();
   }, []);
 
   return (
     <Button variant="outline" onClick={handleFavorite} className="flex gap-3">
-      <Star />
-      Ajouter aux favoris
+      <Star fill={favorite ? "gold" : ""} color={favorite ? "gold" : ""} />
+      {favorite ? "" : "Ajouter aux favoris"}
     </Button>
   );
 };

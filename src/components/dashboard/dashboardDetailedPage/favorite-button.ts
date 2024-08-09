@@ -3,7 +3,7 @@
 import { Books } from "@/types/Books";
 import { createFavoriteBook } from "@/components/dashboard/dashboardDetailedPage/actions/favorite-book";
 
-const addFavoriteBook = async ({ book }: { book: Books }) => {
+const addFavoriteBookButton = async ({ book }: { book: Books }) => {
     try {
         const response = await createFavoriteBook(book)
         return response
@@ -13,4 +13,4 @@ const addFavoriteBook = async ({ book }: { book: Books }) => {
     }
 }
 
-export default addFavoriteBook
+export default addFavoriteBookButton

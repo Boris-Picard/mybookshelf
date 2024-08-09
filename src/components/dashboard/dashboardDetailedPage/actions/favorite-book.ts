@@ -2,6 +2,7 @@
 import UserService from "@/services/UserService";
 import db from "@/lib/db"
 import { Books } from "@/types/Books";
+import { FavoriteResponse } from "@/types/FavoriteBook";
 
 const userService = new UserService()
 
@@ -41,7 +42,7 @@ const createFavoriteBook = async (userBook: Books) => {
             }
         })
 
-        return true
+        return addFavorite
     } catch (error) {
         if (error instanceof Error) {
             console.log(error.message);
@@ -70,8 +71,12 @@ const getFavorite = async (bookId: string) => {
                 }
             }
         })
-        
-        return true
+
+        if (!isFavorite) {
+            return false
+        }
+
+        return isFavorite as FavoriteResponse
     } catch (error) {
         if (error instanceof Error) {
             console.log(error.message);
