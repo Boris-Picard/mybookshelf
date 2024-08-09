@@ -1,4 +1,4 @@
-import AddReadBook from "@/components/dashboard/dashboardDetailedPage/add-read-book";
+import addReadBook from "@/components/dashboard/dashboardDetailedPage/add-read-book";
 import { toast } from "react-toastify";
 import { AnimatedSubscribeButton } from "@/components/magicui/animated-subscribe-button";
 import { CheckIcon, ChevronRightIcon } from "lucide-react";
@@ -35,7 +35,7 @@ const ReadBookButton = ({
   const handleBook = async () => {
     try {
       if (!isSubscribed) {
-        const response = await AddReadBook(bookId, pageNumber);
+        const response = await addReadBook(bookId, pageNumber);
         if (response) {
           toast.success("Vous avez marqué ce livre comme lu avec succès.");
           setIsSubscribed(true);

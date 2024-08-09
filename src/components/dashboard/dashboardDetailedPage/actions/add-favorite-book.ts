@@ -12,7 +12,6 @@ const createFavoriteBook = async (userBook: Books) => {
         if (!user || typeof user.id !== "string") {
             throw new Error("User not found")
         }
-        console.log(userBook);
 
         const favorite = await db.favorite.findUnique({
             where: {
@@ -42,7 +41,7 @@ const createFavoriteBook = async (userBook: Books) => {
             }
         })
 
-        return addFavorite
+        return true
     } catch (error) {
         if (error instanceof Error) {
             console.log(error.message);

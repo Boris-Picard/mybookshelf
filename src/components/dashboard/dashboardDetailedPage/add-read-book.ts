@@ -2,7 +2,7 @@
 
 import { createReadBookStatus } from "@/components/dashboard/dashboardDetailedPage/actions/book-status-action"
 
-const AddReadBook = async (bookId: string, pageNumber: number) => {
+const addReadBook = async (bookId: string, pageNumber: number) => {
     try {
         const response = await createReadBookStatus(bookId, pageNumber)
         return response
@@ -11,4 +11,4 @@ const AddReadBook = async (bookId: string, pageNumber: number) => {
     }
 }
 
-export default AddReadBook
+export default addReadBook
