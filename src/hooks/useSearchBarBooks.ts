@@ -3,7 +3,7 @@ import { Books } from "@/types/Books";
 import { User } from "next-auth";
 import { useState, useEffect } from "react";
 
-const useSearchBarBooks = (search: string | undefined) => {
+const useSearchBarBooks = (search: string | undefined, selectValue: string | null) => {
     const [books, setBooks] = useState<Books[]>([]);
     const [errorMessage, setErrorMessage] = useState<string>("");
 

@@ -13,7 +13,12 @@ import {
 
 const SearchBar = ({ userId }: { userId: string }) => {
   const [searchResult, setSearchResult] = useState<string | undefined>();
-  const { books, errorMessage } = useSearchBarBooks(searchResult);
+  const [selectValue, setSelectValue] = useState<string | null>(null);
+  const { books, errorMessage } = useSearchBarBooks(searchResult, selectValue);
+
+  const handleSelectChange = (value: string) => {
+    setSelectValue(value);
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -23,14 +28,15 @@ const SearchBar = ({ userId }: { userId: string }) => {
   return (
     <div className="relative ml-auto flex-1">
       <div className="absolute top-1/2 right-2 transform -translate-y-1/2">
-        <Select>
-          <SelectTrigger className="w-[180px] border-r-0 bg-transparent shadow-none">
-            <SelectValue placeholder="Theme" />
+        <Select onValueChange={handleSelectChange}>
+          <SelectTrigger className="w-full border-r-0 bg-transparent shadow-none">
+            <SelectValue placeholder="Faire une recherche ciblé" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="light">Light</SelectItem>
-            <SelectItem value="dark">Dark</SelectItem>
-            <SelectItem value="system">System</SelectItem>
+            <SelectItem value="author">Par Auteur</SelectItem>
+            <SelectItem value="title">Par Titre</SelectItem>
+            <SelectItem value="publisher">Par Editeur</SelectItem>
+            <SelectItem value="subject">Par sujet spécifique</SelectItem>
           </SelectContent>
         </Select>
       </div>
