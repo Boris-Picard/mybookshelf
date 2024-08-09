@@ -16,7 +16,7 @@ const useSearchBarBooks = (search: string | undefined) => {
                 }
 
                 const response = await fetch(
-                    `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(search)}&orderBy=newest&maxResults=20&key=${process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API}`
+                    `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(search)}&orderBy=newest&maxResults=10&key=${process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API}`
                 );
 
                 if (!response.ok) {

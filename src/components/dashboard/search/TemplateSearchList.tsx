@@ -1,7 +1,7 @@
 import { Books } from "@/types/Books";
 import Image from "next/image";
 import Link from "next/link";
-import Ratings from "../Ratings";
+import Ratings from "@/components/dashboard/Ratings";
 
 const TemplateSearchList = ({
   books,
@@ -10,7 +10,7 @@ const TemplateSearchList = ({
   books: Books;
   userId: string;
 }) => {
-  
+
   return (
     <div className="flex p-3 items-center bg-slate-50 dark:bg-zinc-950">
       <Link
