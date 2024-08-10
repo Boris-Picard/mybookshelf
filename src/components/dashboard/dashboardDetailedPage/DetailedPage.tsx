@@ -16,12 +16,17 @@ interface DetailedPageProps {
 const DetailedPage: React.FC<DetailedPageProps> = ({ bookId }) => {
   const { detailedBook } = useDetailedBook(bookId);
   const [book] = detailedBook;
+  console.log(bookId);
   
+  console.log(book);
+  
+  console.log(detailedBook);
   if (detailedBook.length === 0) {
     return (
       <h1 className="text-xl text-muted-foreground">Pas de livres trouvés</h1>
     );
   }
+
 
   const description = book.description;
   const cleanDescription = DOMPurify.sanitize(description);

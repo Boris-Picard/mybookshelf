@@ -26,10 +26,10 @@ const useDetailedBook = (bookId: string) => {
                 id: item.id,
                 title: item.volumeInfo.title,
                 authors: item.volumeInfo?.authors?.join(" - "),
-                description: item.volumeInfo.description,
+                description: item.volumeInfo?.description,
                 thumbnail: item.volumeInfo?.imageLinks?.thumbnail,
                 page: item.volumeInfo?.pageCount,
-                categories: item.volumeInfo.categories.join("-"),
+                categories: item.volumeInfo?.categories?.join("-"),
                 publishedDate: item.volumeInfo.publishedDate,
                 averageRating: item.volumeInfo.averageRating,
                 ratingsCount: item.volumeInfo.ratingsCount,
@@ -41,6 +41,7 @@ const useDetailedBook = (bookId: string) => {
                 webReader: item.accessInfo.webReaderLink,
                 searchInfo: item.searchInfo?.textSnippet,
             }));
+
             setdetailedBook(filteredData);
         } catch (error) {
             // type guard avec instanceof pour vérifier que l'objet error est bien une instance de Error
