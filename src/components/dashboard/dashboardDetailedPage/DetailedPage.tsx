@@ -16,17 +16,12 @@ interface DetailedPageProps {
 const DetailedPage: React.FC<DetailedPageProps> = ({ bookId }) => {
   const { detailedBook } = useDetailedBook(bookId);
   const [book] = detailedBook;
-  console.log(bookId);
-  
-  console.log(book);
-  
-  console.log(detailedBook);
+
   if (detailedBook.length === 0) {
     return (
       <h1 className="text-xl text-muted-foreground">Pas de livres trouvés</h1>
     );
   }
-
 
   const description = book.description;
   const cleanDescription = DOMPurify.sanitize(description);
@@ -56,12 +51,16 @@ const DetailedPage: React.FC<DetailedPageProps> = ({ bookId }) => {
         </div>
         <div className="col-span-2 p-8 space-y-3">
           <div className="flex flex-col space-y-3">
-            <span className="font-semibold">Auteur : {book.authors}</span>
-            <div
-              className="text-pretty py-8"
-              dangerouslySetInnerHTML={{ __html: cleanDescription }}
-            />
-            <hr />
+            {book.authors && (
+              <span className="font-semibold">Auteur : {book.authors}</span>
+            )}
+            {cleanDescription && (
+              <div
+                className="text-pretty py-8"
+                dangerouslySetInnerHTML={{ __html: cleanDescription }}
+              />
+            )}
+            {book.authors || (cleanDescription && <hr />)}
           </div>
           <div className="py-8 space-y-3">
             {book.categories && (

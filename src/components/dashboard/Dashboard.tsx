@@ -4,14 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Package2, PanelLeft } from "lucide-react";
 
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 
 import {
@@ -39,6 +31,7 @@ import CategoriesList from "@/components/dashboard/dashboardCategories/Categorie
 import DetailedPage from "@/components/dashboard/dashboardDetailedPage/DetailedPage";
 import BookReadStats from "@/components/dashboard/dashboardHome/BookReadStats";
 import SearchBar from "@/components/dashboard/search/Searchbar";
+import BreadCrumb from "@/components/dashboard/Breadcrumb";
 
 interface DashboardProps {
   user?: User;
@@ -96,25 +89,7 @@ const Dashboard: React.FC<DashboardProps> = ({ user, category, bookId }) => {
               </nav>
             </SheetContent>
           </Sheet>
-          <Breadcrumb className="hidden md:flex">
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link href="#">Dashboard</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link href="#">Orders</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbPage>Recent Orders</BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
+          <BreadCrumb userId={user.id}/>
           <SearchBar userId={user.id} />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
