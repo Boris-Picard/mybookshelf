@@ -89,7 +89,13 @@ const Dashboard: React.FC<DashboardProps> = ({ user, category, bookId }) => {
               </nav>
             </SheetContent>
           </Sheet>
-          <BreadCrumb userId={user.id}/>
+          <BreadCrumb
+            userId={user.id}
+            isHome={isHome}
+            isFavorites={isFavorites}
+            isCategories={isCategories}
+            isDetailed={isDetailed}
+          />
           <SearchBar userId={user.id} />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
