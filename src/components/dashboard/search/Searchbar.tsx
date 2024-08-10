@@ -11,6 +11,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { SelectProps } from "@/types/SearchSelect";
+import { z } from "zod";
+import { toast } from "react-toastify";
 
 const SearchBar = ({ userId }: { userId: string }) => {
   const [searchResult, setSearchResult] = useState<string | undefined>();
@@ -36,13 +38,24 @@ const SearchBar = ({ userId }: { userId: string }) => {
     },
   ];
 
+  const searchSchema = z.string();
+
   const handleSelectChange = (value: string) => {
     setSelectValue(value);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setSearchResult(value);
+    try {
+      const value = e.target.value;
+      searchSchema.parse(value);
+      setSearchResult(value);
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error(error.message);
+      } else {
+        toast.error("An error occured");
+      }
+    }
   };
 
   return (
