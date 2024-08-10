@@ -36,7 +36,6 @@ const useSearchBarBooks = (search: string | undefined, selectValue: string | nul
                     throw new Error(`Error: ${response.status}`);
                 }
                 const data = await response.json();
-                console.log(data);
 
                 if (data.totalItems === 0) {
                     setBooks([])
@@ -49,18 +48,9 @@ const useSearchBarBooks = (search: string | undefined, selectValue: string | nul
                     authors: item.volumeInfo?.authors?.slice(0, 1),
                     description: item.volumeInfo.description,
                     thumbnail: item.volumeInfo?.imageLinks?.thumbnail,
-                    page: item.volumeInfo?.pageCount,
                     categories: item.volumeInfo.categories,
-                    publishedDate: item.volumeInfo.publishedDate,
                     averageRating: item.volumeInfo.averageRating,
                     ratingsCount: item.volumeInfo.ratingsCount,
-                    previewLink: item.volumeInfo.previewLink,
-                    infoLink: item.volumeInfo.infoLink,
-                    amount: item.saleInfo.listPrice?.amount,
-                    currencyCode: item.saleInfo.listPrice?.currencyCode,
-                    pdf: item.accessInfo.pdf.acsTokenLink,
-                    webReader: item.accessInfo.webReaderLink,
-                    searchInfo: item.searchInfo?.textSnippet,
                 }));
 
                 // on récupère tous les titres de filteredData dans un tableau titles
