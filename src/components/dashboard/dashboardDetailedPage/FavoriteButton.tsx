@@ -1,18 +1,44 @@
 import { Button } from "@/components/ui/button";
-import addFavoriteBookButton from "@/components/dashboard/dashboardDetailedPage/favorite-button";
+import {
+  addFavoriteBookButton,
+  deleteFavoriteButton,
+} from "@/components/dashboard/dashboardDetailedPage/favorite-button";
 import { Books } from "@/types/Books";
 import { Star } from "lucide-react";
 import { useEffect, useState } from "react";
 import { getFavorite } from "@/components/dashboard/dashboardDetailedPage/actions/favorite-book";
 import { FavoriteResponse } from "@/types/FavoriteBook";
+import { toast } from "react-toastify";
 
 const AddFavoriteButton = ({ book }: { book: Books }) => {
   const [favorite, setFavorite] = useState<FavoriteResponse>();
 
   const handleFavorite = async () => {
     try {
-      const response = await addFavoriteBookButton({ book });
-      return response;
+      if (!favorite) {
+        const response = await addFavoriteBookButton({ book });
+        if (typeof response !== "string" && typeof response !== undefined) {
+          toast.success("Livre ajouté aux favoris");
+          setFavorite(response)
+          return response;
+        }
+        if (typeof response === "string") {
+          toast.error(response);
+          return response;
+        }
+      }
+      if (favorite) {
+        const response = await deleteFavoriteButton(book.id);
+        if (typeof response !== "string" && typeof response !== undefined) {
+          toast.success("Livre supprimé des favoris");
+          setFavorite(undefined)
+          return response;
+        }
+        if (typeof response === "string") {
+          toast.error(response);
+          return response;
+        }
+      }
     } catch (error) {
       console.log(error);
     }
@@ -21,7 +47,6 @@ const AddFavoriteButton = ({ book }: { book: Books }) => {
   useEffect(() => {
     const fetchFavorite = async () => {
       const response = await getFavorite(book.id);
-      console.log(response);
       if (typeof response !== "string" && typeof response !== "boolean") {
         setFavorite(response);
       }

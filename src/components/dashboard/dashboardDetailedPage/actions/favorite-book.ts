@@ -24,7 +24,7 @@ const createFavoriteBook = async (userBook: Books) => {
         })
 
         if (favorite) {
-            throw new Error("Book already in favorite")
+            throw new Error("Livre déja dans les favoris")
         }
 
         const addFavorite = await db.favorite.create({

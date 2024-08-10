@@ -1,7 +1,7 @@
 "use server"
 
 import { Books } from "@/types/Books";
-import { createFavoriteBook } from "@/components/dashboard/dashboardDetailedPage/actions/favorite-book";
+import { createFavoriteBook, deleteFavorite } from "@/components/dashboard/dashboardDetailedPage/actions/favorite-book";
 
 const addFavoriteBookButton = async ({ book }: { book: Books }) => {
     try {
@@ -12,4 +12,13 @@ const addFavoriteBookButton = async ({ book }: { book: Books }) => {
     }
 }
 
-export default addFavoriteBookButton
+const deleteFavoriteButton = async (bookId: string) => {
+    try {
+        const response = await deleteFavorite(bookId)
+        return response
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export { addFavoriteBookButton, deleteFavoriteButton }
