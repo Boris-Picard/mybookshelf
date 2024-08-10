@@ -19,7 +19,7 @@ const AddFavoriteButton = ({ book }: { book: Books }) => {
         const response = await addFavoriteBookButton({ book });
         if (typeof response !== "string" && typeof response !== undefined) {
           toast.success("Livre ajouté aux favoris");
-          setFavorite(response)
+          setFavorite(response);
           return response;
         }
         if (typeof response === "string") {
@@ -31,7 +31,7 @@ const AddFavoriteButton = ({ book }: { book: Books }) => {
         const response = await deleteFavoriteButton(book.id);
         if (typeof response !== "string" && typeof response !== undefined) {
           toast.success("Livre supprimé des favoris");
-          setFavorite(undefined)
+          setFavorite(undefined);
           return response;
         }
         if (typeof response === "string") {
@@ -56,7 +56,10 @@ const AddFavoriteButton = ({ book }: { book: Books }) => {
 
   return (
     <Button variant="outline" onClick={handleFavorite} className="flex gap-3">
-      <Star fill={favorite ? "gold" : ""} color={favorite ? "gold" : ""} />
+      <Star
+        fill={favorite ? "gold" : ""}
+        color={favorite ? "gold" : "white"}
+      />
       {favorite ? "" : "Ajouter aux favoris"}
     </Button>
   );

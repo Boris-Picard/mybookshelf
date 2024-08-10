@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import FavoriteButton from "@/components/dashboard/dashboardHome/FavoriteButton";
 import { FavoriteResponse } from "@/types/FavoriteBook";
 import React from "react";
+import DOMPurify from "dompurify";
 
 interface CardFavoriteProps {
   favorites: FavoriteResponse;
@@ -25,6 +26,8 @@ const CardFavoriteTemplateList: React.FC<CardFavoriteProps> = ({
   favorites,
   userId,
 }) => {
+  
+  const cleanDescription = DOMPurify.sanitize(favorites.description || "");
 
   return (
     <Card className="w-full flex px-4 pl-0 py-0">
@@ -86,9 +89,10 @@ const CardFavoriteTemplateList: React.FC<CardFavoriteProps> = ({
               </div>
             )}
             {favorites.description && (
-              <CardDescription className="text-sm sm:text-base text-pretty line-clamp-3 mt-4">
-                {favorites.description}
-              </CardDescription>
+              <CardDescription
+                className="text-sm sm:text-base text-pretty line-clamp-3 mt-4"
+                dangerouslySetInnerHTML={{ __html: cleanDescription }}
+              ></CardDescription>
             )}
             <div className="flex flex-row mt-4 text-sm sm:text-base text-muted-foreground">
               <CardContent className="p-0 flex items-center w-full">
