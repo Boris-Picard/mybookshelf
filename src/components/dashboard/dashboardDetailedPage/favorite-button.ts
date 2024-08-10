@@ -9,7 +9,6 @@ const addFavoriteBookButton = async ({ book }: { book: Books }) => {
         return response
     } catch (error) {
         console.log(error);
-
     }
 }
 

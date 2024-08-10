@@ -88,4 +88,48 @@ const getFavorite = async (bookId: string) => {
     }
 }
 
-export { createFavoriteBook, getFavorite }
+const deleteFavorite = async (bookId: string) => {
+    try {
+        const user = await userService.getUser()
+
+        if (!user || typeof user.id !== "string") {
+            throw new Error("User not found")
+        }
+
+        const isFavorite = await db.favorite.findUnique({
+            where: {
+                bookId_userId: {
+                    bookId: bookId,
+                    userId: user.id
+                }
+            }
+        })
+
+        if (!isFavorite) {
+            throw new Error("Le livre n'est pas dans les favoris")
+        }
+
+        const deleteFavoriteBook = await db.favorite.delete({
+            where: {
+                bookId_userId: {
+                    bookId: bookId,
+                    userId: user.id
+                }
+            }
+        })
+
+        console.log(deleteFavoriteBook);
+
+        return deleteFavoriteBook
+    } catch (error) {
+        if (error instanceof Error) {
+            console.log(error.message);
+
+            return error.message
+        } else {
+            throw new Error("An error occured")
+        }
+    }
+}
+
+export { createFavoriteBook, getFavorite, deleteFavorite }
