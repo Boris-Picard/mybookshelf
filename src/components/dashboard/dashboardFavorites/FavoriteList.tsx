@@ -93,14 +93,14 @@ const FavoriteList = ({ userId }: { bookId?: string; userId: string }) => {
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Trier par genres" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="max-w-[180px]">
             <SelectGroup>
               <SelectItem value="all">Tous les genres</SelectItem>
               <div className="py-3">
                 <hr />
               </div>
               {uniqueCategories.map((category) => {
-                return <SelectItem value={category}>{category}</SelectItem>;
+                return <SelectItem className="line-clamp-2 items-center max-h-[50px]" value={category}>{category}</SelectItem>;
               })}
             </SelectGroup>
           </SelectContent>
@@ -109,14 +109,14 @@ const FavoriteList = ({ userId }: { bookId?: string; userId: string }) => {
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Trier par auteurs" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="max-w-[180px]">
             <SelectGroup>
               <SelectItem value="all">Tous les auteurs</SelectItem>
               <div className="py-3">
                 <hr />
               </div>
               {uniqueAuthors.map((author) => {
-                return <SelectItem value={author}>{author}</SelectItem>;
+                return <SelectItem className="line-clamp-2 items-center max-h-[50px]" value={author}>{author}</SelectItem>;
               })}
             </SelectGroup>
           </SelectContent>

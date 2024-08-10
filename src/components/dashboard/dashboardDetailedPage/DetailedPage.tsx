@@ -60,7 +60,7 @@ const DetailedPage: React.FC<DetailedPageProps> = ({ bookId }) => {
                 dangerouslySetInnerHTML={{ __html: cleanDescription }}
               />
             )}
-            {book.authors || (cleanDescription && <hr />)}
+            {book.authors && cleanDescription && <hr />}
           </div>
           <div className="py-8 space-y-3">
             {book.categories && (
