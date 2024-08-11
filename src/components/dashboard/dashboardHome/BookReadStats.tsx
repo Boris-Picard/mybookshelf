@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import GetAllReadBooks from "./get-all-books";
 import Image from "next/image";
+import { SkeletonReadStats } from "./SkeletonReadStats";
 
 const BookReadStats = () => {
   const [nbPages, setNbPages] = useState<number | null>(null);
   const [nbBook, setNbBooks] = useState<number | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchAllBooks = async () => {
@@ -14,6 +16,7 @@ const BookReadStats = () => {
         if (response && typeof response !== "string") {
           setNbPages(response._sum.pageNumber);
           setNbBooks(response._count.id);
+          setLoading(false);
         }
       } catch (error) {
         if (error instanceof Error && typeof error.message === "string") {
@@ -24,8 +27,12 @@ const BookReadStats = () => {
     fetchAllBooks();
   }, []);
 
-  if(errorMessage !== null) {
-    return <h1 className="text-xl font-bold text-red-500">{errorMessage}</h1>
+  if (errorMessage !== null) {
+    return <h1 className="text-xl font-bold text-red-500">{errorMessage}</h1>;
+  }
+
+  if (loading) {
+    return <SkeletonReadStats />;
   }
 
   return (
