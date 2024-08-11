@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 const useDetailedBook = (bookId: string) => {
     const [detailedBook, setdetailedBook] = useState<Books[]>([]);
     const [errorMessage, setErrorMessage] = useState<string>("");
+    const [loading, setLoading] = useState<boolean>(true)
 
     const fetchBooks = async () => {
         try {
@@ -42,7 +43,10 @@ const useDetailedBook = (bookId: string) => {
                 searchInfo: item.searchInfo?.textSnippet,
             }));
 
-            setdetailedBook(filteredData);
+            if (filteredData) {
+                setdetailedBook(filteredData);
+                setLoading(false)
+            }
         } catch (error) {
             // type guard avec instanceof pour vérifier que l'objet error est bien une instance de Error
             if (error instanceof Error) {
@@ -57,7 +61,7 @@ const useDetailedBook = (bookId: string) => {
         fetchBooks();
     }, []);
 
-    return { detailedBook, errorMessage }
+    return { detailedBook, errorMessage, loading }
 };
 
 export default useDetailedBook
