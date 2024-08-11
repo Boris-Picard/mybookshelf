@@ -60,7 +60,7 @@ const SearchBar = ({ userId }: { userId: string }) => {
 
   return (
     <div className="relative ml-auto flex-1">
-      <div className="absolute top-1/2 right-2 transform -translate-y-1/2">
+      <div className="absolute top-1/2 right-0 transform -translate-y-1/2">
         <Select onValueChange={handleSelectChange}>
           <SelectTrigger className="w-full border-0 bg-transparent shadow-none bg-zinc-800 text-slate-50 dark:bg-slate-50 dark:text-zinc-800">
             <SelectValue placeholder="Faire une recherche ciblée" />
@@ -85,7 +85,7 @@ const SearchBar = ({ userId }: { userId: string }) => {
         onChange={(e) => handleChange(e)}
         type="search"
         value={searchResult}
-        placeholder="Search..."
+        placeholder={`Recherche par ${selectValue || "tous"}`}
         className="w-full rounded-lg bg-background pl-8"
       />
       {books && (
