@@ -13,11 +13,15 @@ import {
 import { SelectProps } from "@/types/SearchSelect";
 import { z } from "zod";
 import { toast } from "react-toastify";
+import { SkeletonSearch } from "@/components/dashboard/search/SkeletonSearch";
 
 const SearchBar = ({ userId }: { userId: string }) => {
   const [searchResult, setSearchResult] = useState<string | undefined>();
   const [selectValue, setSelectValue] = useState<string | null>(null);
-  const { books, errorMessage } = useSearchBarBooks(searchResult, selectValue);
+  const { books, errorMessage, loading } = useSearchBarBooks(
+    searchResult,
+    selectValue
+  );
 
   const selectValueTitle: SelectProps[] = [
     {
@@ -90,11 +94,19 @@ const SearchBar = ({ userId }: { userId: string }) => {
       />
       {books && (
         <div className="overflow-auto max-h-[875px] absolute w-full rounded-md mt-1">
-          {books.map((item) => {
-            return (
-              <TemplateSearchList key={item.id} userId={userId} books={item} />
-            );
-          })}
+          {loading ? (
+            <SkeletonSearch />
+          ) : (
+            books.map((item) => {
+              return (
+                <TemplateSearchList
+                  key={item.id}
+                  userId={userId}
+                  books={item}
+                />
+              );
+            })
+          )}
         </div>
       )}
     </div>

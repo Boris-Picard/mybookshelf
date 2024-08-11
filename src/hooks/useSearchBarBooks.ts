@@ -5,14 +5,18 @@ import { useState, useEffect } from "react";
 const useSearchBarBooks = (search: string | undefined, selectValue: string | null) => {
     const [books, setBooks] = useState<Books[]>([]);
     const [errorMessage, setErrorMessage] = useState<string>("");
+    const [loading, setLoading] = useState<boolean>(false)
 
     useEffect(() => {
         const fetchBooks = async () => {
             try {
                 if (!search) {
                     setBooks([])
+                    setLoading(false)
                     return
                 }
+
+                setLoading(true)
 
                 if (!selectValue) {
                     selectValue = "all"
@@ -65,7 +69,10 @@ const useSearchBarBooks = (search: string | undefined, selectValue: string | nul
                 // filtre par date du plus récent au plus ancien
                 const sortByDate = filteredByTitle.sort((a, b) => new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime());
 
-                setBooks(sortByDate);
+                if (sortByDate.length > 0) {
+                    setBooks(sortByDate);
+                    setLoading(false)
+                }
             } catch (error) {
                 // type guard avec instanceof pour vérifier que l'objet error est bien une instance de Error
                 if (error instanceof Error) {
@@ -79,7 +86,7 @@ const useSearchBarBooks = (search: string | undefined, selectValue: string | nul
 
     }, [search, selectValue])
 
-    return { books, errorMessage }
+    return { books, errorMessage, loading }
 };
 
 export default useSearchBarBooks
