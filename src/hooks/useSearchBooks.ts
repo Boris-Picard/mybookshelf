@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 const useSearchBooks = ({ slice, category }: { slice: number, category: string | null }) => {
     const [books, setBooks] = useState<Books[]>([]);
     const [errorMessage, setErrorMessage] = useState<string>("");
+    const [loading, setLoading] = useState<boolean>(true)
 
     useEffect(() => {
         const fetchBooks = async () => {
@@ -54,8 +55,10 @@ const useSearchBooks = ({ slice, category }: { slice: number, category: string |
 
                 // filtre par date du plus récent au plus ancien
                 const sortByDate = filteredByTitle.sort((a, b) => new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime());
-
-                setBooks(sortByDate.slice(0, slice));
+                if (sortByDate.length > 0) {
+                    setLoading(false)
+                    setBooks(sortByDate.slice(0, slice));
+                }
             } catch (error) {
                 // type guard avec instanceof pour vérifier que l'objet error est bien une instance de Error
                 if (error instanceof Error) {
@@ -66,13 +69,13 @@ const useSearchBooks = ({ slice, category }: { slice: number, category: string |
             }
         };
         // todo make bestsellers work
-        if (category ) {
+        if (category) {
             fetchBooks()
-        } 
+        }
 
     }, [slice, category])
 
-    return { books, errorMessage }
+    return { books, errorMessage, loading }
 };
 
 export default useSearchBooks

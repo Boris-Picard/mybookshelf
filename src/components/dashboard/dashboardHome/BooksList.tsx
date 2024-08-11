@@ -9,6 +9,7 @@ import {
   findMostFrequentCategory,
 } from "@/components/dashboard/dashboardHome/actions/favorite-action";
 import { useFavorites } from "@/store/favorites";
+import { SkeletonCard } from "@/components/dashboard/SkeletonCard";
 
 interface BooksListProps {
   userId: string;
@@ -21,7 +22,7 @@ const BooksList: React.FC<BooksListProps> = ({
 }) => {
   const [slice, setSlice] = useState<number>(3);
   const [category, setCategory] = useState<string | null>(null);
-  const { books, errorMessage } = useSearchBooks({ slice, category });
+  const { books, errorMessage, loading } = useSearchBooks({ slice, category });
   const { favorites, addFavoriteBook } = useFavorites();
 
   useEffect(() => {
@@ -56,24 +57,29 @@ const BooksList: React.FC<BooksListProps> = ({
   if (errorMessage) {
     return <h1 className="text-xl text-red-500">{errorMessage}</h1>;
   }
-  if (books.length === 0) {
-    return (
-      <h2 className="text-muted-foreground text-xl">Pas de livres trouvés !</h2>
-    );
+
+  if (loading) {
+    return <SkeletonCard />;
   }
 
   return (
     <div className="space-y-4">
-      {books.map((item) => {
-        return (
-          <CardList
-            key={item.id}
-            books={item}
-            favorites={favorites}
-            userId={userId}
-          />
-        );
-      })}
+      {books.length === 0 ? (
+        <h2 className="text-muted-foreground text-xl">
+          Pas de livres trouvés !
+        </h2>
+      ) : (
+        books.map((item) => {
+          return (
+            <CardList
+              key={item.id}
+              books={item}
+              favorites={favorites}
+              userId={userId}
+            />
+          );
+        })
+      )}
       <div className="flex justify-between mx-auto space-x-3">
         <Button
           onClick={() => setSlice(slice + 3)}
