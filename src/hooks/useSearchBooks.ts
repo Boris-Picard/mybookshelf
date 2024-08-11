@@ -10,9 +10,14 @@ const useSearchBooks = ({ slice, category }: { slice: number, category: string |
 
     useEffect(() => {
         const fetchBooks = async () => {
+            if (!category) {
+                setBooks([])
+                setLoading(false)
+                return
+            }
             try {
                 const response = await fetch(
-                    `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(category ?? "bestsellers")}&orderBy=newest&maxResults=20&key=${process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API}`
+                    `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(category)}&orderBy=newest&maxResults=20&key=${process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API}`
                 );
                 if (!response.ok) {
                     throw new Error(`Error: ${response.status}`);
@@ -44,6 +49,7 @@ const useSearchBooks = ({ slice, category }: { slice: number, category: string |
                     searchInfo: item.searchInfo?.textSnippet,
                 }));
 
+
                 // on récupère tous les titres de filteredData dans un tableau titles
                 const titles = filteredData.map(({ title }) => title);
 
@@ -55,6 +61,7 @@ const useSearchBooks = ({ slice, category }: { slice: number, category: string |
 
                 // filtre par date du plus récent au plus ancien
                 const sortByDate = filteredByTitle.sort((a, b) => new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime());
+
                 if (sortByDate.length > 0) {
                     setLoading(false)
                     setBooks(sortByDate.slice(0, slice));
@@ -68,7 +75,6 @@ const useSearchBooks = ({ slice, category }: { slice: number, category: string |
                 }
             }
         };
-        // todo make bestsellers work
         if (category) {
             fetchBooks()
         }

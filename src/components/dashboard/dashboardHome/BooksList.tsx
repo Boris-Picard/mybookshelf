@@ -33,6 +33,9 @@ const BooksList: React.FC<BooksListProps> = ({
           const [category] = response.map((item) => item.category);
           setCategory(category);
         }
+        if (!response) {
+          setCategory("bestsellers");
+        }
       } catch (error) {
         console.log(error);
       }
