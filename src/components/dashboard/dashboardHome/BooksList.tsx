@@ -9,7 +9,7 @@ import {
   findMostFrequentCategory,
 } from "@/components/dashboard/dashboardHome/actions/favorite-action";
 import { useFavorites } from "@/store/favorites";
-import { SkeletonCard } from "@/components/dashboard/SkeletonCard";
+import { SkeletonCardBooksList } from "@/components/dashboard/dashboardHome/SkeletonCardBooksList";
 
 interface BooksListProps {
   userId: string;
@@ -59,7 +59,7 @@ const BooksList: React.FC<BooksListProps> = ({
   }
 
   if (loading) {
-    return <SkeletonCard />;
+    return <SkeletonCardBooksList />;
   }
 
   return (
