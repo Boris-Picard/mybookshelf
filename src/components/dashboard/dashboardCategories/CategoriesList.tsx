@@ -58,8 +58,9 @@ import { User } from "next-auth";
 import CardCategoriesTemplateList from "@/components/dashboard/dashboardCategories/CardCategoriesTemplateList";
 import useCategoriesBooks from "@/hooks/useCategoriesBooks";
 import { useFavorites } from "@/store/favorites";
-import { useEffect } from "react";
-import { getFavorites } from "../dashboardHome/actions/favorite-action";
+import { useEffect, useState } from "react";
+import { getFavorites } from "@/components/dashboard/dashboardHome/actions/favorite-action";
+import { SkeletonCategoriesList } from "@/components/dashboard/dashboardCategories/SkeletonCategoriesList";
 
 const CategoriesList = ({
   user,
@@ -292,6 +293,7 @@ const CategoriesList = ({
 
   const { categoriesBooks } = useCategoriesBooks({ category });
   const { favorites, addFavoriteBook } = useFavorites();
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchFavorites = async () => {
@@ -300,6 +302,7 @@ const CategoriesList = ({
           const response = await getFavorites();
           if (typeof response !== "string") {
             response.map((item) => addFavoriteBook(item));
+            setLoading(false);
           }
         } catch (error) {
           console.log(error);
@@ -310,24 +313,31 @@ const CategoriesList = ({
   }, [categoriesBooks]);
 
   if (category) {
-    if (categoriesBooks.length === 0) {
-      return (
-        <h1 className="text-muted-foreground text-xl">
-          Pas livres trouvés dans cette catégorie !
-        </h1>
-      );
+    if (loading) {
+      return <SkeletonCategoriesList />;
     }
+
     return (
       <div className="space-y-3">
-        <h1 className="text-center text-3xl font-bold uppercase mb-10">{category}</h1>
-        {categoriesBooks.map((books) => (
-          <CardCategoriesTemplateList
-            key={books.id}
-            books={books}
-            favorites={favorites}
-            userId={user?.id}
-          />
-        ))}
+        {categoriesBooks.length === 0 ? (
+          <h1 className="text-muted-foreground text-xl">
+            Pas de livres trouvés dans cette catégorie !
+          </h1>
+        ) : (
+          <>
+            <h1 className="text-center text-3xl font-bold uppercase mb-10">
+              {category}
+            </h1>
+            {categoriesBooks.map((book) => (
+              <CardCategoriesTemplateList
+                key={book.id}
+                books={book}
+                favorites={favorites}
+                userId={user.id}
+              />
+            ))}
+          </>
+        )}
       </div>
     );
   }
