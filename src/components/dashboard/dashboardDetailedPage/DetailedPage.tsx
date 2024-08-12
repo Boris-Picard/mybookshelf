@@ -41,6 +41,8 @@ const DetailedPage: React.FC<DetailedPageProps> = ({ bookId }) => {
                 height={512}
                 className="rounded-xl"
                 priority={false}
+                loading="lazy"
+                quality={80}
               />
               <div className="flex gap-3 mt-3 justify-start">
                 <AddFavoriteButton book={book} />

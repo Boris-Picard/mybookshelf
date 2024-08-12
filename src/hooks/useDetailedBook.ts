@@ -18,6 +18,7 @@ const useDetailedBook = (bookId: string) => {
                 throw new Error(`Error: ${response.status}`);
             }
             const data = await response.json();
+console.log(data);
 
             if (data.totalItems === 0) {
                 return null
@@ -28,7 +29,7 @@ const useDetailedBook = (bookId: string) => {
                 title: item.volumeInfo.title,
                 authors: item.volumeInfo?.authors?.join(" - "),
                 description: item.volumeInfo?.description,
-                thumbnail: item.volumeInfo?.imageLinks?.thumbnail,
+                thumbnail: item.volumeInfo?.imageLinks?.medium ?? item.volumeInfo?.imageLinks?.thumbnail,
                 page: item.volumeInfo?.pageCount,
                 categories: item.volumeInfo?.categories?.join("-"),
                 publishedDate: item.volumeInfo.publishedDate,
