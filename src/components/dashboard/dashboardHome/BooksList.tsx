@@ -22,7 +22,10 @@ const BooksList: React.FC<BooksListProps> = ({
 }) => {
   const [slice, setSlice] = useState<number>(3);
   const [category, setCategory] = useState<string | null>(null);
-  const { books, errorMessage, loading } = useSearchBooks({ slice, category });
+  const { books, nbBooks, errorMessage, loading } = useSearchBooks({
+    slice,
+    category,
+  });
   const { favorites, addFavoriteBook } = useFavorites();
 
   useEffect(() => {
@@ -88,9 +91,9 @@ const BooksList: React.FC<BooksListProps> = ({
           onClick={() => setSlice(slice + 3)}
           className="w-1/4"
           variant="outline"
-          disabled={slice > 20}
+          disabled={slice >= nbBooks}
         >
-          Voir plus
+          <span>Voir plus</span>
         </Button>
         <Button
           onClick={() => setSlice(slice - 3)}
@@ -98,7 +101,7 @@ const BooksList: React.FC<BooksListProps> = ({
           variant="outline"
           disabled={slice <= 3}
         >
-          Voir moins
+          <span>Voir moins</span>
         </Button>
       </div>
     </div>

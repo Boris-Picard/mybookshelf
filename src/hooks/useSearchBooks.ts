@@ -7,6 +7,7 @@ const useSearchBooks = ({ slice, category }: { slice: number, category: string |
     const [books, setBooks] = useState<Books[]>([]);
     const [errorMessage, setErrorMessage] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(true)
+    const [nbBooks, setNbBooks] = useState<number>(3)
 
     useEffect(() => {
         const fetchBooks = async () => {
@@ -65,6 +66,7 @@ const useSearchBooks = ({ slice, category }: { slice: number, category: string |
                 if (sortByDate.length > 0) {
                     setLoading(false)
                     setBooks(sortByDate.slice(0, slice));
+                    setNbBooks(sortByDate.length)
                 }
             } catch (error) {
                 // type guard avec instanceof pour vérifier que l'objet error est bien une instance de Error
@@ -81,7 +83,7 @@ const useSearchBooks = ({ slice, category }: { slice: number, category: string |
 
     }, [slice, category])
 
-    return { books, errorMessage, loading }
+    return { books, nbBooks, errorMessage, loading }
 };
 
 export default useSearchBooks
