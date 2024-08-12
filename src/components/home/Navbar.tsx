@@ -20,7 +20,7 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ id }) => {
   return (
     <header>
-      <nav className="fixed top-0 border-b border-white/20 w-full bg-background/70 backdrop-blur-[12px]">
+      <nav className="fixed top-0 border-b border-white/20 w-full bg-background/70 backdrop-blur-[12px] z-20">
         <div className="container flex h-[3.5rem] items-center justify-between">
           <span>brand</span>
           {id && (
