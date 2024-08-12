@@ -1,3 +1,4 @@
+import Features from "@/components/home/features/Features";
 import Hero from "@/components/home/hero/Hero";
 import Navbar from "@/components/home/Navbar";
 import { getCurrentUser } from "@/services/CurrentUser";
@@ -10,6 +11,7 @@ export default async function Home() {
       <Navbar id={session?.id} />
       <main className="mx-auto flex-1 overflow-hidden">
         <Hero />
+        <Features />
       </main>
     </>
   );
