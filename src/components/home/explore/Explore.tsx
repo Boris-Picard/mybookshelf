@@ -1,4 +1,4 @@
-import { TabsExplore } from "./TabsAceternity";
+import { TabsExplore } from "@/components/home/explore/TabsAceternity";
 
 const Explore = () => {
   return (

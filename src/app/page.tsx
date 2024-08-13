@@ -1,4 +1,5 @@
 import Explore from "@/components/home/explore/Explore";
+import Faq from "@/components/home/faq/Faq";
 import Features from "@/components/home/features/Features";
 import Hero from "@/components/home/hero/Hero";
 import Navbar from "@/components/home/Navbar";
@@ -14,6 +15,7 @@ export default async function Home() {
         <Hero />
         <Features />
         <Explore />
+        <Faq />
       </main>
     </>
   );
