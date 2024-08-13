@@ -1,3 +1,5 @@
+import { WobleCardsFeatures } from "./WobbleCards";
+
 const Features = () => {
   return (
     <section
@@ -12,6 +14,9 @@ const Features = () => {
         accusantium accusamus eum corrupti minus non itaque, et sapiente aliquam
         nihil odit ab quidem tempora incidunt, laborum alias veritatis.
       </h3>
+      <div className="xl:py-24 py-12">
+        <WobleCardsFeatures />
+      </div>
     </section>
   );
 };
