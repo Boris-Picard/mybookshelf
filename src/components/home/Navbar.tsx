@@ -12,6 +12,7 @@ import {
 import { GithubSignIn } from "@/components/login/GithubButton";
 import { GoogleSignIn } from "@/components/login/GoogleButton";
 import { LogoutHomeButton } from "@/components/login/LogoutButton";
+import Image from "next/image";
 
 interface NavbarProps {
   id: string | null | undefined;
@@ -22,7 +23,15 @@ const Navbar: React.FC<NavbarProps> = ({ id }) => {
     <header>
       <nav className="fixed top-0 border-b border-white/20 w-full bg-background/70 backdrop-blur-[12px] z-20">
         <div className="container flex h-[3.5rem] items-center justify-between">
-          <span>brand</span>
+          <Link href="/">
+            <Image
+              src="/mybookshelf-logo.svg"
+              height={56}
+              width={56}
+              alt="logo mybookshelf"
+              className="dark:invert"
+            />
+          </Link>
           {id && (
             <ul className="flex gap-3 items-center">
               <li>
