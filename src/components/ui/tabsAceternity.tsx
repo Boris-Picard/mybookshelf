@@ -52,7 +52,7 @@ export const TabsAceternity = ({
             }}
             onMouseEnter={() => setHovering(true)}
             onMouseLeave={() => setHovering(false)}
-            className={cn("relative px-4 py-2 rounded-full", tabClassName)}
+            className={cn("relative px-4 hover:dark:bg-zinc-800 hover:bg-gray-200 py-2 rounded-full", tabClassName)}
             style={{
               transformStyle: "preserve-3d",
             }}

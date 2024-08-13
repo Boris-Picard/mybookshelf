@@ -49,9 +49,9 @@ const AccordionSection = () => {
   return accordionSection.map(({ title, description }) => {
     return (
       <Accordion type="single" collapsible>
-        <AccordionItem value="item-1">
+        <AccordionItem value={title} className="space-y-3">
           <AccordionTrigger>{title}</AccordionTrigger>
-          <AccordionContent>{description}</AccordionContent>
+          <AccordionContent className="text-start p-4 py-0 mb-3">{description}</AccordionContent>
         </AccordionItem>
       </Accordion>
     );
