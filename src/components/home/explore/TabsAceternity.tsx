@@ -9,7 +9,7 @@ export function TabsExplore() {
       title: "Homepage",
       value: "Homepage",
       content: (
-        <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-purple-700 to-violet-900">
+        <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold bg-gradient-to-br from-primary to-violet-900">
           <p>HomePage Tab</p>
           <Image
             src="/assets/dashboard-home.png"
@@ -25,7 +25,7 @@ export function TabsExplore() {
       title: "Favorites",
       value: "Favorites",
       content: (
-        <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-purple-700 to-violet-900">
+        <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold bg-gradient-to-br from-primary to-violet-900">
           <p>Favorites tab</p>
           <Image
             src="/assets/favorites.png"
@@ -41,7 +41,7 @@ export function TabsExplore() {
       title: "Catégories",
       value: "Catégories",
       content: (
-        <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-purple-700 to-violet-900">
+        <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold bg-gradient-to-br from-primary to-violet-900">
           <p>Catégories tab</p>
           <Image
             src="/assets/categories.png"
@@ -57,7 +57,7 @@ export function TabsExplore() {
       title: "Page",
       value: "Page",
       content: (
-        <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-purple-700 to-violet-900">
+        <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold bg-gradient-to-br from-primary to-violet-900">
           <p>Page tab</p>
           <Image
             src="/assets/page.png"

@@ -6,7 +6,7 @@ import { WobbleCard } from "@/components/ui/wobble-card";
 export function WobleCardsFeatures() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-6 gap-4 max-w-7xl mx-auto w-full">
-      <WobbleCard containerClassName="col-span-2 h-full bg-primary/40 ">
+      <WobbleCard containerClassName="col-span-2 h-full bg-gradient-to-tr from-primary to-violet-900">
         <div className="sm:max-w-xs min-w-full">
           <h2 className="text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em]">
             Recommandations personnalisées
@@ -18,7 +18,7 @@ export function WobleCardsFeatures() {
           </p>
         </div>
       </WobbleCard>
-      <WobbleCard containerClassName="col-span-2 bg-primary/60">
+      <WobbleCard containerClassName="col-span-2 bg-gradient-to-l from-primary to-violet-900">
         <div className="sm:max-w-xs min-w-full">
           <h2 className="max-w-80 text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em]">
             Votre bibliothèque, votre empire
@@ -30,7 +30,7 @@ export function WobleCardsFeatures() {
           </p>
         </div>
       </WobbleCard>
-      <WobbleCard containerClassName="col-span-2 bg-primary/50">
+      <WobbleCard containerClassName="col-span-2 bg-gradient-to-b from-primary to-violet-900">
         <div className="sm:max-w-xs min-w-full">
           <h2 className="max-w-sm md:max-w-lg  text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em]">
             Authentification facile
@@ -42,7 +42,7 @@ export function WobleCardsFeatures() {
           </p>
         </div>
       </WobbleCard>
-      <WobbleCard containerClassName="col-span-1 lg:col-span-4 bg-primary/80">
+      <WobbleCard containerClassName="col-span-1 lg:col-span-4 bg-gradient-to-t from-primary to-violet-900">
         <div className="sm:max-w-xs min-w-full">
           <h2 className="max-w-sm md:max-w-lg text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em]">
             Aperçu de Vos Lectures
@@ -62,7 +62,7 @@ export function WobleCardsFeatures() {
           className="absolute -right-10 md:-right-[40%] lg:-right-[20%] -bottom-5 object-contain rounded-2xl hidden xl:block"
         />
       </WobbleCard>
-      <WobbleCard containerClassName="col-span-2 bg-primary/60">
+      <WobbleCard containerClassName="col-span-2 bg-gradient-to-r from-primary to-violet-900">
         <div className="sm:max-w-xs min-w-full">
           <h2 className="max-w-sm md:max-w-lg  text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em]">
             Accès direct à des ressources
