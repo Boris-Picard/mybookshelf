@@ -1,9 +1,9 @@
-import { WobleCardsFeatures } from "./WobbleCards";
+import { WobleCardsFeatures } from "@/components/home/features/WobbleCards";
 
 const Features = () => {
   return (
     <section
-      id="section"
+      id="features"
       className="lg:py-24 relative mx-auto mt-32 max-w-[80rem] px-6 text-center md:px-8 h-full"
     >
       <h2 className="mb-2 text-center text-5xl font-bold leading-[1.2] tracking-tighter text-foreground">
