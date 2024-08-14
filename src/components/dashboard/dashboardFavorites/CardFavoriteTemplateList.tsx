@@ -30,25 +30,25 @@ const CardFavoriteTemplateList: React.FC<CardFavoriteProps> = ({
   const cleanDescription = DOMPurify.sanitize(favorites.description || "");
 
   return (
-    <Card className="w-full flex px-4 pl-0 py-0">
+    <Card className="w-full flex pl-0 py-0 flex-col sm:flex-row">
       <div className="flex-shrink-0">
         <Image
           src={favorites.thumbnail ?? "/assets/default-book.png"}
           alt={favorites.name}
           width={150}
           height={150}
-          priority
-          className="object-cover rounded-tl-xl rounded-bl-xl h-full"
+          loading="lazy"
+          className="object-cover object-center sm:rounded-tl-xl sm:rounded-bl-xl rounded sm:rounded-none h-60 sm:h-full w-full sm:w-[150px] sm:aspect-auto"
         />
       </div>
-      <div className="flex flex-col w-full ml-4 flex-grow">
+      <div className="flex flex-col w-full flex-grow px-4">
         <CardHeader className="flex px-3 min-h-full">
           <div className="flex-grow justify-between flex flex-col">
             <div className="flex justify-between">
               <CardTitle className="text-lg sm:text-xl font-semibold text-balance">
                 <span>{favorites.name}</span>
               </CardTitle>
-              <div className="flex justify-end items-center">
+              <div className="flex justify-end items-center w-full sm:w-1/4">
                 {favorites.price && (
                   <span className="font-semibold mr-3">
                     {favorites.price} EUR
