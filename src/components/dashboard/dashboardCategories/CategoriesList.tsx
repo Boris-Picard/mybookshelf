@@ -347,14 +347,14 @@ const CategoriesList = ({
       {categories.map((item) => {
         return (
           <div key={item.title}>
-            <h5 className="font-bold text-xl">{item.title}</h5>
-            <div>
+            <h5 className="font-bold text-xl text-center py-3 md:text-start">{item.title}</h5>
+            <div className="justify-center items-center flex flex-wrap md:justify-start">
               {item.categories.name.map((name, index) => {
                 const Icon = item.categories.icon[index];
                 return (
                   <Link href={item.categories.href[index]}>
                     <Button
-                      size="lg"
+                      size="default"
                       variant="outline"
                       key={name}
                       className="rounded-full mr-3 mt-3"
