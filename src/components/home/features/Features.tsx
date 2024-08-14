@@ -4,7 +4,7 @@ const Features = () => {
   return (
     <section
       id="features"
-      className="lg:py-24 relative mx-auto mt-32 py-12 max-w-[80rem] px-6 text-center md:px-8 sm:h-full h-screen"
+      className="lg:py-24 py-12 relative mx-auto mt-32 max-w-[80rem] px-6 text-center md:px-8 h-full"
     >
       <h2 className="mb-2 text-center text-5xl font-bold leading-[1.2] tracking-tighter text-foreground">
         Features
@@ -16,7 +16,7 @@ const Features = () => {
         bibliothèque, trouvez des recommandations personnalisées et
         connectez-vous avec des milliers de livres et auteurs en quelques clics.
       </h3>
-      <div className="py-12">
+      <div className="sm:py-12">
         <WobleCardsFeatures />
       </div>
     </section>
