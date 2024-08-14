@@ -3,6 +3,7 @@ import ParticlesBackground from "@/components/home/hero/ParticlesBackground";
 import { Button } from "@/components/ui/button";
 import { ArrowRightIcon } from "lucide-react";
 import { BorderBeamHero } from "@/components/home/hero/BorderBeamHero";
+import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -23,10 +24,12 @@ const Hero = () => {
           Suivez vos lectures, explorez de nouvelles catégories, et trouvez vos
           prochains coups de cœur littéraires.
         </p>
-        <Button variant="secondary">
-          Commencez votre aventure littéraire
-          <ArrowRightIcon className="ml-1 size-3" />
-        </Button>
+        <Link href="/auth/login">
+          <Button variant="secondary">
+            Commencez votre aventure littéraire
+            <ArrowRightIcon className="ml-1 size-3" />
+          </Button>
+        </Link>
         <BorderBeamHero />
       </div>
     </section>
