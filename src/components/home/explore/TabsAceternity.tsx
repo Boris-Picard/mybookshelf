@@ -3,10 +3,10 @@
 import Image from "next/image";
 import { TabsAceternity } from "@/components/ui/tabsAceternity";
 
-import dashboardImage from "/public/dashboard-home.png";
-import favoritesImage from "/public/favorites.png";
-import categoriesImage from "/public/categories.png";
-import detailedPageImage from "/public/page.png";
+import dashboardImage from "/public/assets/dashboard-home.png";
+import favoritesImage from "/public/assets/favorites.png";
+import categoriesImage from "/public/assets/categories.png";
+import detailedPageImage from "/public/assets/page.png";
 
 export function TabsExplore() {
   const tabs = [
