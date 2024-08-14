@@ -27,7 +27,7 @@ const CardCategoriesTemplateList: React.FC<CardCategoriesProps> = ({
 }) => {
   return (
     <>
-      <Card className="w-full flex px-4 pl-0 py-0">
+      <Card className="w-full flex pl-0 py-0 flex-col sm:flex-row">
         <div className="flex-shrink-0">
           <Image
             src={books.thumbnail ?? "/assets/default-book.png"}
@@ -35,14 +35,14 @@ const CardCategoriesTemplateList: React.FC<CardCategoriesProps> = ({
             width={150}
             height={150}
             priority
-            className="object-cover rounded-tl-xl rounded-bl-xl h-full"
+            className="object-cover object-center sm:rounded-tl-xl sm:rounded-bl-xl rounded sm:rounded-none h-60 sm:h-full w-full sm:w-[150px] sm:aspect-auto"
           />
         </div>
-        <div className="flex flex-col w-full ml-4 flex-grow">
+        <div className="flex flex-col w-full flex-grow px-4">
           <CardHeader className="flex px-3 min-h-full">
             <div className="flex-grow justify-between flex flex-col">
               <div className="flex justify-between">
-                <CardTitle className="text-lg sm:text-xl font-semibold text-balance">
+                <CardTitle className="text-lg sm:text-xl font-semibold text-balance line-clamp-1 sm:line-clamp-3 md:line-clamp-none">
                   <span>{books.title}</span>
                 </CardTitle>
                 <div className="flex justify-end items-center">
