@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import logo from "/public/mybookshelf-logo.svg";
+
 const Footer = () => {
   return (
     <footer className="w-full m-auto pb-6 border-t-2">
@@ -10,7 +12,7 @@ const Footer = () => {
             <Link href="/">
               <div className="flex items-center">
                 <Image
-                  src="/mybookshelf-logo.svg"
+                  src={logo}
                   height={56}
                   width={56}
                   alt="logo mybookshelf"

@@ -3,6 +3,11 @@
 import Image from "next/image";
 import { TabsAceternity } from "@/components/ui/tabsAceternity";
 
+import dashboardImage from "/public/dashboard-home.png";
+import favoritesImage from "/public/favorites.png";
+import categoriesImage from "/public/categories.png";
+import detailedPageImage from "/public/page.png";
+
 export function TabsExplore() {
   const tabs = [
     {
@@ -12,8 +17,8 @@ export function TabsExplore() {
         <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold bg-gradient-to-br from-primary to-violet-900">
           <p>HomePage Tab</p>
           <Image
-            src="/dashboard-home.png"
-            alt="dummy image"
+            src={dashboardImage}
+            alt="dashboard"
             width="1000"
             height="1000"
             className="object-cover object-left-top h-[60%] md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
@@ -28,8 +33,8 @@ export function TabsExplore() {
         <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold bg-gradient-to-br from-primary to-violet-900">
           <p>Favorites tab</p>
           <Image
-            src="/favorites.png"
-            alt="dummy image"
+            src={favoritesImage}
+            alt="favoris"
             width="1000"
             height="1000"
             className="object-cover object-left-top h-[60%] md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
@@ -44,8 +49,8 @@ export function TabsExplore() {
         <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold bg-gradient-to-br from-primary to-violet-900">
           <p>Catégories tab</p>
           <Image
-            src="/categories.png"
-            alt="dummy image"
+            src={categoriesImage}
+            alt="catégories"
             width="1000"
             height="1000"
             className="object-cover object-left-top h-[60%] md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
@@ -60,8 +65,8 @@ export function TabsExplore() {
         <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold bg-gradient-to-br from-primary to-violet-900">
           <p>Page tab</p>
           <Image
-            src="/page.png"
-            alt="dummy image"
+            src={detailedPageImage}
+            alt="page détail"
             width="1000"
             height="1000"
             className="object-cover object-left-top h-[60%] md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"

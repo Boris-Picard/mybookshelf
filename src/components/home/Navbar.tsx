@@ -13,6 +13,7 @@ import { GithubSignIn } from "@/components/login/GithubButton";
 import { GoogleSignIn } from "@/components/login/GoogleButton";
 import { LogoutHomeButton } from "@/components/login/LogoutButton";
 import Image from "next/image";
+import logo from "/public/mybookshelf-logo.svg";
 
 interface NavbarProps {
   id: string | null | undefined;
@@ -25,7 +26,7 @@ const Navbar: React.FC<NavbarProps> = ({ id }) => {
         <div className="container flex h-[3.5rem] items-center justify-between">
           <Link href="/">
             <Image
-              src="/mybookshelf-logo.svg"
+              src={logo}
               height={56}
               width={56}
               alt="logo mybookshelf"
