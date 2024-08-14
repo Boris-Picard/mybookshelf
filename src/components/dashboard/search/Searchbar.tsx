@@ -93,7 +93,7 @@ const SearchBar = ({ userId }: { userId: string }) => {
         className="w-full rounded-lg bg-background pl-8"
       />
       {books && (
-        <div className="overflow-auto max-h-[875px] fixed left-0 sm:absolute w-full rounded-md mt-1">
+        <div className="overflow-auto max-h-[380px] sm:max-h-[875px] fixed left-0 sm:absolute w-full rounded-md mt-1">
           {loading ? (
             <SkeletonSearch />
           ) : (
