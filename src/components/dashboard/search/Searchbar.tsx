@@ -64,7 +64,7 @@ const SearchBar = ({ userId }: { userId: string }) => {
 
   return (
     <div className="relative ml-auto flex-1">
-      <div className="absolute top-1/2 right-0 transform -translate-y-1/2">
+      <div className="absolute top-1/2 right-0 transform -translate-y-1/2 w-[40%] max-w-[210px]">
         <Select onValueChange={handleSelectChange}>
           <SelectTrigger className="w-full border-0 bg-transparent shadow-none bg-zinc-800 text-slate-50 dark:bg-slate-50 dark:text-zinc-800">
             <SelectValue placeholder="Faire une recherche ciblée" />
@@ -93,7 +93,7 @@ const SearchBar = ({ userId }: { userId: string }) => {
         className="w-full rounded-lg bg-background pl-8"
       />
       {books && (
-        <div className="overflow-auto max-h-[875px] absolute w-full rounded-md mt-1">
+        <div className="overflow-auto max-h-[875px] fixed left-0 sm:absolute w-full rounded-md mt-1">
           {loading ? (
             <SkeletonSearch />
           ) : (

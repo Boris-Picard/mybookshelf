@@ -29,7 +29,7 @@ const BreadCrumb = ({
     pathname.includes(`/dashboard/categories/${userId}/${segments[3]}`);
 
   return (
-    <Breadcrumb>
+    <Breadcrumb className="hidden lg:block">
       {isHome && (
         <BreadcrumbItem>
           <BreadcrumbPage>Dashboard</BreadcrumbPage>
