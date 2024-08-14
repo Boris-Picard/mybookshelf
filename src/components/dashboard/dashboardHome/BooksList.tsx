@@ -89,7 +89,7 @@ const BooksList: React.FC<BooksListProps> = ({
       <div className="flex justify-between mx-auto space-x-3">
         <Button
           onClick={() => setSlice(slice + 3)}
-          className="w-1/4"
+          className="sm:w-1/4 w-full"
           variant="outline"
           disabled={slice >= nbBooks}
         >
@@ -97,7 +97,7 @@ const BooksList: React.FC<BooksListProps> = ({
         </Button>
         <Button
           onClick={() => setSlice(slice - 3)}
-          className="w-1/4"
+          className="sm:w-1/4 w-full"
           variant="outline"
           disabled={slice <= 3}
         >

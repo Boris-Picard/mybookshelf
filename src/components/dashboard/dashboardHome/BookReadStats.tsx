@@ -36,7 +36,7 @@ const BookReadStats = () => {
   }
 
   return (
-    <div className="flex items-center justify-start xl:justify-center xl:mt-3">
+    <div className="flex items-center justify-start md:justify-center md:mt-3 py-12 xl:py-0">
       {nbPages && (
         <>
           <Image

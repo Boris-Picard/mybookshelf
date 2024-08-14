@@ -42,10 +42,12 @@ const CardList: React.FC<CardListProps> = ({ books, favorites, userId }) => {
               <CardTitle className="text-lg sm:text-xl font-semibold text-balance">
                 <span>{books.title}</span>
               </CardTitle>
-              <div className="flex justify-end items-center">
-                <span className="font-semibold mr-3">
-                  {books.amount} {books.currencyCode}
-                </span>
+              <div className="flex justify-end items-center w-full sm:w-1/4">
+                {books.amount && (
+                  <span className="font-semibold mr-3">
+                    {books.amount} {books.currencyCode}
+                  </span>
+                )}
                 <FavoriteButton book={books} isFavorite={favorites} />
               </div>
             </div>
