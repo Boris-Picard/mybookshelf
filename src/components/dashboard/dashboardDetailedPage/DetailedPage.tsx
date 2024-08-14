@@ -32,29 +32,31 @@ const DetailedPage: React.FC<DetailedPageProps> = ({ bookId }) => {
       ) : (
         <>
           <h1 className="text-4xl font-bold text-center">{book.title}</h1>
-          <div className="grid grid-cols-3 py-8">
+          <div className="grid lg:grid-cols-3 grid-cols-1 py-8">
             <div className="col-span-1">
-              <Image
-                src={book.thumbnail ?? "/assets/default-book.png"}
-                alt={book.title}
-                width={512}
-                height={512}
-                className="rounded-xl"
-                priority={false}
-                loading="lazy"
-                quality={80}
-              />
-              <div className="flex gap-3 mt-3 justify-start">
+              <div className="flex justify-center lg:justify-start">
+                <Image
+                  src={book.thumbnail ?? "/assets/default-book.png"}
+                  alt={book.title}
+                  width={512}
+                  height={512}
+                  className="rounded-xl"
+                  priority={false}
+                  loading="lazy"
+                  quality={80}
+                />
+              </div>
+              <div className="flex gap-3 mt-3 justify-center lg:justify-start">
                 <AddFavoriteButton book={book} />
                 <Link href={book.webReader} target="_blank">
                   <Button variant="link">Lire sur Google</Button>
                 </Link>
               </div>
-              <div className="mt-3">
+              <div className="mt-3 justify-center lg:justify-start flex">
                 <ReadBookButton bookId={bookId} pageNumber={book.page} />
               </div>
             </div>
-            <div className="col-span-2 p-8 space-y-3">
+            <div className="lg:col-span-2 col-span-1 p-8 space-y-3">
               <div className="flex flex-col space-y-3">
                 {book.authors && (
                   <span className="font-semibold">Auteur : {book.authors}</span>
