@@ -4,7 +4,7 @@ const Faq = () => {
   return (
     <section
       id="faq"
-      className="lg:py-24 relative mx-auto mt-32 max-w-[80rem] px-6 text-center md:px-8 h-screen"
+      className="lg:py-24 relative mx-auto mt-32 max-w-[80rem] px-6 text-center md:px-8 h-full"
     >
       <h2 className="mb-2 text-center text-5xl font-bold leading-[1.2] tracking-tighter text-foreground">
         FAQ
@@ -15,7 +15,7 @@ const Faq = () => {
         la gestion de votre bibliothèque et plus encore. Si vous avez besoin
         d'informations supplémentaires, n'hésitez pas à nous contacter.
       </h3>
-      <div className="p-24">
+      <div className="sm:p-24 py-12">
         <AccordionSection />
       </div>
     </section>
