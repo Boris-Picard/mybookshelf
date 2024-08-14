@@ -1,7 +1,7 @@
 import { BorderBeam } from "@/components/magicui/border-beam";
 import Image from "next/image";
 
-import dashboardHome from "/public/assets/dashboard-home.png";
+import dashboardHome from "/public/images/dashboard-home.png";
 
 export function BorderBeamHero() {
   return (
@@ -12,6 +12,7 @@ export function BorderBeamHero() {
           src={dashboardHome}
           fill={true}
           alt="dashboard home page"
+          loading="lazy"
           className="object-contain"
         />
         <div className="absolute bottom-0 left-0 right-0 h-[24rem] bg-gradient-to-b from-transparent to-black opacity-100"></div>

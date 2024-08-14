@@ -3,10 +3,10 @@
 import Image from "next/image";
 import { TabsAceternity } from "@/components/ui/tabsAceternity";
 
-import dashboardImage from "/public/assets/dashboard-home.png";
-import favoritesImage from "/public/assets/favorites.png";
-import categoriesImage from "/public/assets/categories.png";
-import detailedPageImage from "/public/assets/page.png";
+import dashboardImage from "/public/images/dashboard-home.png";
+import favoritesImage from "/public/images/favorites.png";
+import categoriesImage from "/public/images/categories.png";
+import detailedPageImage from "/public/images/page.png";
 
 export function TabsExplore() {
   const tabs = [
@@ -21,6 +21,7 @@ export function TabsExplore() {
             alt="dashboard"
             width="1000"
             height="1000"
+            loading="lazy"
             className="object-cover object-left-top h-[60%] md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
           />
         </div>
@@ -37,6 +38,7 @@ export function TabsExplore() {
             alt="favoris"
             width="1000"
             height="1000"
+            loading="lazy"
             className="object-cover object-left-top h-[60%] md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
           />
         </div>
@@ -53,6 +55,7 @@ export function TabsExplore() {
             alt="catégories"
             width="1000"
             height="1000"
+            loading="lazy"
             className="object-cover object-left-top h-[60%] md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
           />
         </div>
@@ -69,6 +72,7 @@ export function TabsExplore() {
             alt="page détail"
             width="1000"
             height="1000"
+            loading="lazy"
             className="object-cover object-left-top h-[60%] md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
           />
         </div>

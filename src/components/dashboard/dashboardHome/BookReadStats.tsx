@@ -3,8 +3,8 @@ import GetAllReadBooks from "./get-all-books";
 import Image from "next/image";
 import { SkeletonReadStats } from "./SkeletonReadStats";
 
-import book from "/public/assets/book.svg"
-import pages from "/public/assets/multiple-page.svg"
+import book from "/public/images/book.svg"
+import pages from "/public/images/multiple-page.svg"
 
 const BookReadStats = () => {
   const [nbPages, setNbPages] = useState<number | null>(null);
@@ -47,6 +47,7 @@ const BookReadStats = () => {
             width={64}
             height={64}
             alt="book"
+            loading="lazy"
             color="gold"
           />
           <div className="flex flex-col mx-10 items-center">
@@ -61,6 +62,7 @@ const BookReadStats = () => {
             src={pages}
             width={64}
             height={64}
+            loading="lazy"
             alt="pages"
             color="gold"
           />

@@ -13,7 +13,7 @@ import { GithubSignIn } from "@/components/login/GithubButton";
 import { GoogleSignIn } from "@/components/login/GoogleButton";
 import { LogoutHomeButton } from "@/components/login/LogoutButton";
 import Image from "next/image";
-import logo from "/public/assets/mybookshelf-logo.svg";
+import logo from "/public/images/mybookshelf-logo.svg";
 
 interface NavbarProps {
   id: string | null | undefined;
@@ -30,6 +30,7 @@ const Navbar: React.FC<NavbarProps> = ({ id }) => {
               height={56}
               width={56}
               alt="logo mybookshelf"
+              loading="lazy"
               className="dark:invert"
             />
           </Link>
