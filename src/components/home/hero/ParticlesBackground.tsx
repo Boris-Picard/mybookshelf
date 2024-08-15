@@ -14,7 +14,7 @@ const ParticlesBackground = () => {
   }, [theme]);
 
   return (
-    <div className="absolute inset-0 z-0 h-full w-full">
+    <div className="absolute inset-0 z-10 h-full w-full">
       <Particles
         className="absolute inset-0"
         quantity={100}
