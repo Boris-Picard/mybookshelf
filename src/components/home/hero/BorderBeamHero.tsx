@@ -1,7 +1,7 @@
 import { BorderBeam } from "@/components/magicui/border-beam";
 import Image from "next/image";
 
-import dashboardHome from "/public/images/dashboard-home.png";
+import dashboardHome from "/public/static/img/dashboard.png";
 
 export function BorderBeamHero() {
   return (

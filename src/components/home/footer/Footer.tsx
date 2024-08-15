@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import logo from "/public/images/mybookshelf-logo.svg";
+import logo from "/public/static/img/logo.svg";
 
 const Footer = () => {
   return (

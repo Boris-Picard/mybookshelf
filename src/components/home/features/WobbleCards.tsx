@@ -3,7 +3,7 @@ import Image from "next/image";
 import React from "react";
 import { WobbleCard } from "@/components/ui/wobble-card";
 
-import favorites from "/public/images/favorites.png"
+import favorites from "/public/static/img/favorites.png"
 
 export function WobleCardsFeatures() {
   return (

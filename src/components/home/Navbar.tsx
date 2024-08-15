@@ -13,7 +13,7 @@ import { GithubSignIn } from "@/components/login/GithubButton";
 import { GoogleSignIn } from "@/components/login/GoogleButton";
 import { LogoutHomeButton } from "@/components/login/LogoutButton";
 import Image from "next/image";
-import logo from "/public/images/mybookshelf-logo.svg";
+import logo from "/public/static/img/logo.svg";
 
 interface NavbarProps {
   id: string | null | undefined;
