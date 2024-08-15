@@ -10,7 +10,7 @@ const Footer = () => {
             <Link href="/">
               <div className="flex items-center">
                 <Image
-                  src="/static/img/logo.svg"
+                  src="/logo.svg"
                   height={56}
                   width={56}
                   alt="logo mybookshelf"

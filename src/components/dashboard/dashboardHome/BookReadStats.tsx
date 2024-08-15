@@ -40,7 +40,7 @@ const BookReadStats = () => {
       {nbPages && (
         <>
           <Image
-            src="/static/img/book.svg"
+            src="/book.svg"
             width={64}
             height={64}
             alt="book"
@@ -56,7 +56,7 @@ const BookReadStats = () => {
       {nbBook && (
         <>
           <Image
-            src="/static/img/multiple.svg"
+            src="/multiple.svg"
             width={64}
             height={64}
             loading="lazy"

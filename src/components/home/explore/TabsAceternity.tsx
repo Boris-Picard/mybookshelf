@@ -12,7 +12,7 @@ export function TabsExplore() {
         <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold bg-gradient-to-br from-primary to-violet-900">
           <p>HomePage Tab</p>
           <Image
-            src="/static/img/dashboard.png"
+            src="/dashboard.png"
             alt="dashboard"
             width="1000"
             height="1000"
@@ -29,7 +29,7 @@ export function TabsExplore() {
         <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold bg-gradient-to-br from-primary to-violet-900">
           <p>Favorites tab</p>
           <Image
-            src="/static/img/favorites.png"
+            src="/favorites.png"
             alt="favoris"
             width="1000"
             height="1000"
@@ -46,7 +46,7 @@ export function TabsExplore() {
         <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold bg-gradient-to-br from-primary to-violet-900">
           <p>Catégories tab</p>
           <Image
-            src="/static/img/categories.png"
+            src="/categories.png"
             alt="catégories"
             width="1000"
             height="1000"
@@ -63,7 +63,7 @@ export function TabsExplore() {
         <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold bg-gradient-to-br from-primary to-violet-900">
           <p>Page tab</p>
           <Image
-            src="/static/img/page.png"
+            src="/page.png"
             alt="page détail"
             width="1000"
             height="1000"

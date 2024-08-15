@@ -55,7 +55,7 @@ export function WobleCardsFeatures() {
           </p>
         </div>
         <Image
-          src="/static/img/favorites.png"
+          src="/favorites.png"
           width={500}
           height={500}
           loading="lazy"
