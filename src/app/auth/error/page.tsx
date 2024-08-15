@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 
@@ -25,7 +27,7 @@ function AuthErrorPageContent() {
     <div className="flex flex-col items-center justify-center w-full h-screen">
       <a
         href="#"
-        className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 text-center"
+        className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-zinc-800 dark:border-zin-700 dark:hover:bg-zin-700 text-center"
       >
         <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white flex flex-row justify-center items-center gap-2">
           Something went wrong
@@ -34,7 +36,11 @@ function AuthErrorPageContent() {
           {errorMap[error] || "Please contact us if this error persists."}
         </div>
       </a>
-      <div></div>
+      <div>
+        <Link href="/auth/login">
+          <Button variant="secondary">Login Page</Button>
+        </Link>
+      </div>
     </div>
   );
 }
