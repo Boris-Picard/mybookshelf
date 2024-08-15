@@ -25,7 +25,7 @@ const Navbar: React.FC<NavbarProps> = ({ id }) => {
         <div className="container flex h-[3.5rem] items-center justify-between">
           <Link href="/">
             <Image
-              src="/logo.svg"
+              src="@/../public/logo.svg"
               height={56}
               width={56}
               alt="logo mybookshelf"
