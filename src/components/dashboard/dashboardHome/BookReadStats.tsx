@@ -3,9 +3,6 @@ import GetAllReadBooks from "./get-all-books";
 import Image from "next/image";
 import { SkeletonReadStats } from "./SkeletonReadStats";
 
-import book from "/public/static/img/book.svg"
-import pages from "/public/static/img/multiple.svg"
-
 const BookReadStats = () => {
   const [nbPages, setNbPages] = useState<number | null>(null);
   const [nbBook, setNbBooks] = useState<number | null>(null);
@@ -43,7 +40,7 @@ const BookReadStats = () => {
       {nbPages && (
         <>
           <Image
-            src={book}
+            src="/static/img/book.svg"
             width={64}
             height={64}
             alt="book"
@@ -59,7 +56,7 @@ const BookReadStats = () => {
       {nbBook && (
         <>
           <Image
-            src={pages}
+            src="/static/img/multiple.svg"
             width={64}
             height={64}
             loading="lazy"

@@ -3,11 +3,6 @@
 import Image from "next/image";
 import { TabsAceternity } from "@/components/ui/tabsAceternity";
 
-import dashboardImage from "/public/static/img/dashboard.png";
-import favoritesImage from "/public/static/img/favorites.png";
-import categoriesImage from "/public/static/img/categories.png";
-import detailedPageImage from "/public/static/img/page.png";
-
 export function TabsExplore() {
   const tabs = [
     {
@@ -17,7 +12,7 @@ export function TabsExplore() {
         <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold bg-gradient-to-br from-primary to-violet-900">
           <p>HomePage Tab</p>
           <Image
-            src={dashboardImage}
+            src="/static/img/dashboard.png"
             alt="dashboard"
             width="1000"
             height="1000"
@@ -34,7 +29,7 @@ export function TabsExplore() {
         <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold bg-gradient-to-br from-primary to-violet-900">
           <p>Favorites tab</p>
           <Image
-            src={favoritesImage}
+            src="/static/img/favorites.png"
             alt="favoris"
             width="1000"
             height="1000"
@@ -51,7 +46,7 @@ export function TabsExplore() {
         <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold bg-gradient-to-br from-primary to-violet-900">
           <p>Catégories tab</p>
           <Image
-            src={categoriesImage}
+            src="/static/img/categories.png"
             alt="catégories"
             width="1000"
             height="1000"
@@ -68,7 +63,7 @@ export function TabsExplore() {
         <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold bg-gradient-to-br from-primary to-violet-900">
           <p>Page tab</p>
           <Image
-            src={detailedPageImage}
+            src="/static/img/page.png"
             alt="page détail"
             width="1000"
             height="1000"

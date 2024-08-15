@@ -3,8 +3,6 @@ import Image from "next/image";
 import React from "react";
 import { WobbleCard } from "@/components/ui/wobble-card";
 
-import favorites from "/public/static/img/favorites.png"
-
 export function WobleCardsFeatures() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-6 gap-4 max-w-7xl mx-auto w-full">
@@ -57,7 +55,7 @@ export function WobleCardsFeatures() {
           </p>
         </div>
         <Image
-          src={favorites}
+          src="/static/img/favorites.png"
           width={500}
           height={500}
           loading="lazy"

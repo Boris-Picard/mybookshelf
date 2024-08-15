@@ -1,15 +1,13 @@
 import { BorderBeam } from "@/components/magicui/border-beam";
 import Image from "next/image";
 
-import dashboardHome from "/public/static/img/dashboard.png";
-
 export function BorderBeamHero() {
   return (
     <div className="flex relative">
       <div className="absolute -top-[-6rem] lg:-top-[-4rem] left-1/2 transform -translate-x-1/2 w-[90%] mx-auto h-24 lg:h-80 bg-gradient-to-r from-primary to-violet-900 rounded-full blur-3xl"></div>
       <div className="relative flex sm:h-[587px] h-[190px] mt-[8rem] w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl">
         <Image
-          src={dashboardHome}
+          src="/static/img/dashboard.png"
           fill={true}
           alt="dashboard home page"
           loading="lazy"
