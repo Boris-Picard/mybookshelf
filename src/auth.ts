@@ -16,7 +16,7 @@ export const {
   session: { strategy: "jwt" },
   pages: {
     signIn: "/auth/login",
-    signOut: "/auth/logout",
+    // signOut: "/auth/logout",
     error: "/auth/error",
   },
   callbacks: {
