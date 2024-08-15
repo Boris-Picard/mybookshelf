@@ -26,7 +26,7 @@ export const {
       }
       return session;
     },
-    jwt({ token, account, user }) {
+    jwt({ token, user }) {
       if (user) {
         token.id = user.id;
       }
