@@ -35,12 +35,12 @@ function AuthErrorPageContent() {
         <div className="font-normal text-gray-700 dark:text-gray-400">
           {errorMap[error] || "Please contact us if this error persists."}
         </div>
+        <div>
+          <Link href="/auth/login">
+            <Button variant="secondary">Login Page</Button>
+          </Link>
+        </div>
       </a>
-      <div>
-        <Link href="/auth/login">
-          <Button variant="secondary">Login Page</Button>
-        </Link>
-      </div>
     </div>
   );
 }
