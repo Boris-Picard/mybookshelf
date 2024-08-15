@@ -33,7 +33,7 @@ const CardFavoriteTemplateList: React.FC<CardFavoriteProps> = ({
     <Card className="w-full flex pl-0 py-0 flex-col sm:flex-row">
       <div className="flex-shrink-0">
         <Image
-          src={favorites.thumbnail ?? "/assets/default-book.png"}
+          src={favorites.thumbnail ?? "/default-book.png"}
           alt={favorites.name}
           width={150}
           height={150}
@@ -115,7 +115,7 @@ const CardFavoriteTemplateList: React.FC<CardFavoriteProps> = ({
                     target="_blank"
                   >
                     <Image
-                      src="/assets/play-books.svg"
+                      src="/play-books.svg"
                       width={24}
                       height={24}
                       alt="play-books"

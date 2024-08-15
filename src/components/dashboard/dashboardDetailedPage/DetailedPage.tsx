@@ -36,7 +36,7 @@ const DetailedPage: React.FC<DetailedPageProps> = ({ bookId }) => {
             <div className="col-span-1">
               <div className="flex justify-center lg:justify-start">
                 <Image
-                  src={book.thumbnail ?? "/assets/default-book.png"}
+                  src={book.thumbnail ?? "/default-book.png"}
                   alt={book.title}
                   width={512}
                   height={512}

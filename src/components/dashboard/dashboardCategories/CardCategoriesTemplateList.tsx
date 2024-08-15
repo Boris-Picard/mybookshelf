@@ -30,7 +30,7 @@ const CardCategoriesTemplateList: React.FC<CardCategoriesProps> = ({
       <Card className="w-full flex pl-0 py-0 flex-col sm:flex-row">
         <div className="flex-shrink-0">
           <Image
-            src={books.thumbnail ?? "/assets/default-book.png"}
+            src={books.thumbnail ?? "/default-book.png"}
             alt={books.title}
             width={150}
             height={150}
@@ -108,7 +108,7 @@ const CardCategoriesTemplateList: React.FC<CardCategoriesProps> = ({
                       target="_blank"
                     >
                       <Image
-                        src="/assets/play-books.svg"
+                        src="/play-books.svg"
                         width={24}
                         height={24}
                         alt="play-books"
