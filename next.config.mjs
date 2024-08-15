@@ -15,7 +15,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "vercel.com", 
+        hostname: "mybookshelf-six.vercel.app", 
       },
     ],
   },
