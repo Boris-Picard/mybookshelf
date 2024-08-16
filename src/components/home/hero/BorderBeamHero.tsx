@@ -11,7 +11,7 @@ export function BorderBeamHero() {
           fill={true}
           alt="dashboard home page"
           loading="lazy"
-          className="object-contain"
+          className="object-cover object-left w-full"
         />
         <div className="absolute bottom-0 left-0 right-0 h-[24rem] bg-gradient-to-b from-transparent to-black opacity-100"></div>
         <BorderBeam size={250} duration={12} delay={9} />
