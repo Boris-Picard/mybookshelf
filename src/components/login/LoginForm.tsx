@@ -5,8 +5,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { GoogleSignIn } from "./GoogleButton";
-import { GithubSignIn } from "./GithubButton";
+import { GoogleSignIn } from "@/components/login/GoogleButton";
+import { GithubSignIn } from "@/components/login/GithubButton";
 
 export default function LoginForm() {
   return (
