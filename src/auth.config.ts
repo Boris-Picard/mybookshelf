@@ -3,6 +3,7 @@ import Google from "next-auth/providers/google"
 
 import type { NextAuthConfig } from "next-auth"
 
+const isDevOrProd = process.env.NODE_ENV === "production"
 
 export default {
   providers: [
@@ -11,11 +12,11 @@ export default {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
     GitHub({
-      clientId: process.env.GITHUB_CLIENT_ID,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET,
+      clientId: isDevOrProd ? process.env.GITHUB_CLIENT_ID : process.env.GITHUB_LOCAL_CLIENT_ID,
+      clientSecret: isDevOrProd? process.env.GITHUB_CLIENT_SECRET : process.env.GITHUB_LOCAL_CLIENT_SECRET,
     }),
   ],
-  secret: process.env.NEXTAUTH_SECRET 
+  secret: process.env.NEXTAUTH_SECRET
 } satisfies NextAuthConfig
 
 
