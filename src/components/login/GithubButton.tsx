@@ -2,18 +2,23 @@
 import { Button } from "@/components/ui/button";
 import { FaGithub } from "react-icons/fa";
 import { handleSignInGithub } from "@/components/login/actions/login-action";
-import { useState } from "react";
 
-export function GithubSignIn() {
-
-  const [loading, setLoading] = useState<boolean>(true);
-  const handleLog = () => {
+export function GithubSignIn({
+  isLoading,
+  onSignIn,
+  disabled,
+}: {
+  isLoading: boolean;
+  onSignIn: () => void;
+  disabled: boolean;
+}) {
+  
+  const handleLog = async () => {
     try {
-      handleSignInGithub();
-      setLoading(false);
+      onSignIn();
+      await handleSignInGithub();
     } catch (error) {
       console.error(error);
-      setLoading(true);
     }
   };
 
@@ -23,8 +28,9 @@ export function GithubSignIn() {
       onClick={handleLog}
       variant="outline"
       className="w-full gap-3"
+      disabled={disabled}
     >
-      {!loading ? (
+      {isLoading ? (
         <>
           <svg
             aria-hidden="true"
