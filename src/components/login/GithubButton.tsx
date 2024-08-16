@@ -12,7 +12,6 @@ export function GithubSignIn({
   onSignIn: () => void;
   disabled: boolean;
 }) {
-  
   const handleLog = async () => {
     try {
       onSignIn();

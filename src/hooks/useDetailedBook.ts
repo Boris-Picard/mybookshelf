@@ -18,7 +18,6 @@ const useDetailedBook = (bookId: string) => {
                 throw new Error(`Error: ${response.status}`);
             }
             const data = await response.json();
-console.log(data);
 
             if (data.totalItems === 0) {
                 return null

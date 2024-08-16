@@ -64,7 +64,7 @@ const ReadBookButton = ({
   };
 
   return (
-    <button onClick={handleBook}>
+    <a onClick={handleBook}>
       <AnimatedSubscribeButton
         buttonColor="#000000"
         buttonTextColor="#ffffff"
@@ -82,7 +82,7 @@ const ReadBookButton = ({
           </span>
         }
       />
-    </button>
+    </a>
   );
 };
 

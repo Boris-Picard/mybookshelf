@@ -34,7 +34,7 @@ const CardCategoriesTemplateList: React.FC<CardCategoriesProps> = ({
             alt={books.title}
             width={150}
             height={150}
-            priority
+            loading="lazy"
             className="object-cover object-center sm:rounded-tl-xl sm:rounded-bl-xl rounded sm:rounded-none h-60 sm:h-full w-full sm:w-[150px] sm:aspect-auto"
           />
         </div>
