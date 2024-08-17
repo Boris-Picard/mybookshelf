@@ -37,7 +37,7 @@ const BookReadStats = () => {
 
   return (
     <div className="flex items-center justify-start md:justify-center md:mt-3 py-12 xl:py-0">
-      {nbPages && (
+      {nbPages && nbPages > 0 ? (
         <>
           <Image
             src="/book.svg"
@@ -52,8 +52,22 @@ const BookReadStats = () => {
             <span className="text-2xl font-bold">{nbPages}</span>
           </div>
         </>
+      ) : (
+        <>
+          <Image
+            src="/book.svg"
+            width={64}
+            height={64}
+            alt="book"
+            loading="lazy"
+            color="gold"
+          />
+          <span className="text-muted-foreground font-semibold mx-3">
+            Pas de pages lues
+          </span>
+        </>
       )}
-      {nbBook && (
+      {nbBook && nbBook > 0 ? (
         <>
           <Image
             src="/multiple.svg"
@@ -67,6 +81,20 @@ const BookReadStats = () => {
             <span className="text-xl text-muted-foreground">Livre lus</span>
             <span className="text-2xl font-bold">{nbBook}</span>
           </div>
+        </>
+      ) : (
+        <>
+          <Image
+            src="/multiple.svg"
+            width={64}
+            height={64}
+            loading="lazy"
+            alt="pages"
+            color="gold"
+          />
+          <span className="text-muted-foreground font-semibold">
+            Pas de livres lus
+          </span>
         </>
       )}
     </div>
