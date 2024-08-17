@@ -9,7 +9,7 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="relative mx-auto py-12 lg:py-24 w-full px-6 text-center md:px-8 h-screen"
+      className="relative mx-auto py-12 lg:py-24 w-full px-6 text-center md:px-8 min-h-full"
     >
       <ParticlesBackground />
       <div className="relative z-10 max-w-[80rem] mx-auto">
