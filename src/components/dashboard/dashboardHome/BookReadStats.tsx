@@ -40,7 +40,7 @@ const BookReadStats = () => {
       {nbPages && nbPages > 0 ? (
         <>
           <Image
-            src="/book.svg"
+            src="/multiple.svg"
             width={64}
             height={64}
             alt="book"
@@ -55,14 +55,14 @@ const BookReadStats = () => {
       ) : (
         <>
           <Image
-            src="/book.svg"
+            src="/multiple.svg"
             width={64}
             height={64}
             alt="book"
             loading="lazy"
             color="gold"
           />
-          <span className="text-muted-foreground font-semibold mx-3">
+          <span className="text-muted-foreground font-semibold mx-10">
             Pas de pages lues
           </span>
         </>
@@ -70,7 +70,7 @@ const BookReadStats = () => {
       {nbBook && nbBook > 0 ? (
         <>
           <Image
-            src="/multiple.svg"
+            src="/book.svg"
             width={64}
             height={64}
             loading="lazy"
@@ -85,14 +85,14 @@ const BookReadStats = () => {
       ) : (
         <>
           <Image
-            src="/multiple.svg"
+            src="/book.svg"
             width={64}
             height={64}
             loading="lazy"
             alt="pages"
             color="gold"
           />
-          <span className="text-muted-foreground font-semibold">
+          <span className="text-muted-foreground font-semibold mx-10">
             Pas de livres lus
           </span>
         </>
