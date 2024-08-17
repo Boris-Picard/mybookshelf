@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 const useCategoriesBooks = ({ category }: { category: string | undefined }) => {
     const [categoriesBooks, setCategoriesBooks] = useState<Books[]>([]);
     const [errorMessage, setErrorMessage] = useState<string>("");
+    const [loadingCategories, setLoadingCategories] = useState<boolean>(true)
 
     const fetchBooks = async () => {
         try {
@@ -15,12 +16,12 @@ const useCategoriesBooks = ({ category }: { category: string | undefined }) => {
                 `https://www.googleapis.com/books/v1/volumes?q=${category}&orderBy=relevance&key=${process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API}`
             );
             if (!response.ok) {
-                throw new Error(`Error: ${response.status}`);
+                setErrorMessage(`Error: ${response.status}`);
             }
             const data = await response.json();
 
             if (data.totalItems === 0) {
-                return null
+                setErrorMessage("La catégorie n'existe pas")
             }
 
             const filteredData: Books[] = data.items.map((item: any) => ({
@@ -54,14 +55,18 @@ const useCategoriesBooks = ({ category }: { category: string | undefined }) => {
 
             // filtre par date du plus récent au plus ancien
             const sortByDate = filteredByTitle.sort((a, b) => new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime());
-
-            setCategoriesBooks(sortByDate);
+            if (sortByDate) {
+                setCategoriesBooks(sortByDate);
+                setLoadingCategories(false)
+            }
         } catch (error) {
             // type guard avec instanceof pour vérifier que l'objet error est bien une instance de Error
             if (error instanceof Error) {
                 setErrorMessage(error.message);
+                setLoadingCategories(false)
             } else {
                 setErrorMessage('An unexpected error occurred');
+                setLoadingCategories(false)
             }
         }
     };
@@ -72,7 +77,7 @@ const useCategoriesBooks = ({ category }: { category: string | undefined }) => {
         }
     }, [category]);
 
-    return { categoriesBooks, errorMessage }
+    return { categoriesBooks, errorMessage, loadingCategories }
 };
 
 export default useCategoriesBooks

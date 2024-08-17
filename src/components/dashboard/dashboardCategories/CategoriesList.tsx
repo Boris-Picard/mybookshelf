@@ -291,7 +291,8 @@ const CategoriesList = ({
     },
   ];
 
-  const { categoriesBooks } = useCategoriesBooks({ category });
+  const { categoriesBooks, loadingCategories, errorMessage } =
+    useCategoriesBooks({ category });
   const { favorites, addFavoriteBook } = useFavorites();
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -313,13 +314,13 @@ const CategoriesList = ({
   }, [categoriesBooks]);
 
   if (category) {
-    if (loading) {
+    if (loadingCategories && loading) {
       return <SkeletonCategoriesList />;
     }
 
     return (
       <div className="space-y-3">
-        {categoriesBooks.length === 0 ? (
+        {categoriesBooks.length === 0 || errorMessage ? (
           <h1 className="text-muted-foreground text-xl">
             Pas de livres trouvés dans cette catégorie !
           </h1>
