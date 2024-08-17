@@ -88,7 +88,7 @@ const FavoriteList = ({ userId }: { bookId?: string; userId: string }) => {
       {favorites.length === 0 ? (
         <div>
           <span className="text-xl text-muted-foreground">
-            Pas livres ajouté aux favoris !
+            Vous n'avez pas encore ajouté de livres à vos favoris !
           </span>
         </div>
       ) : (
@@ -105,7 +105,7 @@ const FavoriteList = ({ userId }: { bookId?: string; userId: string }) => {
                 </div>
                 {uniqueCategories.map((category) => (
                   <SelectItem
-                    key={category} // Added key for each category
+                    key={category}
                     className="line-clamp-2 items-center max-h-[50px]"
                     value={category}
                   >
@@ -127,7 +127,7 @@ const FavoriteList = ({ userId }: { bookId?: string; userId: string }) => {
                 </div>
                 {uniqueAuthors.map((author) => (
                   <SelectItem
-                    key={author} // Added key for each author
+                    key={author}
                     className="line-clamp-2 items-center max-h-[50px]"
                     value={author}
                   >
