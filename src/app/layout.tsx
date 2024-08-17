@@ -3,6 +3,7 @@ import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import { Analytics } from "@vercel/analytics/react";
+import NextTopLoader from "nextjs-toploader";
 
 import { cn } from "@/lib/utils";
 
@@ -33,6 +34,18 @@ export default async function RootLayout({
           disableTransitionOnChange
         >
           <Analytics />
+          <NextTopLoader
+            color="#F97316"
+            initialPosition={0.08}
+            crawlSpeed={200}
+            height={3}
+            crawl={true}
+            showSpinner={true}
+            easing="ease"
+            speed={200}
+            zIndex={1600}
+            shadow="0 0 10px #2299DD,0 0 5px #2299DD"
+          />
           {children}
           <ToastContainer />
         </ThemeProvider>
