@@ -1,23 +1,25 @@
 "use client";
 
-import { handleSignOut } from "@/components/login/actions/logout-action";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const LogoutHomeButton = () => {
   return (
-    <form action={handleSignOut}>
-      <Button type="submit" variant="outline">
+    <Link href="/auth/signout">
+      <Button type="button" variant="outline">
         Logout
       </Button>
-    </form>
+    </Link>
   );
 };
 
 const LogoutDashBoardButton = () => {
   return (
-    <form action={handleSignOut} className="flex w-full">
-      <button type="submit" className="w-full text-start">Logout</button>
-    </form>
+    <Link href="/auth/signout">
+      <button type="button" className="w-full text-start">
+        Logout
+      </button>
+    </Link>
   );
 };
 
