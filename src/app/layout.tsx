@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
+import { Analytics } from "@vercel/analytics/react";
 
 import { cn } from "@/lib/utils";
 
@@ -31,6 +32,7 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Analytics />
           {children}
           <ToastContainer />
         </ThemeProvider>
