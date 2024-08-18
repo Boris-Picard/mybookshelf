@@ -11,6 +11,8 @@ const TemplateSearchList = ({
   userId: string;
 }) => {
 
+  const date = new Date(books.publishedDate);
+
   return (
     <div className="flex p-3 items-center bg-slate-50 dark:bg-zinc-950">
       <Link
@@ -33,6 +35,11 @@ const TemplateSearchList = ({
           <div className="flex flex-col py-2">
             {books.authors && (
               <span className="text-muted-foreground">{books.authors}</span>
+            )}
+            {date && (
+              <span className="text-muted-foreground">
+                Date de parution : {date.toLocaleDateString()}
+              </span>
             )}
             {books.categories && (
               <span className="text-muted-foreground">
