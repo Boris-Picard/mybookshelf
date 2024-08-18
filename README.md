@@ -4,7 +4,7 @@ A web application for managing and tracking books, built with **Next.js**, **Pri
 
 ## Features
 
-- **Authentication**: Secure login via Google and GitHub using Next Auth.
+- **Authentication**: Secure login via Google and GitHub using Auth.js.
 - **Personalized Recommendations**: Based on your favorite books.
 - **Favorites**: Add and view your favorite books.
 - **Reading Tracking**: Track total books read and pages read.
