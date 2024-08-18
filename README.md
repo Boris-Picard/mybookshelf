@@ -1,6 +1,6 @@
 # Book Management Dashboard
 
-A web application for managing and tracking books, built with **Next.js**, **Prisma**, and **Zustand**.
+A web application for managing and tracking books, built with **Next.js**, **Prisma**, **PostgreSQL**, and **Zustand**.
 
 ## Features
 
@@ -14,30 +14,28 @@ A web application for managing and tracking books, built with **Next.js**, **Pri
 ## Technologies
 
 - **Front-end**: Next.js
-- **Back-end**: Prisma
+- **Back-end**: Prisma - PostgreSQL
 - **State Management**: Zustand
 - **Data Validation**: Zod
 - **API**: Google Books API
-- **Deployment**: Render.com
+- **Deployment**: Vercel - Render.com
 
 ## Installation
 
 1. Clone the repository:
 
-   ```bash
-   git clone https://github.com/your-username/your-repo.git
-   cd your-repo
-   Install dependencies:
-   ```
+```bash
+git clone https://github.com/your-username/your-repo.git
+cd your-repo
+Install dependencies:
+```
 
 ```bash
-Copier le code
 npm install
 Set up environment variables in .env.local:
 ```
 
 ```bash
-Copier le code
 DATABASE_URL=your_database_url
 NEXTAUTH_URL=http://localhost:3000
 NEXTAUTH_SECRET=your_nextauth_secret
@@ -50,13 +48,11 @@ GITHUB_SECRET=your_github_secret
 Run Prisma migrations:
 
 ```bash
-Copier le code
 npx prisma migrate dev
 Start the development server:
 ```
 
 ```bash
-Copier le code
 npm run dev
 The app will be available at http://localhost:3000.
 ```
