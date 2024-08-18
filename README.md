@@ -1,6 +1,6 @@
 # Book Management Dashboard
 
-A web application for managing and tracking books, built with **Next.js**, **Prisma**, and **Zustand**.
+A web application for managing and tracking books, built with **Next.js**, **Prisma**, **PostgreSQL**, and **Zustand**.
 
 ## Features
 
@@ -18,7 +18,7 @@ A web application for managing and tracking books, built with **Next.js**, **Pri
 - **State Management**: Zustand
 - **Data Validation**: Zod
 - **API**: Google Books API
-- **Deployment**: Render.com
+- **Deployment**: Vercel - Render.com
 
 ## Installation
 
