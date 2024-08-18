@@ -31,13 +31,11 @@ Install dependencies:
 ```
 
 ```bash
-Copier le code
 npm install
 Set up environment variables in .env.local:
 ```
 
 ```bash
-Copier le code
 DATABASE_URL=your_database_url
 NEXTAUTH_URL=http://localhost:3000
 NEXTAUTH_SECRET=your_nextauth_secret
@@ -50,13 +48,11 @@ GITHUB_SECRET=your_github_secret
 Run Prisma migrations:
 
 ```bash
-Copier le code
 npx prisma migrate dev
 Start the development server:
 ```
 
 ```bash
-Copier le code
 npm run dev
 The app will be available at http://localhost:3000.
 ```
