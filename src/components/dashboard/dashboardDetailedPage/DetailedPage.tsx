@@ -24,6 +24,7 @@ const DetailedPage: React.FC<DetailedPageProps> = ({ bookId }) => {
 
   const description = book.description;
   const cleanDescription = DOMPurify.sanitize(description);
+  const date = new Date(book.publishedDate);
 
   return (
     <div className="flex flex-col">
@@ -76,10 +77,12 @@ const DetailedPage: React.FC<DetailedPageProps> = ({ bookId }) => {
                     {book.categories}
                   </div>
                 )}
-                <div>
-                  <span className="font-bold">Date de publication : </span>
-                  {book.publishedDate}
-                </div>
+                {date && (
+                  <div>
+                    <span className="font-bold">Date de publication : </span>
+                    {date.toLocaleDateString()}
+                  </div>
+                )}
                 {book.averageRating && (
                   <div className="flex flex-nowrap w-1/4 items-center space-x-2">
                     <span className="font-bold">Notes</span>
