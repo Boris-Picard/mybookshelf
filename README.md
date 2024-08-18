@@ -14,7 +14,7 @@ A web application for managing and tracking books, built with **Next.js**, **Pri
 ## Technologies
 
 - **Front-end**: Next.js
-- **Back-end**: Prisma
+- **Back-end**: Prisma - PostgreSQL
 - **State Management**: Zustand
 - **Data Validation**: Zod
 - **API**: Google Books API
